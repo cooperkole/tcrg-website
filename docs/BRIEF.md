@@ -183,3 +183,19 @@ Open items (ask me in Step 0; don't guess)
 
 Final report
 When you're done, give me: the repo URL, the live `github.io` URL, the Lighthouse scores, a list of every placeholder still on the site, the file I edit to change each kind of content, and the full list of image credits. Also update `PROGRESS.md` so it serves as the handoff doc for whoever maintains the site next.
+
+## Decisions
+Answers from Cooper, 2026-11-25 (Step 0).
+
+1. People: all unknowns stay TBD for now. Fall 2026 e-board roles: President (Fares Danial), Head of Operations (Cooper Kolehmainen), Head of Research (TBD), Treasurer (TBD), Marketing (TBD). Five Senior Advisors, all TBD (one is "Bruno TBD"). Every staff card (e-board and advisors) gets a bio placeholder field. Add a Founders section (Mathis Weber, Otto Laakso, Co-Founders) below all current staffing, as on the old site. Member roster TBD.
+2. Investor contact email: placeholder for now.
+3. Case-study descriptors: drop them; don't map clients to projects. Do advertise the named clients we have worked with, in a separate client roster.
+4. Spring 2027 recruiting starts mid-January 2027 (exact dates TBD). Add a "coffee chat" Google Form link (URL TBD) where prospective applicants can sign up to chat with a board member about the club.
+5. Stats (Fall 2026): 4 Project Leads, 5 Research Leads, 20 Analysts; 2 current projects (Bain Capital + an unnamed fund); 17 expert calls this semester (as of 2026-11-25). Projects completed to date = 2 per semester for X years: X still TBD, so total projects is a placeholder.
+6. Sample deck: keep a redacted sample deck that prospective clients and new members can browse (public/docs/tcrg-sample-deck.pdf, to be supplied).
+7. Firm names: Guggenheim = Guggenheim Securities. CF Private Equity, Core Industrial Partners, and PJT/PWP still unconfirmed (keep [VERIFY]).
+8. Two distinct lists: member placements (internships/jobs, aimed at students) and clients (aimed at investors). Keep them separate.
+9. Combined AUM: include the Tufts endowment's value in the total.
+10. Hosting: public repo on GitHub account cooperkole, GitHub Pages.
+11. URLs: /work, /about, /join, with redirects from /blank, /blank-1, /blank-2.
+12. Plan approved as proposed in Step 0: palette Ink #0E1A2B, Jumbo Blue #002E6D, Tufts Blue #3E8EDE (accent, large/dark-bg only), Ivory #F7F4EE, Candle White #F2EDE7, secondary text #5E5C57, hairline #D9D3C7; fonts Newsreader (display) + Inter (body); references centerview.com, hf.com, pwpartners.com; image list as proposed (Wikimedia Commons, verify visually in Step 5; request official Tufts photos).
