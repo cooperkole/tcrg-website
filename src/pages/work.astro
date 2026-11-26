@@ -1,4 +1,5 @@
 ---
+import { withBase } from '../lib/paths';
 import Base from '../layouts/Base.astro';
 import ContactCta from '../components/ContactCta.astro';
 import PhotoBand from '../components/PhotoBand.astro';
@@ -85,7 +86,7 @@ const team = stats.projectTeam;
         <h2>{deck.title}</h2>
         <p>{deck.available ? deck.description : deck.placeholder}</p>
       </div>
-      {deck.available && <a class="button" href={deck.href}>View the sample deck (PDF)</a>}
+      {deck.available && <a class="button" href={withBase(deck.href)}>View the sample deck (PDF)</a>}
     </div>
   </section>
 

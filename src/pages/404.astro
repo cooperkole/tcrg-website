@@ -1,4 +1,5 @@
 ---
+import { withBase } from '../lib/paths';
 import Base from '../layouts/Base.astro';
 ---
 <Base title="Page not found | Tufts Capital Research Group" noindex>
@@ -8,10 +9,10 @@ import Base from '../layouts/Base.astro';
       <h1>This page doesn't exist.</h1>
       <p class="lede">The address may have changed when the site moved. Try one of these instead.</p>
       <ul class="not-found-links">
-        <li><a href="/">Home</a></li>
-        <li><a href="/work">Our Work</a></li>
-        <li><a href="/about">About</a></li>
-        <li><a href="/join">Join</a></li>
+        <li><a href={withBase('/')}>Home</a></li>
+        <li><a href={withBase('/work')}>Our Work</a></li>
+        <li><a href={withBase('/about')}>About</a></li>
+        <li><a href={withBase('/join')}>Join</a></li>
       </ul>
     </div>
   </section>

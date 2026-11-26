@@ -1,4 +1,5 @@
 ---
+import { withBase } from '../lib/paths';
 import site from '../data/site.json';
 import recruiting from '../data/recruiting.json';
 const elist = recruiting.recruiting.links.elist;
@@ -6,15 +7,15 @@ const elist = recruiting.recruiting.links.elist;
 <footer class="site-footer">
   <div class="container footer-inner">
     <div class="footer-brand">
-      <img class="footer-logo" src="/brand/tcrg-logo-ivory.png" alt={site.name} width="640" height="279" loading="lazy" />
+      <img class="footer-logo" src={withBase('/brand/tcrg-logo-ivory.png')} alt={site.name} width="640" height="279" loading="lazy" />
       <p class="footer-tagline">{site.tagline}</p>
     </div>
     <nav class="footer-nav" aria-label="Footer">
       <p class="footer-heading">Site</p>
       <ul class="footer-links">
-        <li><a href="/work">Our Work</a></li>
-        <li><a href="/about">About</a></li>
-        <li><a href="/join">Join</a></li>
+        <li><a href={withBase('/work')}>Our Work</a></li>
+        <li><a href={withBase('/about')}>About</a></li>
+        <li><a href={withBase('/join')}>Join</a></li>
       </ul>
     </nav>
     <div class="footer-nav">

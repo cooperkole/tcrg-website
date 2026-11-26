@@ -1,8 +1,8 @@
 # TCRG website: progress
 
 ## Status
-Current step: 6 done. Next: Step 7 (Deploy and domain).
-Live URL: not live yet (custom domain pending Step 7)   Repo: https://github.com/cooperkole/tcrg-website (public)
+Current step: 7 done. Next: Step 8 (Quality check and final report).
+Live URL: https://cooperkole.github.io/tcrg-website/ (preview; custom domain not connected, see DEPLOY.md)   Repo: https://github.com/cooperkole/tcrg-website (public)
 
 ## Steps
 - [x] Step 0: Plan approved (2026-11-25)
@@ -12,7 +12,7 @@ Live URL: not live yet (custom domain pending Step 7)   Repo: https://github.com
 - [x] Step 4: Design (2026-11-25)
 - [x] Step 5: Photography (2026-11-25)
 - [x] Step 6: SEO and basics (2026-11-25)
-- [ ] Step 7: Deploy and domain
+- [x] Step 7: Deploy and domain (2026-11-25)
 - [ ] Step 8: Quality check and final report
 
 ## Decisions (approved by Cooper)
@@ -60,12 +60,15 @@ Live URL: not live yet (custom domain pending Step 7)   Repo: https://github.com
 - src/data/aum.ts: sourced AUM per client, aumLabel = "$700B+" (total 741.8 rounded down to $50B): Bain ~225 (Aug 2026), HarbourVest 167.9 (6/30/26), Cambridge Associates 326.7 regulatory AUM (Form ADV, 12/31/25), CF Private Equity 17.53 regulatory AUM (Form ADV, Oct 2026), CORE Industrial Partners 1.58 committed capital (site), Tufts 3.1 (5/2026)
 - src/data/photos.ts (photo metadata: alt, author, license, focus) + src/assets/photos/ (2400px sources). PhotoBand (full-bleed figure + credit), PhotoCredit. Placement: home hero bostonDusk + customHouse band; work rowesWharf + lowerManhattan; about ballouHall; join beaconHill. CREDITS.md at root
 - src/assets/headshots/, src/assets/clients/ (empty; README convention: photo field = file name there)
-- .github/workflows/deploy.yml (withastro/action@v6 + deploy-pages@v5, on push to main)
+- .github/workflows/deploy.yml (withastro/action@v6 + deploy-pages@v5, on push to main). Build job env SITE_URL/BASE_PATH = github.io preview; delete when domain connects (DEPLOY.md step 4)
+- Base path: astro.config.mjs reads SITE_URL/BASE_PATH (defaults = custom domain, '/'); redirect targets prefixed via to(). src/lib/paths.ts withBase()/stripBase(): ALL internal links/public assets must use withBase('/x')
+- DEPLOY.md: domain cutover (Wix registrar + Wix DNS, no MX found 2026-11-25; verify TXT, A/AAAA, www CNAME cooperkole.github.io, HTTPS, rollback values)
 - README.md (e-board guide; mentions src/assets/headshots/ and /blank redirects, which Steps 2-3 must create)
 
 ## Notes for the next session
-- Step 6 done: redirects now target /work/ /about/ /join/ (GH Pages folder URLs). Contrast checked: all text pairs AA (Tufts Blue on ink 5.1:1). One h1, landmarks and img alts on every page. Nav links still use /work (one 301 hop on Pages; fine).
-- Step 7: set custom domain in repo Settings > Pages, DNS at registrar; verify og-image/favicon/sitemap URLs resolve on the live domain.
+- Step 7 done: github.io preview works (base /tcrg-website). Cooper does the DNS steps in DEPLOY.md; Wix untouched. Step 8: run checks against the preview build (npm run build = custom-domain build; for preview: SITE_URL=https://cooperkole.github.io BASE_PATH=/tcrg-website npx astro build). Link checker must cover /tcrg-website/ prefix.
+- Step 6 note: redirects now target /work/ /about/ /join/.
+- Step 6: Contrast checked: all text pairs AA (Tufts Blue on ink 5.1:1). One h1, landmarks and img alts on every page. Nav links still use /work (one 301 hop on Pages; fine).
 - Step 5 done: <Picture> AVIF/WebP, widths 640-1920, quality 55. Hero 1920w AVIF = 122 KB. Band images up to ~570 KB at 1920w (lazy); lower quality if Lighthouse flags it in Step 8. Hero eyebrow is now ivory (blue rule) for contrast over the photo.
 - Design done in Step 4: hairline rules, numbered eyebrows/lists, 5/7 split grid, square buttons, header logo swaps navy/ivory via CSS. Stat label changed to "Combined AUM of clients served". Home h1 copy is mine (Cooper may revise). Group photos/testimonials hidden while empty.
 - Logo is high-res, so no text wordmark needed. Logos/ folder at repo root is the original upload; public/brand/ is what the site uses.

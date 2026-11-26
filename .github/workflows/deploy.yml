@@ -18,6 +18,11 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # Temporary: build for the project URL https://cooperkole.github.io/tcrg-website/.
+    # DELETE these env lines in the same commit as connecting the custom domain (DEPLOY.md, step 4).
+    env:
+      SITE_URL: https://cooperkole.github.io
+      BASE_PATH: /tcrg-website
     steps:
       - name: Checkout
         uses: actions/checkout@v7
