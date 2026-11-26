@@ -1,12 +1,12 @@
 # TCRG website: progress
 
 ## Status
-Current step: 0 done (plan approved). Next: Step 1 (Repo and stack).
-Live URL: not deployed yet   Repo: local only (remote created in Step 1 under cooperkole, public)
+Current step: 1 done. Next: Step 2 (Content).
+Live URL: not live yet (custom domain pending Step 7)   Repo: https://github.com/cooperkole/tcrg-website (public)
 
 ## Steps
 - [x] Step 0: Plan approved (2026-11-25)
-- [ ] Step 1: Repo and stack
+- [x] Step 1: Repo and stack (2026-11-25)
 - [ ] Step 2: Content
 - [ ] Step 3: Pages
 - [ ] Step 4: Design
@@ -17,7 +17,7 @@ Live URL: not deployed yet   Repo: local only (remote created in Step 1 under co
 
 ## Decisions (approved by Cooper)
 - Palette: Ink #0E1A2B, Jumbo Blue #002E6D (links), Tufts Blue #3E8EDE (accent, large text/dark bg only; source brand.tufts.edu/guidelines/color), Ivory #F7F4EE, Candle White #F2EDE7, text-2 #5E5C57, hairline #D9D3C7
-- Fonts: Newsreader (display) + Inter (body), self-hosted via Fontsource. Stack: Astro static (CSS choice made in Step 1)
+- Fonts: Newsreader (display) + Inter (body), self-hosted via Fontsource. Stack: Astro 7 static + plain CSS (tokens in src/styles/global.css; site is small and plain CSS keeps markup readable for future e-boards)
 - Refs: centerview.com, hf.com, pwpartners.com
 - URLs: /work, /about, /join; redirect pages at /blank, /blank-1, /blank-2
 - Hosting: public repo on cooperkole, GitHub Pages via Actions
@@ -47,9 +47,14 @@ Live URL: not deployed yet   Repo: local only (remote created in Step 1 under co
 
 ## Key files
 - docs/BRIEF.md: full brief (verbatim) + Decisions section
-- (site files created from Step 1)
+- astro.config.mjs (site = custom domain), public/CNAME
+- src/layouts/Base.astro (fonts + global.css), src/pages/index.astro (placeholder)
+- src/data/*.json: team, advisors, clients, case-studies, stats, placements, recruiting (empty stubs; fill in Step 2)
+- .github/workflows/deploy.yml (withastro/action@v6 + deploy-pages@v5, on push to main)
+- README.md (e-board guide; mentions src/assets/headshots/ and /blank redirects, which Steps 2-3 must create)
 
 ## Notes for the next session
+- Pages source = GitHub Actions. Custom domain NOT set in repo settings yet (Step 7). Until then the github.io URL is a project path (/tcrg-website/), so root-relative assets look broken there; expected.
 - Logo (high-res PNG 3973x1581): https://static.wixstatic.com/media/9d2749_d6d43482ce2f4ccca8900e85c36fe1af~mv2.png (download in Step 4)
 - Old site's sample deck: /_files/ugd/9d2749_8fb3b9e74d164b37bc27f29706a4521a.pdf (unredacted? Cooper supplies redacted version)
 - Old site team/analyst names are Spring 2026 only; don't reuse

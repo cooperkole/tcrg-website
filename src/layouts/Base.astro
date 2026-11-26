@@ -1,0 +1,21 @@
+---
+import '@fontsource-variable/newsreader';
+import '@fontsource-variable/inter';
+import '../styles/global.css';
+
+interface Props { title: string; description?: string }
+const { title, description = 'Tufts Capital Research Group: student-run, pro bono market due diligence for institutional investors.' } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

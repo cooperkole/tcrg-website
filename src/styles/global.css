@@ -1,0 +1,16 @@
+/* Design tokens (see PROGRESS.md Decisions). Full design comes in Step 4. */
+:root {
+  --ink: #0E1A2B;
+  --jumbo-blue: #002E6D;   /* links */
+  --tufts-blue: #3E8EDE;   /* accent: large text or dark backgrounds only */
+  --ivory: #F7F4EE;
+  --candle-white: #F2EDE7;
+  --text-2: #5E5C57;
+  --hairline: #D9D3C7;
+  --font-display: 'Newsreader Variable', Georgia, serif;
+  --font-body: 'Inter Variable', system-ui, sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--ivory); color: var(--ink); font-family: var(--font-body); line-height: 1.6; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 500; line-height: 1.15; }
+a { color: var(--jumbo-blue); }
