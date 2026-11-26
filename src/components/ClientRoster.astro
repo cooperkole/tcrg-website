@@ -1,0 +1,14 @@
+---
+// Client roster. Never mapped to projects or sectors (see clients.json _note).
+import data from '../data/clients.json';
+const clients = data.clients;
+---
+<ul class="client-roster">
+  {clients.map((c) => (
+    <li class:list={['client', { 'client-anon': c.anonymous }]}>
+      <span class="client-name">{c.name}</span>
+      {c.detail && <span class="client-detail">{c.detail}</span>}
+      {c.status === 'current' && <span class="client-status">Current</span>}
+    </li>
+  ))}
+</ul>

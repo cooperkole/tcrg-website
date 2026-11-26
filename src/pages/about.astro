@@ -1,0 +1,110 @@
+---
+import Base from '../layouts/Base.astro';
+import PersonCard from '../components/PersonCard.astro';
+import site from '../data/site.json';
+import team from '../data/team.json';
+import advisorData from '../data/advisors.json';
+import stats from '../data/stats.json';
+import placementData from '../data/placements.json';
+
+const groups = [
+  { key: 'projectLeads', label: 'Project Leads' },
+  { key: 'researchLeads', label: 'Research Leads' },
+  { key: 'analysts', label: 'Analysts' },
+] as const;
+const countFor = (label: string) => stats.teamSize.find((t) => t.role === label)?.count;
+
+const paths = [
+  { key: 'banking', label: 'Banking' },
+  { key: 'consulting', label: 'Consulting' },
+  { key: 'investing', label: 'Investing' },
+];
+const groupPhotos = team.groupPhotos.filter((g) => g.photo);
+---
+<Base title="About | Tufts Capital Research Group" description="The people behind Tufts Capital Research Group: leadership, senior advisors, members and where they go.">
+  <section class="page-head">
+    <div class="container">
+      <p class="eyebrow">About</p>
+      <h1>A student-run research group at Tufts</h1>
+      <p class="lede">{site.summary}</p>
+    </div>
+  </section>
+
+  <section class="section" id="story">
+    <div class="container narrow">
+      <h2>Our story</h2>
+      <p>{site.origin}</p>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="leadership">
+    <div class="container">
+      <h2>Leadership</h2>
+      <p class="section-sub">{team.semester} executive board</p>
+      <div class="people">
+        {team.eboard.map((p) => <PersonCard {...p} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="advisors">
+    <div class="container">
+      <h2>Senior Advisors</h2>
+      <p class="section-sub">{advisorData.intro}</p>
+      <div class="people">
+        {advisorData.advisors.map((p) => <PersonCard {...p} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="members">
+    <div class="container">
+      <h2>Members</h2>
+      <p class="section-sub">{team.semester}</p>
+      {groups.map((g) => (
+        <div class="member-group">
+          <h3>{g.label}{countFor(g.label) ? <span class="count"> ({countFor(g.label)})</span> : null}</h3>
+          <div class="people people-compact">
+            {team.members[g.key].map((m) => <PersonCard name={m.name} photo={m.photo} compact />)}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  {groupPhotos.length > 0 && (
+    <section class="section" id="photos">
+      <div class="container group-photos">
+        {groupPhotos.map((g) => (
+          <figure><img src={g.photo} alt={g.caption} /><figcaption>{g.caption}</figcaption></figure>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <section class="section" id="founders">
+    <div class="container">
+      <h2>Founders</h2>
+      <div class="people">
+        {team.founders.map((p) => <PersonCard {...p} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="placements">
+    <div class="container">
+      <h2>Member placements</h2>
+      <p class="section-sub">{placementData.intro} Internships and full-time roles held by current and past members.</p>
+      <div class="placements">
+        {paths.map((p) => (
+          <div class="placement-col">
+            <h3>{p.label}</h3>
+            <ul>
+              {placementData.placements.filter((x) => x.path === p.key).map((x) => <li>{x.name}</li>)}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,58 @@
+---
+import Base from '../layouts/Base.astro';
+import recruiting from '../data/recruiting.json';
+
+const r = recruiting.recruiting;
+const banner = r.banner[r.status as keyof typeof r.banner];
+const fmt = (d: string) => d === 'TBD' ? 'Date TBD' : new Date(d + 'T12:00:00').toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+const details = [
+  { label: 'Who can apply', body: r.eligibility },
+  { label: 'Application', body: r.application },
+  { label: 'Time commitment', body: r.commitment },
+  { label: 'How teams work', body: r.cadence },
+];
+---
+<Base title="Join | Tufts Capital Research Group" description={`${r.cycle} recruiting for Tufts Capital Research Group.`}>
+  <section class="page-head">
+    <div class="container">
+      <p class="eyebrow">Join</p>
+      <h1>{r.cycle} recruiting</h1>
+      <p class={`status-banner status-${r.status}`} role="status">{banner}</p>
+      <div class="button-row">
+        {r.status === 'open' && r.links.application && <a class="button" href={r.links.application} rel="noopener">Apply</a>}
+        {r.links.elist && <a class="button button-secondary" href={r.links.elist} rel="noopener">Join the e-list</a>}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <dl class="details">
+        {details.map((d) => (
+          <div class="detail"><dt>{d.label}</dt><dd>{d.body}</dd></div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="timeline">
+    <div class="container">
+      <h2>Timeline</h2>
+      <ol class="timeline">
+        {r.timeline.map((t) => (
+          <li><span class="timeline-step">{t.step}</span><span class="timeline-date">{fmt(t.date)}</span></li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" id="coffee-chat">
+    <div class="container narrow">
+      <h2>Talk to us first</h2>
+      <p>{r.coffeeChat}</p>
+      {r.links.coffeeChat
+        ? <a class="button" href={r.links.coffeeChat} rel="noopener">Sign up for a coffee chat</a>
+        : <p class="muted">The sign-up form will be posted here soon.</p>}
+    </div>
+  </section>
+</Base>

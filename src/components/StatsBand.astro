@@ -1,0 +1,21 @@
+---
+import statsData from '../data/stats.json';
+import { aumLabel } from '../data/aum';
+// Hide anything still TBD; only verified numbers show.
+const stats = statsData.stats
+  .map((s) => ({ ...s, value: s.id === 'aum' ? aumLabel : s.value }))
+  .filter((s) => s.value && s.value !== 'TBD');
+---
+<section class="stats-band" aria-label="TCRG in numbers">
+  <div class="container">
+    <dl class="stats">
+      {stats.map((s) => (
+        <div class="stat">
+          <dt>{s.label}</dt>
+          <dd>{s.value}</dd>
+        </div>
+      ))}
+    </dl>
+    <p class="stats-note">{statsData.semester}, as of {new Date(statsData.asOf + 'T12:00:00').toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}. Combined AUM uses each client's latest public figure.</p>
+  </div>
+</section>

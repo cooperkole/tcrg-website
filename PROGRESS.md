@@ -1,14 +1,14 @@
 # TCRG website: progress
 
 ## Status
-Current step: 2 done. Next: Step 3 (Pages).
+Current step: 3 done. Next: Step 4 (Design).
 Live URL: not live yet (custom domain pending Step 7)   Repo: https://github.com/cooperkole/tcrg-website (public)
 
 ## Steps
 - [x] Step 0: Plan approved (2026-11-25)
 - [x] Step 1: Repo and stack (2026-11-25)
 - [x] Step 2: Content (2026-11-25)
-- [ ] Step 3: Pages
+- [x] Step 3: Pages (2026-11-25)
 - [ ] Step 4: Design
 - [ ] Step 5: Photography
 - [ ] Step 6: SEO and basics
@@ -49,7 +49,10 @@ Live URL: not live yet (custom domain pending Step 7)   Repo: https://github.com
 ## Key files
 - docs/BRIEF.md: full brief (verbatim) + Decisions section
 - astro.config.mjs (site = custom domain), public/CNAME
-- src/layouts/Base.astro (fonts + global.css), src/pages/index.astro (placeholder)
+- src/layouts/Base.astro (fonts, global.css, Header, Footer; prop heroOverlay = transparent fixed header over hero)
+- src/pages: index, work, about, join, 404. Redirects /blank* in astro.config.mjs `redirects`
+- src/components: Header (sticky, .is-scrolled bg, mobile toggle), Footer (links + e-list), PersonCard (headshot via import.meta.glob of src/assets/headshots, else monogram; TBD -> "Name TBD"), StatsBand (hides TBD), ClientRoster, ContactCta (placeholder text while email empty)
+- .claude/launch.json: astro-preview on :4321 (run npm run build first)
 - src/data/*.json: site (copy, services, process, contact, testimonials), team (eboard, members grouped projectLeads/researchLeads/analysts, founders, groupPhotos), advisors (intro + 5), clients (alphabetical, verify/anonymous flags), case-studies (+ sampleDeck.available=false), stats (TBD = hide), placements (path: banking/consulting/investing), recruiting (status upcoming, banner per status, timeline TBD)
 - src/data/aum.ts: sourced AUM per client, aumLabel = "$700B+" (total 741.8 rounded down to $50B): Bain ~225 (Aug 2026), HarbourVest 167.9 (6/30/26), Cambridge Associates 326.7 regulatory AUM (Form ADV, 12/31/25), CF Private Equity 17.53 regulatory AUM (Form ADV, Oct 2026), CORE Industrial Partners 1.58 committed capital (site), Tufts 3.1 (5/2026)
 - src/assets/headshots/, src/assets/clients/ (empty; README convention: photo field = file name there)
@@ -57,7 +60,7 @@ Live URL: not live yet (custom domain pending Step 7)   Repo: https://github.com
 - README.md (e-board guide; mentions src/assets/headshots/ and /blank redirects, which Steps 2-3 must create)
 
 ## Notes for the next session
-- Step 3: none of the data is wired into pages yet. Hide entries with name/value "TBD" only where noted (stats, testimonials, empty links); TBD people still render as placeholder cards with monograms.
+- Step 4: all pages are wired to data. global.css has a functional structural layer (marked "Step 3"); restyle freely, keep class names or update components. Hero is a plain ink block (.hero-media), photo comes in Step 5. Home h1 copy is mine: "Bespoke market research for institutional investors, from Tufts." (Cooper may revise). Group photos and testimonials hidden while empty.
 - Headshots live in src/assets/headshots/ per README (brief said public/images/team/; README convention kept so Astro can optimize/crop uniformly).
 - Pages source = GitHub Actions. Custom domain NOT set in repo settings yet (Step 7). Until then the github.io URL is a project path (/tcrg-website/), so root-relative assets look broken there; expected.
 - Logo (high-res PNG 3973x1581): https://static.wixstatic.com/media/9d2749_d6d43482ce2f4ccca8900e85c36fe1af~mv2.png (download in Step 4)

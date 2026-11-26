@@ -1,0 +1,94 @@
+---
+import Base from '../layouts/Base.astro';
+import ContactCta from '../components/ContactCta.astro';
+import site from '../data/site.json';
+import caseData from '../data/case-studies.json';
+import stats from '../data/stats.json';
+
+const deck = caseData.sampleDeck;
+const team = stats.projectTeam;
+---
+<Base title="Our Work | Tufts Capital Research Group" description="Services, engagement process and selected sectors from Tufts Capital Research Group.">
+  <section class="page-head">
+    <div class="container">
+      <p class="eyebrow">Our Work</p>
+      <h1>Market due diligence, on the vertical you choose</h1>
+      <p class="lede">{site.whatWeDo}</p>
+    </div>
+  </section>
+
+  <section class="section" id="services">
+    <div class="container">
+      <h2>Services</h2>
+      <div class="pillars">
+        {site.services.map((s) => (
+          <div class="pillar">
+            <h3>{s.title}</h3>
+            <p>{s.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="process">
+    <div class="container">
+      <h2>The engagement process</h2>
+      <p class="lede">{site.deliverable}</p>
+      <ol class="process">
+        {site.process.map((step, i) => (
+          <li class="process-step">
+            <span class="process-num">{String(i + 1).padStart(2, '0')}</span>
+            <h3>{step.title}</h3>
+            <p>{step.body}</p>
+          </li>
+        ))}
+      </ol>
+      <div class="project-team">
+        <h3>A typical project team</h3>
+        <dl>
+          <div><dt>Senior Advisor</dt><dd>{team.seniorAdvisors}</dd></div>
+          <div><dt>Project Leads</dt><dd>{team.projectLeads}</dd></div>
+          <div><dt>Research Leads</dt><dd>{team.researchLeads}</dd></div>
+          <div><dt>Analysts</dt><dd>{team.analysts}</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="projects">
+    <div class="container">
+      <h2>Selected projects</h2>
+      <div class="case-studies">
+        {caseData.caseStudies.map((c) => (
+          <article class="case-study">
+            <h3>{c.sector}</h3>
+            <p>{c.summary}</p>
+            <ul class="scope">
+              {c.scope.map((s) => <li>{s}</li>)}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="sample">
+    <div class="container sample-deck">
+      <div>
+        <h2>{deck.title}</h2>
+        <p>{deck.available ? deck.description : deck.placeholder}</p>
+      </div>
+      {deck.available && <a class="button" href={deck.href}>View the sample deck (PDF)</a>}
+    </div>
+  </section>
+
+  <section class="section section-dark">
+    <div class="container cta">
+      <p class="eyebrow">For investors</p>
+      <h2>Scope a project</h2>
+      <p>Engagements run one semester and are pro bono.</p>
+      <ContactCta />
+    </div>
+  </section>
+</Base>

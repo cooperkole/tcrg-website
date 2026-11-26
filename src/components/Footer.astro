@@ -1,0 +1,24 @@
+---
+import site from '../data/site.json';
+import recruiting from '../data/recruiting.json';
+const elist = recruiting.recruiting.links.elist;
+---
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <p class="footer-name">{site.name}</p>
+      <p class="footer-tagline">{site.tagline}</p>
+    </div>
+    <nav aria-label="Footer">
+      <ul class="footer-links">
+        <li><a href="/work">Our Work</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/join">Join</a></li>
+        <li><a href={site.contact.linkedin} rel="noopener">LinkedIn</a></li>
+        <li><a href={site.contact.instagram} rel="noopener">Instagram</a></li>
+      </ul>
+    </nav>
+    {elist && <a class="button button-light" href={elist} rel="noopener">Join the e-list</a>}
+  </div>
+  <div class="container footer-legal"><p>{site.footer}</p></div>
+</footer>

@@ -1,0 +1,7 @@
+---
+import site from '../data/site.json';
+const { email, emailPlaceholder, investorCta } = site.contact;
+---
+{email
+  ? <a class="button" href={`mailto:${email}`}>{investorCta}</a>
+  : <span class="button button-disabled" aria-disabled="true">{investorCta}: {emailPlaceholder}</span>}
