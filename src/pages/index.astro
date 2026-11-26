@@ -3,6 +3,10 @@ import Base from '../layouts/Base.astro';
 import StatsBand from '../components/StatsBand.astro';
 import ClientRoster from '../components/ClientRoster.astro';
 import ContactCta from '../components/ContactCta.astro';
+import PhotoBand from '../components/PhotoBand.astro';
+import PhotoCredit from '../components/PhotoCredit.astro';
+import { Picture } from 'astro:assets';
+import { photos } from '../data/photos';
 import site from '../data/site.json';
 import caseData from '../data/case-studies.json';
 import placementData from '../data/placements.json';
@@ -15,13 +19,25 @@ const r = recruiting.recruiting;
 ---
 <Base title="Tufts Capital Research Group" heroOverlay>
   <section class="hero">
-    <!-- Hero photograph (Boston architecture) is added in Step 5. -->
-    <div class="hero-media" aria-hidden="true"></div>
+    <div class="hero-media">
+      <Picture
+        src={photos.bostonDusk.src}
+        alt={photos.bostonDusk.alt}
+        formats={['avif', 'webp']}
+        widths={[640, 960, 1280, 1600, 1920]}
+        quality={55}
+        sizes="100vw"
+        loading="eager"
+        fetchpriority="high"
+        style={`object-position: ${photos.bostonDusk.focus}`}
+      />
+    </div>
     <div class="container hero-content">
       <p class="eyebrow">Student-run at Tufts University</p>
       <h1>Bespoke market research for institutional investors, from Tufts.</h1>
       <p class="hero-sub">{site.tagline}</p>
     </div>
+    <p class="hero-credit"><PhotoCredit photo={photos.bostonDusk} /></p>
   </section>
 
   <StatsBand />
@@ -63,6 +79,8 @@ const r = recruiting.recruiting;
       </ol>
     </div>
   </section>
+
+  <PhotoBand photo={photos.customHouse} />
 
   <section class="section section-alt">
     <div class="container">

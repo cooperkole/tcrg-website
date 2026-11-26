@@ -1,6 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
 import recruiting from '../data/recruiting.json';
+import PhotoBand from '../components/PhotoBand.astro';
+import { photos } from '../data/photos';
 
 const r = recruiting.recruiting;
 const banner = r.banner[r.status as keyof typeof r.banner];
@@ -34,6 +36,8 @@ const details = [
       </dl>
     </div>
   </section>
+
+  <PhotoBand photo={photos.beaconHill} />
 
   <section class="section section-alt" id="timeline">
     <div class="container">

@@ -1,6 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
 import ContactCta from '../components/ContactCta.astro';
+import PhotoBand from '../components/PhotoBand.astro';
+import { photos } from '../data/photos';
 import site from '../data/site.json';
 import caseData from '../data/case-studies.json';
 import stats from '../data/stats.json';
@@ -16,6 +18,8 @@ const team = stats.projectTeam;
       <p class="lede">{site.whatWeDo}</p>
     </div>
   </section>
+
+  <PhotoBand photo={photos.rowesWharf} />
 
   <section class="section" id="services">
     <div class="container">
@@ -72,6 +76,8 @@ const team = stats.projectTeam;
       </div>
     </div>
   </section>
+
+  <PhotoBand photo={photos.lowerManhattan} />
 
   <section class="section section-alt" id="sample">
     <div class="container sample-deck">

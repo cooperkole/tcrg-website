@@ -1,6 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
 import PersonCard from '../components/PersonCard.astro';
+import PhotoBand from '../components/PhotoBand.astro';
+import { photos } from '../data/photos';
 import site from '../data/site.json';
 import team from '../data/team.json';
 import advisorData from '../data/advisors.json';
@@ -36,6 +38,8 @@ const groupPhotos = team.groupPhotos.filter((g) => g.photo);
       <p>{site.origin}</p>
     </div>
   </section>
+
+  <PhotoBand photo={photos.ballouHall} />
 
   <section class="section section-alt" id="leadership">
     <div class="container">

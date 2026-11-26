@@ -1,0 +1,22 @@
+---
+// Full-bleed architectural photograph between sections, with license credit.
+import { Picture } from 'astro:assets';
+import type { Photo } from '../data/photos';
+import PhotoCredit from './PhotoCredit.astro';
+interface Props { photo: Photo }
+const { photo } = Astro.props;
+---
+<figure class="photo-band">
+  <Picture
+    src={photo.src}
+    alt={photo.alt}
+    formats={['avif', 'webp']}
+    widths={[640, 960, 1280, 1600, 1920]}
+    quality={55}
+    sizes="100vw"
+    loading="lazy"
+    decoding="async"
+    style={photo.focus ? `object-position: ${photo.focus}` : undefined}
+  />
+  <figcaption class="container"><PhotoCredit photo={photo} /></figcaption>
+</figure>

@@ -1,0 +1,6 @@
+---
+import type { Photo } from '../data/photos';
+interface Props { photo: Photo }
+const { photo } = Astro.props;
+---
+<span class="photo-credit">Photo: <a href={photo.source} rel="noopener">{photo.author}</a>, <a href={photo.licenseUrl} rel="license noopener">{photo.license}</a></span>

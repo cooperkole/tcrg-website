@@ -1,7 +1,7 @@
 # TCRG website: progress
 
 ## Status
-Current step: 4 done. Next: Step 5 (Photography).
+Current step: 5 done. Next: Step 6 (SEO and basics).
 Live URL: not live yet (custom domain pending Step 7)   Repo: https://github.com/cooperkole/tcrg-website (public)
 
 ## Steps
@@ -10,7 +10,7 @@ Live URL: not live yet (custom domain pending Step 7)   Repo: https://github.com
 - [x] Step 2: Content (2026-11-25)
 - [x] Step 3: Pages (2026-11-25)
 - [x] Step 4: Design (2026-11-25)
-- [ ] Step 5: Photography
+- [x] Step 5: Photography (2026-11-25)
 - [ ] Step 6: SEO and basics
 - [ ] Step 7: Deploy and domain
 - [ ] Step 8: Quality check and final report
@@ -31,7 +31,7 @@ Live URL: not live yet (custom domain pending Step 7)   Repo: https://github.com
 - Client names confirmed by Cooper 2026-11-25: CF Private Equity (cfprivateequity.com), CORE Industrial Partners (coreipfund.com); PWP = Perella Weinberg Partners; Warburg Pincus added to placements
 - Combined AUM includes Tufts endowment value; unnamed fund excluded
 - Recruiting: Spring 2027 starts mid-January 2027; add coffee-chat Google Form CTA on Join
-- Image list: Wikimedia Commons candidates in Step 0 proposal (see BRIEF Decisions #12); verify each visually in Step 5
+- Photos (Step 5): 6 Commons images in use, all checked by eye; credits in CREDITS.md + on-site captions. Rejected: Post Office Square, Back Bay night (hotel sign), Tisch roof, skyline from Tufts
 
 ## Placeholders still open
 - [ ] E-board: Head of Research, Treasurer, Marketing names; all bios (src/data/team.json)
@@ -44,7 +44,7 @@ Live URL: not live yet (custom domain pending Step 7)   Repo: https://github.com
 - [ ] Placements: no entrepreneurship entries, so intro names banking/consulting/investing only
 - [ ] Redacted sample deck PDF (public/docs/tcrg-sample-deck.pdf)
 - [ ] Testimonial (hidden until supplied)
-- [ ] Official Tufts campus photos (ask Tufts Communications)
+- [ ] Official Tufts campus photos (ask Tufts Communications): only Ballou Hall (Commons, snowy phone shot) in use; Tisch roof + Boston-from-hilltop have no usable image
 
 ## Key files
 - docs/BRIEF.md: full brief (verbatim) + Decisions section
@@ -57,15 +57,17 @@ Live URL: not live yet (custom domain pending Step 7)   Repo: https://github.com
 - .claude/launch.json: astro-preview on :4321 (run npm run build first)
 - src/data/*.json: site (copy, services, process, contact, testimonials), team (eboard, members grouped projectLeads/researchLeads/analysts, founders, groupPhotos), advisors (intro + 5), clients (alphabetical, verify/anonymous flags), case-studies (+ sampleDeck.available=false), stats (TBD = hide), placements (path: banking/consulting/investing), recruiting (status upcoming, banner per status, timeline TBD)
 - src/data/aum.ts: sourced AUM per client, aumLabel = "$700B+" (total 741.8 rounded down to $50B): Bain ~225 (Aug 2026), HarbourVest 167.9 (6/30/26), Cambridge Associates 326.7 regulatory AUM (Form ADV, 12/31/25), CF Private Equity 17.53 regulatory AUM (Form ADV, Oct 2026), CORE Industrial Partners 1.58 committed capital (site), Tufts 3.1 (5/2026)
+- src/data/photos.ts (photo metadata: alt, author, license, focus) + src/assets/photos/ (2400px sources). PhotoBand (full-bleed figure + credit), PhotoCredit. Placement: home hero bostonDusk + customHouse band; work rowesWharf + lowerManhattan; about ballouHall; join beaconHill. CREDITS.md at root
 - src/assets/headshots/, src/assets/clients/ (empty; README convention: photo field = file name there)
 - .github/workflows/deploy.yml (withastro/action@v6 + deploy-pages@v5, on push to main)
 - README.md (e-board guide; mentions src/assets/headshots/ and /blank redirects, which Steps 2-3 must create)
 
 ## Notes for the next session
-- Step 5: hero photo goes in index.astro `.hero-media` (currently empty ink block; CSS already handles `.hero-media img` cover + flat 50% ink scrim, no gradient). Use astro:assets <Image>/<Picture>, keep hero < ~300 KB. Header over hero uses ivory logo.
+- Step 5 done: <Picture> AVIF/WebP, widths 640-1920, quality 55. Hero 1920w AVIF = 122 KB. Band images up to ~570 KB at 1920w (lazy); lower quality if Lighthouse flags it in Step 8. Hero eyebrow is now ivory (blue rule) for contrast over the photo.
+- Step 6: favicon/OG image from public/brand logos; OG image could reuse bostonDusk.
 - Design done in Step 4: hairline rules, numbered eyebrows/lists, 5/7 split grid, square buttons, header logo swaps navy/ivory via CSS. Stat label changed to "Combined AUM of clients served". Home h1 copy is mine (Cooper may revise). Group photos/testimonials hidden while empty.
 - Logo is high-res, so no text wordmark needed. Logos/ folder at repo root is the original upload; public/brand/ is what the site uses.
 - Pages source = GitHub Actions. Custom domain NOT set in repo settings yet (Step 7). Until then the github.io URL is a project path (/tcrg-website/), so root-relative assets look broken there; expected.
 - Old site's sample deck: /_files/ugd/9d2749_8fb3b9e74d164b37bc27f29706a4521a.pdf (unredacted? Cooper supplies redacted version)
 - Old site team/analyst names are Spring 2026 only; don't reuse
-- Image candidates: docs/IMAGE-CANDIDATES.md
+- Image candidates (historical): docs/IMAGE-CANDIDATES.md
