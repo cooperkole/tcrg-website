@@ -1,14 +1,29 @@
 ---
-// Full-bleed architectural photograph between sections, with license credit.
+// Full-bleed photograph between sections. The image fades into the sections around it
+// (CSS mask), so `above` / `below` name those sections' backgrounds: the band paints a
+// gradient between them behind the faded edges. fade: which edges fade. size: band height.
 // Optional overlay (eyebrow + text) turns it into a full-bleed statement over the image.
+// No on-image credit: the photographers gave consent without one (Cooper, 2026-11-26).
 import { Picture } from 'astro:assets';
 import type { Photo } from '../data/photos';
-import PhotoCredit from './PhotoCredit.astro';
-interface Props { photo: Photo; eyebrow?: string; text?: string }
-const { photo, eyebrow, text } = Astro.props;
+type Bg = 'ivory' | 'alt';
+interface Props {
+  photo: Photo;
+  eyebrow?: string;
+  text?: string;
+  fade?: 'both' | 'top' | 'none';
+  size?: 'default' | 'short' | 'thin';
+  above?: Bg;
+  below?: Bg;
+}
+const { photo, eyebrow, text, fade = 'both', size = 'default', above = 'ivory', below = 'ivory' } = Astro.props;
 const overlay = Boolean(text);
+const bg = (b: Bg) => (b === 'alt' ? 'var(--candle-white)' : 'var(--ivory)');
 ---
-<figure class:list={['photo-band', { 'photo-band-overlay': overlay }]}>
+<figure
+  class:list={['photo-band', `photo-band-${size}`, { 'photo-band-overlay': overlay, [`photo-band-fade-${fade}`]: fade !== 'none' }]}
+  style={`--band-above: ${bg(above)}; --band-below: ${bg(below)}`}
+>
   <div class="photo-band-frame">
     <Picture
       src={photo.src}
@@ -28,5 +43,4 @@ const overlay = Boolean(text);
       </div>
     )}
   </div>
-  <figcaption class="container"><PhotoCredit photo={photo} /></figcaption>
 </figure>

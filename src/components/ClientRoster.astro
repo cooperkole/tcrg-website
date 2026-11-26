@@ -9,7 +9,6 @@ import data from '../data/clients.json';
 
 const logos = import.meta.glob<{ default: ImageMetadata }>('../assets/clients/*.{png,jpg,jpeg,webp,avif,svg}', { eager: true });
 const named = data.clients.filter((c) => !c.anonymous);
-const anon = data.clients.filter((c) => c.anonymous);
 // Optical sizing: wide wordmarks get shorter, stacked marks taller, so all read at a similar visual weight.
 const logoHeight = (m: ImageMetadata) => {
   const ratio = m.width / m.height;
@@ -33,7 +32,6 @@ const items = named.map((c) => {
     </ul>
   </div>
 </div>
-{anon.length > 0 && <p class="client-footnote">Also: {anon.map((c) => c.name.replace(/^A /, 'a ')).join(', ')}{anon.some((c) => c.status === 'current') ? ' (current)' : ''}.</p>}
 <script>
   // Duplicate the row only when it will actually scroll, so the static HTML holds one list.
   // astro:page-load fires on first load and after every ClientRouter navigation.

@@ -49,7 +49,7 @@ const team = stats.projectTeam;
           {timelines.engagement.steps.map((step, i) => (
             <li class="process-step tl-item">
               <span class="tl-node" aria-hidden="true"></span>
-              <span class="process-num">{String(i + 1).padStart(2, '0')}</span>
+              <span class="process-num">{String(i + 1).padStart(2, '0')}{timelines.engagement.repeatsWeekly.includes(i + 1) && <span class="process-weekly">Weekly</span>}</span>
               <h3>{step.title}</h3>
               <p>{step.body}</p>
             </li>
@@ -59,7 +59,7 @@ const team = stats.projectTeam;
       <div class="project-team">
         <h3>A typical project team</h3>
         <dl>
-          <div><dt>Senior Advisor</dt><dd>{team.seniorAdvisors}</dd></div>
+          <div><dt>Senior Advisors</dt><dd>{team.seniorAdvisors}</dd></div>
           <div><dt>Project Leads</dt><dd>{team.projectLeads}</dd></div>
           <div><dt>Research Leads</dt><dd>{team.researchLeads}</dd></div>
           <div><dt>Analysts</dt><dd>{team.analysts}</dd></div>
@@ -71,7 +71,7 @@ const team = stats.projectTeam;
   <section class="section" id="projects">
     <div class="container">
       <h2>Selected projects</h2>
-      <p class="section-sub">Our three most recent completed projects. We never show work in progress.</p>
+      <p class="section-sub">Three recent projects.</p>
       <div class="case-studies">
         {caseData.caseStudies.map((c) => (
           <article class="case-study">
@@ -89,7 +89,7 @@ const team = stats.projectTeam;
     </div>
   </section>
 
-  <PhotoBand photo={photos.lowerManhattan} />
+  <PhotoBand photo={photos.lowerManhattan} size="short" below="alt" />
 
   {decks.length > 0 && (
     <section class="section section-alt" id="sample">

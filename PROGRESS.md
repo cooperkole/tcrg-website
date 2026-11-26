@@ -53,7 +53,7 @@ Live URL: https://cooperkole.github.io/tcrg-website/ (preview; custom domain not
 - [ ] Total projects completed (years X) (stats.json; hidden while TBD)
 - [ ] Placements: no entrepreneurship entries, so intro names banking/consulting/investing only
 - [ ] Chemicals scope text (placeholder until supplied)
-- [ ] Group photo for About (team.json groupPhotos[0].photo; labeled placeholder tile shows until set)
+- [ ] Group 1 + Group 2 project-group photos for About (put files in src/assets/group-photos/, set team.json groupPhotos[].photo; labeled placeholders show until set)
 - [ ] PDF download of sample deck? (default: no; none shipped. If added, strip metadata first: PDF Author field = a member's name)
 - [ ] Testimonial (hidden until supplied)
 - [ ] Official Tufts campus photos (ask Tufts Communications): only Ballou Hall (Commons, snowy phone shot) in use; Tisch roof + Boston-from-hilltop have no usable image
@@ -99,6 +99,14 @@ Live URL: https://cooperkole.github.io/tcrg-website/ (preview; custom domain not
 - Reduced motion: checked with Chrome --force-prefers-reduced-motion at 768/1440: all content visible and static, timelines drawn and lit, motion chunk not imported (Base.astro gate)
 - Deck viewer keyboard: Tab into stage, arrows/PageUp/PageDown/Home/End, +/-/0 zoom, Tab through controls, thumbnails, Escape closes overlay with focus back on the stage, ?slide=N updates. Native full screen not testable in the app's browser pane (request never settles there)
 - Not tested: real iOS Safari (viewer pinch/pseudo full screen, Lenis off on touch). Test on an iPhone after the domain is live, or install Xcode for the Simulator
+
+## Step 14: Cooper's v3 feedback (2026-11-26)
+- Photo credits removed site-wide (photographers consented to no credit; CREDITS.md kept as the record). PhotoBand now fades into neighbouring sections (mask + gradient between --band-above/--band-below; props fade both|top|none, size default|short|thin, above/below ivory|alt)
+- Home: new hero copy; statement "actionable insights"; anonymous-client footnote removed; "How it works" brackets steps 02-04 as repeating weekly (timelines.engagement.repeatsWeekly; Work shows a Weekly tag); Expert insights band shorter, fades from top; "Where members go" = the 9 featured placements, static (no pinned horizontal scroll)
+- Work: senior advisors 2-3; "Three recent projects."; deck summary: "About this deck" is sticky beside the section list (>=900px)
+- About: FAQ removed (site.json faq deleted); Ballou band thin; two group-photo slots (Group 1/2) side by side
+- Join: week-track labels in two rows (meetings above, stretches below) so they never overlap; current phase = raised white card + blue top bar, current label = blue pill
+- Max Nielsen headshot replaced (HEADSHOTS/New Max N-2.jpg)
 
 ## Archive
 - Steps 0-7 (2026-11-25): plan, Astro 7 repo, content, pages, design system, Commons photography, SEO (canonical/OG/JSON-LD/sitemap), GitHub Pages deploy (preview at /tcrg-website/). Cooper does DNS per DEPLOY.md; Wix untouched

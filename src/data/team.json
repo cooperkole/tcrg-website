@@ -244,7 +244,13 @@
   ],
   "groupPhotos": [
     {
-      "caption": "Fall 2026 members",
+      "label": "Group 1",
+      "caption": "",
+      "photo": ""
+    },
+    {
+      "label": "Group 2",
+      "caption": "",
       "photo": ""
     }
   ],
@@ -254,5 +260,5 @@
     "researchLeads": "Guide analysts' work each week and shape their findings into slides.",
     "analysts": "Research the week's questions and build slides with their Research Leads."
   },
-  "_groupPhotosNote": "One slot on About. While photo is \"\", a labeled placeholder shows. Put the file in public/images/ and set photo to e.g. \"/images/group-fall-2026.jpg\"."
+  "_groupPhotosNote": "Project-group photos on About, side by side. While photo is \"\", a labeled placeholder shows. Put the file in src/assets/group-photos/ and set photo to its file name, e.g. \"group-1.jpg\"."
 }

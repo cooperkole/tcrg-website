@@ -52,6 +52,7 @@
     ]
   },
   "engagement": {
+    "repeatsWeekly": [2, 3, 4],
     "subline": "A 60+ page read-deck, a roughly 11-week semester, and a closing presentation to the client.",
     "steps": [
       { "title": "Scoping", "body": "The client chooses the vertical, and together we set the questions the work must answer." },

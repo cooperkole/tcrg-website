@@ -10,6 +10,10 @@ import team from '../data/team.json';
 import advisorData from '../data/advisors.json';
 import stats from '../data/stats.json';
 import placementData from '../data/placements.json';
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+const groupImages = import.meta.glob<{ default: ImageMetadata }>('../assets/group-photos/*.{png,jpg,jpeg,webp,avif}', { eager: true });
 
 const groups = [
   { key: 'projectLeads', label: 'Project Leads' },
@@ -23,8 +27,8 @@ const paths = [
   { key: 'consulting', label: 'Consulting' },
   { key: 'investing', label: 'Investing' },
 ];
-// One group-photo slot: the photo once supplied, otherwise a labeled placeholder.
-const groupPhoto = team.groupPhotos[0];
+// Project-group photos, side by side; a labeled placeholder shows until a photo is set.
+const groupPhotos = team.groupPhotos;
 ---
 <Base title="About | Tufts Capital Research Group" description="The people behind Tufts Capital Research Group: leadership, senior advisors, members and where they go.">
   <section class="page-head">
@@ -40,18 +44,10 @@ const groupPhoto = team.groupPhotos[0];
       <h2>Our story</h2>
       <p>{site.origin}</p>
       <Stepper items={timelines.origin} numbered={false} class="stepper-origin" />
-      <div class="faq">
-        {site.faq.items.map((f) => (
-          <details>
-            <summary>{f.q}</summary>
-            <p>{f.a}</p>
-          </details>
-        ))}
-      </div>
     </div>
   </section>
 
-  <PhotoBand photo={photos.ballouHall} />
+  <PhotoBand photo={photos.ballouHall} size="thin" below="alt" />
 
   <section class="section section-alt" id="leadership">
     <div class="container">
@@ -93,15 +89,24 @@ const groupPhoto = team.groupPhotos[0];
     </div>
   </section>
 
-  {groupPhoto && (
+  {groupPhotos.length > 0 && (
     <section class="section" id="photos">
       <div class="container">
-        <figure class="group-photo">
-          {groupPhoto.photo
-            ? <img src={groupPhoto.photo} alt={groupPhoto.caption} loading="lazy" />
-            : <div class="group-photo-slot" role="img" aria-label={`Placeholder for a group photo: ${groupPhoto.caption}`}><span>Group photo to come</span></div>}
-          <figcaption>{groupPhoto.caption}</figcaption>
-        </figure>
+        <h2>{team.semester} members</h2>
+        <p class="section-sub">Our two project groups.</p>
+        <div class="group-photos">
+          {groupPhotos.map((g) => {
+            const img = g.photo ? groupImages[`../assets/group-photos/${g.photo}`]?.default : undefined;
+            return (
+              <figure class="group-photo">
+                {img
+                  ? <Image src={img} alt={`${g.label}: ${g.caption}`} widths={[640, 960, 1280]} sizes="(min-width: 760px) 50vw, 100vw" loading="lazy" />
+                  : <div class="group-photo-slot" role="img" aria-label={`Placeholder for the ${g.label} photo`}><span>{g.label} photo to come</span></div>}
+                <figcaption><strong>{g.label}</strong>{g.caption && <> · {g.caption}</>}</figcaption>
+              </figure>
+            );
+          })}
+        </div>
       </div>
     </section>
   )}

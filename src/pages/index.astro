@@ -5,7 +5,6 @@ import StatsBand from '../components/StatsBand.astro';
 import ClientRoster from '../components/ClientRoster.astro';
 import ContactCta from '../components/ContactCta.astro';
 import PhotoBand from '../components/PhotoBand.astro';
-import PhotoCredit from '../components/PhotoCredit.astro';
 import { Picture } from 'astro:assets';
 import { photos } from '../data/photos';
 import site from '../data/site.json';
@@ -15,24 +14,25 @@ import placementData from '../data/placements.json';
 import recruiting from '../data/recruiting.json';
 import { lqip } from '../lib/lqip';
 
-// Placements strip: every placement, grouped by path; within a group the "featured"
-// names come first, in their featured order, then the rest alphabetically.
+// Placements: only the "featured" names, grouped by path, in their featured order.
 const pathLabels = { banking: 'Banking', consulting: 'Consulting', investing: 'Investing' } as const;
 const rank = (n: string) => { const i = placementData.featured.indexOf(n); return i < 0 ? 999 : i; };
 const placementGroups = (Object.keys(pathLabels) as (keyof typeof pathLabels)[]).map((key) => ({
   key,
   label: pathLabels[key],
   names: placementData.placements
-    .filter((p) => p.path === key)
+    .filter((p) => p.path === key && rank(p.name) < 999)
     .map((p) => p.name)
-    .sort((a, b) => rank(a) - rank(b) || a.localeCompare(b)),
-}));
+    .sort((a, b) => rank(a) - rank(b)),
+})).filter((g) => g.names.length > 0);
+// Engagement steps (1-based) that repeat every week.
+const weekly = timelines.engagement.repeatsWeekly;
 // Blur-up placeholder painted under the hero photo (never a flat navy first paint).
 const heroLqip = await lqip('boston-skyline-harbor-dusk.jpg');
 const testimonials = site.testimonials.items as { quote: string; attribution: string }[];
 const r = recruiting.recruiting;
 ---
-<Base title="Tufts Capital Research Group | Pro bono market due diligence" description="A student-run group at Tufts University producing bespoke, pro bono market due diligence for private equity firms, endowments and investment advisors." heroOverlay>
+<Base title="Tufts Capital Research Group | Pro bono market due diligence" description="A student-run group at Tufts University producing pro bono, bespoke market due diligence for private equity firms, venture capital funds, investment advisors and endowments." heroOverlay>
   <section class="hero">
     <div class="hero-media">
       <div class="hero-lqip" aria-hidden="true" style={`background-image:url(${heroLqip});background-position:${photos.bostonDusk.focus ?? 'center'}`}></div>
@@ -50,9 +50,8 @@ const r = recruiting.recruiting;
     </div>
     <div class="container hero-content">
       <p class="eyebrow">Student-run at Tufts University</p>
-      <h1 transition:name="page-title">Bespoke market due diligence for institutional investors, from Tufts.</h1>
-      <p class="hero-sub">Pro bono, semester-long engagements for private equity firms, endowments and investment advisors.</p>
-      <p class="hero-credit"><PhotoCredit photo={photos.bostonDusk} /></p>
+      <h1 transition:name="page-title">Pro bono bespoke market due diligence for institutional investors.</h1>
+      <p class="hero-sub">Semester-long engagements for private equity firms, venture capital funds, investment advisors, and endowments.</p>
     </div>
   </section>
 
@@ -96,13 +95,16 @@ const r = recruiting.recruiting;
         <p>{site.deliverable}</p>
         <a class="text-link" href={withBase('/work#process')}>See the engagement process</a>
       </div>
-      <ol class="process-mini">
-        {timelines.engagement.steps.map((step) => <li>{step.title}</li>)}
-      </ol>
+      <div class="process-mini-wrap">
+        <ol class="process-mini">
+          {timelines.engagement.steps.map((step, i) => <li class:list={{ 'is-weekly': weekly.includes(i + 1) }}>{step.title}</li>)}
+        </ol>
+        <p class="process-mini-loop" style={`--from: ${weekly[0]}; --to: ${weekly[weekly.length - 1]}; --n: ${timelines.engagement.steps.length}`}><span><span class="pm-long">Repeats every week</span><span class="pm-short" aria-hidden="true">Weekly</span></span></p>
+      </div>
     </div>
   </section>
 
-  <PhotoBand photo={photos.customHouse} eyebrow={site.photoStatement.eyebrow} text={site.photoStatement.text} />
+  <PhotoBand photo={photos.customHouse} fade="top" size="short" eyebrow={site.photoStatement.eyebrow} text={site.photoStatement.text} />
 
   <section class="section section-alt">
     <div class="container">
@@ -140,11 +142,9 @@ const r = recruiting.recruiting;
       <p class="eyebrow">Members</p>
       <h2>Where members go</h2>
       <p class="section-sub">{placementData.intro}</p>
-    </div>
-    <div class="hstrip" data-hstrip tabindex="0" role="region" aria-label="Member placements by path (scrolls sideways)">
-      <div class="hstrip-track">
+      <div class="placements placements-featured">
         {placementGroups.map((g) => (
-          <div class="hstrip-group">
+          <div class="placement-col">
             <h3>{g.label}</h3>
             <ul>{g.names.map((n) => <li>{n}</li>)}</ul>
           </div>
