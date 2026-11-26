@@ -53,4 +53,4 @@ Live URL: not deployed yet   Repo: local only (remote created in Step 1 under co
 - Logo (high-res PNG 3973x1581): https://static.wixstatic.com/media/9d2749_d6d43482ce2f4ccca8900e85c36fe1af~mv2.png (download in Step 4)
 - Old site's sample deck: /_files/ugd/9d2749_8fb3b9e74d164b37bc27f29706a4521a.pdf (unredacted? Cooper supplies redacted version)
 - Old site team/analyst names are Spring 2026 only; don't reuse
-- Image candidates (Commons file names, authors, licenses) are listed in the Step 0 chat; re-search in Step 5 if needed
+- Image candidates: docs/IMAGE-CANDIDATES.md
