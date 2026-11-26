@@ -9,6 +9,7 @@ import PhotoCredit from '../components/PhotoCredit.astro';
 import { Picture } from 'astro:assets';
 import { photos } from '../data/photos';
 import site from '../data/site.json';
+import timelines from '../data/timelines.json';
 import caseData from '../data/case-studies.json';
 import placementData from '../data/placements.json';
 import recruiting from '../data/recruiting.json';
@@ -96,7 +97,7 @@ const r = recruiting.recruiting;
         <a class="text-link" href={withBase('/work#process')}>See the engagement process</a>
       </div>
       <ol class="process-mini">
-        {site.process.map((step) => <li>{step.title}</li>)}
+        {timelines.engagement.steps.map((step) => <li>{step.title}</li>)}
       </ol>
     </div>
   </section>

@@ -1,0 +1,19 @@
+---
+// Numbered stepper with a connector rail (Step 12): vertical on small screens,
+// horizontal from 760px. Static and fully drawn without JS or with reduced
+// motion; motion.ts draws the rail and lights the steps in on enter ([data-tl]).
+interface Item { label?: string; title: string; body?: string }
+interface Props { items: Item[]; numbered?: boolean; class?: string }
+const { items, numbered = true, class: cls = '' } = Astro.props;
+---
+<ol class:list={['stepper', cls]} style={`--n: ${items.length}`} data-tl="stepper">
+  {items.map((it, i) => (
+    <li class="tl-item">
+      <span class="tl-node" aria-hidden="true"></span>
+      {numbered && <span class="tl-num">{String(i + 1).padStart(2, '0')}</span>}
+      {it.label && <span class="tl-label">{it.label}</span>}
+      <h3 class="tl-title">{it.title}</h3>
+      {it.body && <p class="tl-body">{it.body}</p>}
+    </li>
+  ))}
+</ol>

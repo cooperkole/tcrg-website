@@ -1,5 +1,5 @@
 {
-  "_note": "Join page. \"status\" is one of open, closed, upcoming and picks the page banner. Dates are \"TBD\" until set (use YYYY-MM-DD); a TBD date shows no date text. Links left \"\" are hidden (the coffee-chat block is hidden until its URL is set).",
+  "_note": "Join page. \"status\" is one of open, closed, upcoming and picks the page banner. The recruiting timeline steps and dates live in timelines.json (\"recruiting\"). Links left \"\" are hidden (the coffee-chat block is hidden until its URL is set).",
   "recruiting": {
     "cycle": "Spring 2027",
     "status": "upcoming",
@@ -8,24 +8,6 @@
       "open": "Spring 2027 applications are open.",
       "closed": "Spring 2027 applications are closed. Join the e-list to hear about the next cycle."
     },
-    "timeline": [
-      {
-        "step": "General interest meeting (GIM); application opens",
-        "date": "TBD"
-      },
-      {
-        "step": "Applications due",
-        "date": "TBD"
-      },
-      {
-        "step": "Interviews",
-        "date": "TBD"
-      },
-      {
-        "step": "Final offers",
-        "date": "TBD"
-      }
-    ],
     "links": {
       "application": "",
       "elist": "https://docs.google.com/forms/d/e/1FAIpQLSey6Cb0i1mRCJGTiaYYVllnfREAbFApnHQbgssQky8n_SQumQ/viewform?usp=dialog",

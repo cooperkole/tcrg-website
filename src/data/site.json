@@ -1,5 +1,5 @@
 {
-  "_note": "Site-wide copy: identity, services, process, contact. TCRG is never called a \"firm\" or a paid service.",
+  "_note": "Site-wide copy: identity, services, process, contact. TCRG is never called a \"firm\" or a paid service. Timelines (engagement process etc.) live in timelines.json.",
   "name": "Tufts Capital Research Group",
   "shortName": "TCRG",
   "footer": "© 2026 Tufts Capital Research Group, Inc.",
@@ -26,28 +26,6 @@
     {
       "title": "Investment recommendations",
       "body": "High-potential strategies, potential acquisition targets and the risks to weigh."
-    }
-  ],
-  "process": [
-    {
-      "title": "Scoping",
-      "body": "The client chooses the vertical, and together we set the questions the work must answer."
-    },
-    {
-      "title": "Research",
-      "body": "Analysts build the secondary base: market structure, value chain, technology, regulation and key players."
-    },
-    {
-      "title": "Expert calls",
-      "body": "Conversations with industry experts test our assumptions and fill gaps published sources leave open."
-    },
-    {
-      "title": "Synthesis",
-      "body": "Findings are distilled into a 60+ page read-deck with a clear point of view."
-    },
-    {
-      "title": "Final presentation",
-      "body": "The team presents its conclusions and recommendations to the client at the end of the engagement."
     }
   ],
   "contact": {

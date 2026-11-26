@@ -4,6 +4,8 @@ import PersonCard from '../components/PersonCard.astro';
 import PhotoBand from '../components/PhotoBand.astro';
 import { photos } from '../data/photos';
 import site from '../data/site.json';
+import timelines from '../data/timelines.json';
+import Stepper from '../components/Stepper.astro';
 import team from '../data/team.json';
 import advisorData from '../data/advisors.json';
 import stats from '../data/stats.json';
@@ -37,6 +39,7 @@ const groupPhoto = team.groupPhotos[0];
     <div class="container narrow">
       <h2>Our story</h2>
       <p>{site.origin}</p>
+      <Stepper items={timelines.origin} numbered={false} class="stepper-origin" />
       <div class="faq">
         {site.faq.items.map((f) => (
           <details>

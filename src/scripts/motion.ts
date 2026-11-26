@@ -11,6 +11,8 @@
 //   statement band: words fill in as it scrolls through
 //   photo bands: gentle parallax
 //   placements strip: pinned horizontal scroll on wide screens
+//   timelines ([data-tl]): analyst week + engagement process pin and fill with
+//         scroll on wide screens, light step by step on narrow; steppers draw in
 //   CTAs: magnetic buttons (fine pointers only)
 // All of it is torn down on astro:before-swap.
 import { gsap } from 'gsap';
@@ -50,8 +52,10 @@ function init() {
   const vh = window.innerHeight;
   const belowFold = (el: Element) => el.getBoundingClientRect().top > vh * 0.95;
 
-  mm.add({ wide: '(min-width: 900px)', fine: '(hover: hover) and (pointer: fine)' }, (c) => {
-    const { wide, fine } = c.conditions as { wide: boolean; fine: boolean };
+  // `all` keeps the callback running on touch phones, where no other condition matches
+  // (gsap.matchMedia only runs a conditions callback when at least one matches).
+  mm.add({ all: 'all', wide: '(min-width: 900px)', rail: '(min-width: 1000px)', fine: '(hover: hover) and (pointer: fine)' }, (c) => {
+    const { wide, rail, fine } = c.conditions as { wide: boolean; rail: boolean; fine: boolean };
     const undo: (() => void)[] = [];
 
     // ---- Hero ----
@@ -139,12 +143,106 @@ function init() {
       });
     }
 
+    // ---- Timelines (Step 12) ----
+    // Steps are lit and rails drawn in the static HTML; .tl-anim switches on the
+    // dimmed start state, and every path below lights them again.
+    const header = () => document.querySelector<HTMLElement>('.site-header')?.offsetHeight ?? 0;
+    const pinStart = (el: HTMLElement) => () => (el.offsetHeight + header() < window.innerHeight ? 'center center' : `top ${header()}px`);
+    const animated: HTMLElement[] = [];
+    const arm = (el: HTMLElement) => { el.classList.add('tl-anim'); animated.push(el); };
+    // Scrubbed: one tween drives --fill on the rail; onUpdate lights steps whose
+    // threshold (0..1 of progress) has been reached; the latest is "current".
+    function scrubPinned(pinEl: HTMLElement, fillEl: HTMLElement, steps: HTMLElement[][], at: number[], length: number, extra?: (p: number) => void) {
+      arm(pinEl);
+      const set = (p: number) => {
+        let cur = -1;
+        at.forEach((t, i) => { const on = p >= t; if (on) cur = i; steps[i].forEach((n) => n.classList.toggle('is-lit', on)); });
+        steps.forEach((g, i) => g.forEach((n) => n.classList.toggle('is-current', i === cur)));
+        extra?.(p);
+      };
+      set(0);
+      gsap.fromTo(fillEl, { '--fill': 0 }, {
+        '--fill': 1, ease: 'none',
+        scrollTrigger: {
+          trigger: pinEl, start: pinStart(pinEl), end: () => `+=${window.innerHeight * length}`,
+          pin: true, scrub: 0.5, invalidateOnRefresh: true, anticipatePin: 1,
+          onUpdate: (st) => set(st.progress),
+        },
+      });
+    }
+    // Narrow: the vertical rail fills as the list passes; each step lights on its own.
+    function scrubVertical(list: HTMLElement) {
+      if (!belowFold(list)) return;
+      arm(list);
+      gsap.fromTo(list, { '--fill': 0 }, { '--fill': 1, ease: 'none', scrollTrigger: { trigger: list, start: 'top 72%', end: 'bottom 72%', scrub: 0.4 } });
+      list.querySelectorAll<HTMLElement>(':scope > .tl-item').forEach((li) => {
+        ScrollTrigger.create({ trigger: li, start: 'top 74%', end: 'max', toggleClass: { targets: li, className: 'is-lit' } });
+      });
+    }
+
+    // Analyst week: 0..1 progress maps onto Tue (0) .. next Tue (7); the
+    // last stretch of scroll lights the loop back to Tuesday.
+    document.querySelectorAll<HTMLElement>('[data-tl="week"]').forEach((week) => {
+      const cards = week.querySelector<HTMLElement>('.week-cards');
+      if (!cards) return;
+      if (!wide) { scrubVertical(cards); return; }
+      const fill = week.querySelector<HTMLElement>('.week-line .tl-fill');
+      const marks = [...week.querySelectorAll<HTMLElement>('.week-mark')];
+      const items = [...cards.querySelectorAll<HTMLElement>(':scope > .tl-item')];
+      const loop = week.querySelector<HTMLElement>('.week-loop');
+      if (!fill || marks.length !== items.length) return;
+      const span = 7.6; // days of scroll: 7 for the week, the rest for the loop
+      // point phases (meetings) hold the spotlight for ~0.6 day before the stretch that follows
+      const data = (() => { try { return JSON.parse(week.dataset.phases ?? '[]') as { from: number; to: number }[]; } catch { return []; } })();
+      const at = items.map((_, i) => {
+        const p = data[i]; const prev = data[i - 1];
+        const day = p ? (prev && prev.from === prev.to && p.from === prev.from ? p.from + 0.6 : p.from) : i * 2;
+        return day / span;
+      });
+      const groups = items.map((it, i) => [it, marks[i]]);
+      // The fill tween runs over the whole scrub; scale its 0..1 so it reaches the end on Tuesday.
+      fill.style.setProperty('--fill', '0');
+      scrubPinned(week, week, groups, at, 1.8, (p) => {
+        fill.style.setProperty('--fill', String(Math.min(1, (p * span) / 7)));
+        loop?.classList.toggle('is-lit', p * span >= 7.15);
+      });
+      undo.push(() => fill.style.removeProperty('--fill'));
+    });
+
+    // Engagement process: pinned with a drawn connector on wide screens.
+    document.querySelectorAll<HTMLElement>('[data-tl="process"]').forEach((pinEl) => {
+      const list = pinEl.querySelector<HTMLElement>('.process');
+      if (!list) return;
+      if (!rail) { scrubVertical(list); return; }
+      const items = [...list.querySelectorAll<HTMLElement>(':scope > .tl-item')];
+      const n = items.length;
+      scrubPinned(pinEl, list, items.map((it) => [it]), items.map((_, i) => (i / n) * 0.92), 1.3);
+    });
+
+    // Steppers (recruiting, origin): rail draws, steps light in sequence, once.
+    document.querySelectorAll<HTMLElement>('[data-tl="stepper"]').forEach((list) => {
+      if (!belowFold(list)) return;
+      arm(list);
+      const items = [...list.querySelectorAll<HTMLElement>(':scope > .tl-item')];
+      const d = 1.1;
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo(list, { '--fill': 0 }, { '--fill': 1, duration: d, ease: 'power2.inOut' }, 0);
+      items.forEach((li, i) => tl.call(() => li.classList.add('is-lit'), [], items.length > 1 ? (i / (items.length - 1)) * d : 0));
+      ScrollTrigger.create({ trigger: list, start: 'top 85%', once: true, onEnter: () => tl.play() });
+    });
+    undo.push(() => animated.forEach((el) => {
+      el.classList.remove('tl-anim');
+      el.querySelectorAll('.is-lit, .is-current').forEach((n) => n.classList.remove('is-lit', 'is-current'));
+      el.style.removeProperty('--fill');
+    }));
+
     // ---- Reveals: short, staggered, early ----
-    const groups = '.pillars, .people, .placements, .work-cards, .process, .process-mini, .placement-teaser, .ctas, .split, .faq, .timeline';
+    const groups = '.pillars, .people, .placements, .work-cards, .process-mini, .placement-teaser, .ctas, .split, .faq';
     document.querySelectorAll<HTMLElement>('main section:not(.hero):not(.statement-band) > .container').forEach((box) => {
       if (!belowFold(box)) return;
       const items: Element[] = [];
       for (const child of box.children) {
+        if (child.matches('[data-tl]')) continue; // timelines animate themselves
         if (child.matches(groups)) items.push(...child.children);
         else items.push(child);
       }

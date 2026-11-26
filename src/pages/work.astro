@@ -5,6 +5,7 @@ import ContactCta from '../components/ContactCta.astro';
 import PhotoBand from '../components/PhotoBand.astro';
 import { photos } from '../data/photos';
 import site from '../data/site.json';
+import timelines from '../data/timelines.json';
 import DeckViewer from '../components/DeckViewer.astro';
 import caseData from '../data/case-studies.json';
 import deckData from '../data/decks.json';
@@ -41,17 +42,20 @@ const team = stats.projectTeam;
 
   <section class="section section-alt" id="process">
     <div class="container">
-      <h2>The engagement process</h2>
-      <p class="lede">{site.deliverable}</p>
-      <ol class="process">
-        {site.process.map((step, i) => (
-          <li class="process-step">
-            <span class="process-num">{String(i + 1).padStart(2, '0')}</span>
-            <h3>{step.title}</h3>
-            <p>{step.body}</p>
-          </li>
-        ))}
-      </ol>
+      <div class="process-pin" data-tl="process">
+        <h2>The engagement process</h2>
+        <p class="lede">{timelines.engagement.subline}</p>
+        <ol class="process" style={`--n: ${timelines.engagement.steps.length}`}>
+          {timelines.engagement.steps.map((step, i) => (
+            <li class="process-step tl-item">
+              <span class="tl-node" aria-hidden="true"></span>
+              <span class="process-num">{String(i + 1).padStart(2, '0')}</span>
+              <h3>{step.title}</h3>
+              <p>{step.body}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
       <div class="project-team">
         <h3>A typical project team</h3>
         <dl>

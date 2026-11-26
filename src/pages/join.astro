@@ -3,6 +3,9 @@ import Base from '../layouts/Base.astro';
 import recruiting from '../data/recruiting.json';
 import PhotoBand from '../components/PhotoBand.astro';
 import { photos } from '../data/photos';
+import timelines from '../data/timelines.json';
+import Stepper from '../components/Stepper.astro';
+import WeekTrack from '../components/WeekTrack.astro';
 
 const r = recruiting.recruiting;
 const banner = r.banner[r.status as keyof typeof r.banner];
@@ -38,16 +41,18 @@ const details = [
     </div>
   </section>
 
+  <section class="section section-alt" id="week">
+    <div class="container">
+      <WeekTrack />
+    </div>
+  </section>
+
   <PhotoBand photo={photos.beaconHill} />
 
-  <section class="section section-alt" id="timeline">
+  <section class="section" id="timeline">
     <div class="container">
-      <h2>Timeline</h2>
-      <ol class="timeline">
-        {r.timeline.map((t) => (
-          <li><span class="timeline-step">{t.step}</span>{fmt(t.date) && <span class="timeline-date">{fmt(t.date)}</span>}</li>
-        ))}
-      </ol>
+      <h2>Recruiting timeline</h2>
+      <Stepper items={timelines.recruiting.map((t) => ({ title: t.title, label: fmt(t.date) || undefined }))} />
     </div>
   </section>
 

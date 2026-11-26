@@ -1,0 +1,45 @@
+---
+// "A week as an analyst" (Step 12; Join page only). From 900px: a Tue-to-Tue day
+// track above four phase cards; motion.ts pins it and fills the progress line
+// with scroll, lighting each phase as it is reached. Below 900px the track is
+// hidden and the cards are a vertical stepper. Without motion everything is lit.
+import timelines from '../data/timelines.json';
+const w = timelines.analystWeek;
+const last = w.days.length - 1;
+const pos = (d: number) => `${(d / last) * 100}%`;
+const mid = (p: { from: number; to: number }) => pos((p.from + p.to) / 2);
+---
+<div class="week" data-tl="week" data-phases={JSON.stringify(w.phases.map(({ from, to }) => ({ from, to })))}>
+  <h2>{w.title}</h2>
+  <p class="section-sub">{w.summary}</p>
+  <div class="week-track" aria-hidden="true">
+    <div class="week-marks">
+      {w.phases.map((p, i) => (
+        <span class:list={['week-mark', 'tl-item', { 'is-point': p.from === p.to }]} style={`left: ${p.from === p.to ? pos(p.from) : mid(p)}`}>
+          <span class="tl-num">{String(i + 1).padStart(2, '0')}</span> {p.title}
+        </span>
+      ))}
+    </div>
+    <div class="week-line">
+      <span class="tl-rail"><span class="tl-fill"></span></span>
+      {w.days.map((_, d) => <span class="week-tick" style={`left: ${pos(d)}`}></span>)}
+      {w.phases.filter((p) => p.from === p.to).map((p) => <span class="week-node" style={`left: ${pos(p.from)}`}></span>)}
+    </div>
+    <div class="week-days">
+      {w.days.map((d, i) => <span style={`left: ${pos(i)}`}>{d}</span>)}
+    </div>
+    <div class="week-loop"><span>{w.loop}</span></div>
+  </div>
+  <ol class="stepper week-cards" style={`--n: ${w.phases.length}`}>
+      {w.phases.map((p, i) => (
+      <li class="tl-item">
+        <span class="tl-node" aria-hidden="true"></span>
+        <span class="tl-num">{String(i + 1).padStart(2, '0')}</span>
+        <span class="tl-label">{p.when}{p.mode && <> · {p.mode}</>}</span>
+        <h3 class="tl-title">{p.title}</h3>
+        <ul class="week-items">{p.items.map((t) => <li>{t}</li>)}</ul>
+      </li>
+    ))}
+  </ol>
+  <p class="week-loop-note">{w.loop}</p>
+</div>

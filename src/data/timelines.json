@@ -1,0 +1,75 @@
+{
+  "_note": "Every timeline on the site (Step 12). analystWeek is Join-only (internal cadence stays off investor pages). Day positions: 0 = Tuesday, 3 = Friday, 7 = the next Tuesday. recruiting dates are \"TBD\" until set (use YYYY-MM-DD); a TBD date shows no date text. The recruiting status banner lives in recruiting.json. Do not add engagement week numbers or origin dates beyond what is here.",
+  "analystWeek": {
+    "title": "A week as an analyst",
+    "summary": "5-10 hours per week.",
+    "days": ["Tue", "Wed", "Thu", "Fri", "Sat", "Sun", "Mon", "Tue"],
+    "loop": "Back to Tuesday",
+    "phases": [
+      {
+        "when": "Tuesday evening",
+        "title": "Meeting #1",
+        "mode": "In person",
+        "from": 0,
+        "to": 0,
+        "items": [
+          "Teach-ins and research discussion",
+          "Tasks assigned for the coming week",
+          "Prior week's slides due 6 p.m. via Slack to Research Leads"
+        ]
+      },
+      {
+        "when": "Tuesday to Friday",
+        "title": "Independent research",
+        "from": 0,
+        "to": 3,
+        "items": [
+          "Form a hypothesis and answer the assigned question",
+          "Informal RL check-ins",
+          "Prepare questions for Friday"
+        ]
+      },
+      {
+        "when": "Friday afternoon",
+        "title": "Meeting #2",
+        "mode": "In person",
+        "from": 3,
+        "to": 3,
+        "items": [
+          "Discuss findings, brainstorm slide structure, get analysis help",
+          "RLs submit final versions of the prior week's slides"
+        ]
+      },
+      {
+        "when": "Friday to Tuesday",
+        "title": "Slide creation",
+        "from": 3,
+        "to": 7,
+        "items": [
+          "Build slides, resolve issues with RLs, send draft updates, complete earlier edits"
+        ]
+      }
+    ]
+  },
+  "engagement": {
+    "subline": "A 60+ page read-deck, a roughly 11-week semester, and a closing presentation to the client.",
+    "steps": [
+      { "title": "Scoping", "body": "The client chooses the vertical, and together we set the questions the work must answer." },
+      { "title": "Research", "body": "Analysts build the secondary base: market structure, value chain, technology, regulation and key players." },
+      { "title": "Expert calls", "body": "Conversations with industry experts test our assumptions and fill gaps published sources leave open." },
+      { "title": "Synthesis", "body": "Findings are distilled into a 60+ page read-deck with a clear point of view." },
+      { "title": "Final presentation", "body": "The team presents its conclusions and recommendations to the client at the end of the engagement." }
+    ]
+  },
+  "recruiting": [
+    { "title": "General interest meeting (GIM); application opens", "date": "TBD" },
+    { "title": "Applications due", "date": "TBD" },
+    { "title": "Interviews", "date": "TBD" },
+    { "title": "Final offers", "date": "TBD" }
+  ],
+  "origin": [
+    { "label": "Fall 2023", "title": "Tufts Investment Club PE/VC Research Group founded" },
+    { "label": "Spring 2026", "title": "Becomes the independently run Tufts Capital Research Group" },
+    { "label": "Fall 2026", "title": "Current semester" }
+  ]
+}
