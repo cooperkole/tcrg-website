@@ -1,1 +1,11 @@
-{ "_note": "Filled in Step 2", "advisors": [] }
+{
+  "_note": "Senior Advisors. One advisor is active on each client engagement. Fill in names and bios; leave \"photo\" as \"\" to show a monogram.",
+  "intro": "Senior Advisors are experienced investors who guide each engagement. One advisor works alongside every project team, from scoping through the final presentation.",
+  "advisors": [
+    { "name": "Bruno TBD", "role": "Senior Advisor", "bio": "", "photo": "", "linkedin": "" },
+    { "name": "TBD", "role": "Senior Advisor", "bio": "", "photo": "", "linkedin": "" },
+    { "name": "TBD", "role": "Senior Advisor", "bio": "", "photo": "", "linkedin": "" },
+    { "name": "TBD", "role": "Senior Advisor", "bio": "", "photo": "", "linkedin": "" },
+    { "name": "TBD", "role": "Senior Advisor", "bio": "", "photo": "", "linkedin": "" }
+  ]
+}

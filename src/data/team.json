@@ -1,1 +1,31 @@
-{ "_note": "Filled in Step 2", "semester": "Fall 2026", "eboard": [], "members": [], "founders": [] }
+{
+  "_note": "Leadership, members and founders. Set \"photo\" to a file name in src/assets/headshots/ (e.g. \"jane-doe.jpg\"); leave it \"\" to show a monogram. Leave \"bio\" as \"\" until there is one.",
+  "semester": "Fall 2026",
+  "eboard": [
+    { "name": "Fares Danial", "role": "President", "bio": "", "photo": "", "linkedin": "" },
+    { "name": "Cooper Kolehmainen", "role": "Head of Operations", "bio": "", "photo": "", "linkedin": "" },
+    { "name": "TBD", "role": "Head of Research", "bio": "", "photo": "", "linkedin": "" },
+    { "name": "TBD", "role": "Treasurer", "bio": "", "photo": "", "linkedin": "" },
+    { "name": "TBD", "role": "Marketing", "bio": "", "photo": "", "linkedin": "" }
+  ],
+  "members": {
+    "projectLeads": [
+      { "name": "TBD", "photo": "" }
+    ],
+    "researchLeads": [
+      { "name": "TBD", "photo": "" }
+    ],
+    "analysts": [
+      { "name": "TBD", "photo": "" }
+    ]
+  },
+  "founders": [
+    { "name": "Mathis Weber", "role": "Co-Founder", "bio": "", "photo": "" },
+    { "name": "Otto Laakso", "role": "Co-Founder", "bio": "", "photo": "" }
+  ],
+  "groupPhotos": [
+    { "caption": "Fall 2026 new member class", "photo": "" },
+    { "caption": "Leadership team", "photo": "" },
+    { "caption": "Final client presentation", "photo": "" }
+  ]
+}

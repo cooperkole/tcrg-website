@@ -1,1 +1,28 @@
-{ "_note": "Filled in Step 2", "caseStudies": [] }
+{
+  "_note": "Selected work. Never name or describe the client here (no client name, type, size or AUM): the client roster is a separate list and the two must not be mappable.",
+  "caseStudies": [
+    {
+      "sector": "Data Centers",
+      "summary": "Traced the data center value chain and the \"picks and shovels\" businesses that supply it.",
+      "scope": ["Core technologies", "Investment trends", "Case studies", "Forward-looking opportunities"]
+    },
+    {
+      "sector": "Sports Media",
+      "summary": "Mapped investment opportunities across the sports media stack, from infrastructure and distributors to rights owners and end platforms.",
+      "scope": ["Recommended strategies in technology, real estate, franchises and emerging startups"]
+    },
+    {
+      "sector": "Space Technology",
+      "summary": "Assessed the regulatory landscape and key players across satellite communications, commercial launch and space tourism.",
+      "scope": ["Technology overview", "Investment risks and opportunities"]
+    }
+  ],
+  "sampleDeck": {
+    "_note": "Set \"available\" to true once the redacted PDF is saved at public/docs/tcrg-sample-deck.pdf.",
+    "available": false,
+    "href": "/docs/tcrg-sample-deck.pdf",
+    "title": "Sample work",
+    "description": "A redacted excerpt from one of our read-decks.",
+    "placeholder": "A redacted sample deck will be available here soon."
+  }
+}

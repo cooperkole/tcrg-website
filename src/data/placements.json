@@ -1,1 +1,23 @@
-{ "_note": "Filled in Step 2", "placements": [] }
+{
+  "_note": "Where members have interned or work (for students). Separate from clients.json on purpose. \"path\" groups each name: banking, consulting or investing. \"verify\": true means the exact name is unconfirmed.",
+  "intro": "Members go on to a range of paths: banking, consulting and investing.",
+  "placements": [
+    { "name": "Bank of America", "path": "banking" },
+    { "name": "Greenhill", "path": "banking" },
+    { "name": "Guggenheim Securities", "path": "banking" },
+    { "name": "Morgan Stanley", "path": "banking" },
+    { "name": "Nomura", "path": "banking" },
+    { "name": "PJT/PWP", "path": "banking", "verify": true, "_verifyNote": "Confirm PJT Partners, Perella Weinberg Partners, or both" },
+    { "name": "Société Générale", "path": "banking" },
+    { "name": "Altman Solon", "path": "consulting" },
+    { "name": "Bain & Company", "path": "consulting" },
+    { "name": "BCG", "path": "consulting" },
+    { "name": "EY-Parthenon", "path": "consulting" },
+    { "name": "McKinsey & Company", "path": "consulting" },
+    { "name": "Oliver Wyman", "path": "consulting" },
+    { "name": "PwC", "path": "consulting" },
+    { "name": "Bain Capital", "path": "investing" },
+    { "name": "Bridgewater Associates", "path": "investing" },
+    { "name": "Putnam", "path": "investing" }
+  ]
+}

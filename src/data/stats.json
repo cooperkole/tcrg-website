@@ -1,1 +1,23 @@
-{ "_note": "Filled in Step 2", "stats": [] }
+{
+  "_note": "Headline numbers. Combined client AUM is computed in src/data/aum.ts (with sources); don't type it here. Entries with \"value\": \"TBD\" are hidden on the site until filled in.",
+  "asOf": "2026-11-25",
+  "semester": "Fall 2026",
+  "stats": [
+    { "id": "aum", "value": "from aum.ts", "label": "Clients with combined AUM of" },
+    { "id": "currentProjects", "value": "2", "label": "Current engagements" },
+    { "id": "expertCalls", "value": "17", "label": "Expert calls this semester" },
+    { "id": "projectsCompleted", "value": "TBD", "label": "Projects completed", "_formula": "2 per semester x number of years (years TBD)" }
+  ],
+  "teamSize": [
+    { "role": "Project Leads", "count": 4 },
+    { "role": "Research Leads", "count": 5 },
+    { "role": "Analysts", "count": 20 }
+  ],
+  "projectTeam": {
+    "_note": "Typical team on one engagement.",
+    "projectLeads": "1-2",
+    "researchLeads": "2-3",
+    "analysts": "6-8",
+    "seniorAdvisors": "1"
+  }
+}

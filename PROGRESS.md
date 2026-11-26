@@ -1,13 +1,13 @@
 # TCRG website: progress
 
 ## Status
-Current step: 1 done. Next: Step 2 (Content).
+Current step: 2 done. Next: Step 3 (Pages).
 Live URL: not live yet (custom domain pending Step 7)   Repo: https://github.com/cooperkole/tcrg-website (public)
 
 ## Steps
 - [x] Step 0: Plan approved (2026-11-25)
 - [x] Step 1: Repo and stack (2026-11-25)
-- [ ] Step 2: Content
+- [x] Step 2: Content (2026-11-25)
 - [ ] Step 3: Pages
 - [ ] Step 4: Design
 - [ ] Step 5: Photography
@@ -36,10 +36,12 @@ Live URL: not live yet (custom domain pending Step 7)   Repo: https://github.com
 - [ ] E-board: Head of Research, Treasurer, Marketing names; all bios (src/data/team.json)
 - [ ] 5 Senior Advisors' names and bios (src/data/advisors.json)
 - [ ] Fall 2026 member roster (src/data/team.json)
-- [ ] Investor contact email
+- [ ] Investor contact email (src/data/site.json contact.email)
 - [ ] Spring 2027 exact recruiting dates + status
-- [ ] Coffee-chat Google Form URL
-- [ ] Total projects completed (years X)
+- [ ] Coffee-chat Google Form URL; application URL (src/data/recruiting.json links)
+- [ ] Total projects completed (years X) (stats.json; hidden while TBD)
+- [ ] AUM: CF Private Equity and Core Industrial Partners left out of total until names confirmed (src/data/aum.ts)
+- [ ] Placements: no entrepreneurship entries, so intro names banking/consulting/investing only
 - [ ] [VERIFY] CF Private Equity, Core Industrial Partners exact names/sites; PJT/PWP (PJT Partners, Perella Weinberg, or both)
 - [ ] Redacted sample deck PDF (public/docs/tcrg-sample-deck.pdf)
 - [ ] Testimonial (hidden until supplied)
@@ -49,11 +51,15 @@ Live URL: not live yet (custom domain pending Step 7)   Repo: https://github.com
 - docs/BRIEF.md: full brief (verbatim) + Decisions section
 - astro.config.mjs (site = custom domain), public/CNAME
 - src/layouts/Base.astro (fonts + global.css), src/pages/index.astro (placeholder)
-- src/data/*.json: team, advisors, clients, case-studies, stats, placements, recruiting (empty stubs; fill in Step 2)
+- src/data/*.json: site (copy, services, process, contact, testimonials), team (eboard, members grouped projectLeads/researchLeads/analysts, founders, groupPhotos), advisors (intro + 5), clients (alphabetical, verify/anonymous flags), case-studies (+ sampleDeck.available=false), stats (TBD = hide), placements (path: banking/consulting/investing), recruiting (status upcoming, banner per status, timeline TBD)
+- src/data/aum.ts: sourced AUM per client, aumLabel = "$700B+" (total 722.7 rounded down to $50B): Bain ~225 (Aug 2026), HarbourVest 167.9 (6/30/26), Cambridge Associates 326.7 regulatory AUM (Form ADV, 12/31/25), Tufts 3.1 (5/2026)
+- src/assets/headshots/, src/assets/clients/ (empty; README convention: photo field = file name there)
 - .github/workflows/deploy.yml (withastro/action@v6 + deploy-pages@v5, on push to main)
 - README.md (e-board guide; mentions src/assets/headshots/ and /blank redirects, which Steps 2-3 must create)
 
 ## Notes for the next session
+- Step 3: none of the data is wired into pages yet. Hide entries with name/value "TBD" only where noted (stats, testimonials, empty links); TBD people still render as placeholder cards with monograms.
+- Headshots live in src/assets/headshots/ per README (brief said public/images/team/; README convention kept so Astro can optimize/crop uniformly).
 - Pages source = GitHub Actions. Custom domain NOT set in repo settings yet (Step 7). Until then the github.io URL is a project path (/tcrg-website/), so root-relative assets look broken there; expected.
 - Logo (high-res PNG 3973x1581): https://static.wixstatic.com/media/9d2749_d6d43482ce2f4ccca8900e85c36fe1af~mv2.png (download in Step 4)
 - Old site's sample deck: /_files/ugd/9d2749_8fb3b9e74d164b37bc27f29706a4521a.pdf (unredacted? Cooper supplies redacted version)

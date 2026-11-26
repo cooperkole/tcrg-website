@@ -23,11 +23,13 @@ To check the finished build before publishing, run `npm run build`, then `npm ru
 
 | File | What it holds |
 | --- | --- |
-| `src/data/team.json` | E-board, member roster, founders |
+| `src/data/site.json` | Site-wide copy: tagline, services, process, contact links, testimonials |
+| `src/data/team.json` | E-board, member roster (by role), founders, group photos |
 | `src/data/advisors.json` | Senior Advisors |
 | `src/data/clients.json` | Client roster (for investors) |
-| `src/data/case-studies.json` | Case studies |
-| `src/data/stats.json` | Headline numbers (projects, expert calls, AUM) |
+| `src/data/case-studies.json` | Case studies and the sample-deck card |
+| `src/data/stats.json` | Headline numbers (projects, expert calls, team size) |
+| `src/data/aum.ts` | Combined client AUM: one sourced figure per client; the total is computed |
 | `src/data/placements.json` | Where members have interned or work (for students) |
 | `src/data/recruiting.json` | Recruiting dates, status, application and coffee-chat links |
 

@@ -1,1 +1,28 @@
-{ "_note": "Filled in Step 2", "recruiting": {} }
+{
+  "_note": "Join page. \"status\" is one of open, closed, upcoming and changes the page banner. Dates are \"TBD\" until set (use YYYY-MM-DD). Links left \"\" are hidden.",
+  "recruiting": {
+    "cycle": "Spring 2027",
+    "status": "upcoming",
+    "banner": {
+      "upcoming": "Spring 2027 recruiting begins in mid-January 2027.",
+      "open": "Spring 2027 applications are open.",
+      "closed": "Spring 2027 applications are closed. Join the e-list to hear about the next cycle."
+    },
+    "timeline": [
+      { "step": "GIM and application opens", "date": "TBD" },
+      { "step": "Applications due", "date": "TBD" },
+      { "step": "Interviews", "date": "TBD" },
+      { "step": "Final offers", "date": "TBD" }
+    ],
+    "links": {
+      "application": "",
+      "elist": "https://docs.google.com/forms/d/e/1FAIpQLSey6Cb0i1mRCJGTiaYYVllnfREAbFApnHQbgssQky8n_SQumQ/viewform?usp=dialog",
+      "coffeeChat": ""
+    },
+    "eligibility": "Open to all Tufts undergraduates, of any major or class year. No prior finance experience is required: a training curriculum covers the fundamentals.",
+    "application": "A one-page resume and short-answer prompts. Interviews are in person and by invitation, with behavioral and technical questions.",
+    "commitment": "5-10 hours per week for analysts.",
+    "cadence": "Teams meet Tuesdays and Fridays, with deadlines coordinated over Slack.",
+    "coffeeChat": "Want to learn more first? Sign up for a coffee chat with a board member."
+  }
+}
