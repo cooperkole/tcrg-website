@@ -28,7 +28,7 @@ Live URL: not live yet (custom domain pending Step 7)   Repo: https://github.com
 - Founders section (Mathis Weber, Otto Laakso) goes below all current staffing on About
 - Stats (Fall 2026): 4 PLs, 5 RLs, 20 Analysts; 2 current projects; 17 expert calls this semester as of 2026-11-25; total projects = 2/semester x X years (X TBD)
 - Guggenheim placement = Guggenheim Securities
-- Client names confirmed by Cooper 2026-11-25: CF Private Equity (cfprivateequity.com), CORE Industrial Partners (coreipfund.com)
+- Client names confirmed by Cooper 2026-11-25: CF Private Equity (cfprivateequity.com), CORE Industrial Partners (coreipfund.com); PWP = Perella Weinberg Partners; Warburg Pincus added to placements
 - Combined AUM includes Tufts endowment value; unnamed fund excluded
 - Recruiting: Spring 2027 starts mid-January 2027; add coffee-chat Google Form CTA on Join
 - Image list: Wikimedia Commons candidates in Step 0 proposal (see BRIEF Decisions #12); verify each visually in Step 5
@@ -42,7 +42,6 @@ Live URL: not live yet (custom domain pending Step 7)   Repo: https://github.com
 - [ ] Coffee-chat Google Form URL; application URL (src/data/recruiting.json links)
 - [ ] Total projects completed (years X) (stats.json; hidden while TBD)
 - [ ] Placements: no entrepreneurship entries, so intro names banking/consulting/investing only
-- [ ] [VERIFY] PJT/PWP (PJT Partners, Perella Weinberg, or both)
 - [ ] Redacted sample deck PDF (public/docs/tcrg-sample-deck.pdf)
 - [ ] Testimonial (hidden until supplied)
 - [ ] Official Tufts campus photos (ask Tufts Communications)
