@@ -35,10 +35,12 @@ Live URL: https://cooperkole.github.io/tcrg-website/ (preview; custom domain not
 - Client names confirmed by Cooper 2026-11-25: CF Private Equity (cfprivateequity.com), CORE Industrial Partners (coreipfund.com); PWP = Perella Weinberg Partners; Warburg Pincus added to placements
 - Combined AUM includes Tufts endowment value; unnamed fund excluded
 - Recruiting: Spring 2027 starts mid-January 2027; add coffee-chat Google Form CTA on Join
+- Headshots (2026-11-26): 31 added from HEADSHOTS/ ("Rachel Ap.jpg" = Natali Apridonidze) (Cooper's upload, left untouched) into src/assets/headshots/ as slug-name files (JPGs resized to 1200px wide). All person cards now 4:5 (compact member cards were square)
 - Photos (Step 5): 6 Commons images in use, all checked by eye; credits in CREDITS.md + on-site captions. Rejected: Post Office Square, Back Bay night (hotel sign), Tisch roof, skyline from Tufts
 
 ## Placeholders still open
-- [ ] E-board and Senior Advisor bios; headshots
+- [ ] E-board and Senior Advisor bios
+- [ ] Headshots missing (monogram shown): Anvitha Paruchuri, Vivaan Misra, Evan Waters, Will Moldenhauer, Henry Pan, Poorna Chakraborty, Jonathan Trinh.
 - [ ] Mercer status + AUM source
 - [ ] Clients given a heads-up that their logos are on the site
 - [ ] Investor contact email (src/data/site.json contact.email)

@@ -16,7 +16,7 @@ const displayName = name === 'TBD' ? 'Name TBD' : name;
 <article class:list={['person', { 'person-compact': compact, 'person-tbd': isTbd }]}>
   <div class="person-photo">
     {src
-      ? <Image src={src} alt={name} width={480} height={480} fit="cover" />
+      ? <Image src={src} alt={name} width={480} height={600} fit="cover" />
       : <span class="monogram" aria-hidden="true">{initials}</span>}
   </div>
   <h3 class="person-name">{displayName}</h3>
