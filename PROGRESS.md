@@ -1,7 +1,7 @@
 # TCRG website: progress
 
 ## Status
-Current step: 3 done. Next: Step 4 (Design).
+Current step: 4 done. Next: Step 5 (Photography).
 Live URL: not live yet (custom domain pending Step 7)   Repo: https://github.com/cooperkole/tcrg-website (public)
 
 ## Steps
@@ -9,7 +9,7 @@ Live URL: not live yet (custom domain pending Step 7)   Repo: https://github.com
 - [x] Step 1: Repo and stack (2026-11-25)
 - [x] Step 2: Content (2026-11-25)
 - [x] Step 3: Pages (2026-11-25)
-- [ ] Step 4: Design
+- [x] Step 4: Design (2026-11-25)
 - [ ] Step 5: Photography
 - [ ] Step 6: SEO and basics
 - [ ] Step 7: Deploy and domain
@@ -49,7 +49,9 @@ Live URL: not live yet (custom domain pending Step 7)   Repo: https://github.com
 ## Key files
 - docs/BRIEF.md: full brief (verbatim) + Decisions section
 - astro.config.mjs (site = custom domain), public/CNAME
-- src/layouts/Base.astro (fonts, global.css, Header, Footer; prop heroOverlay = transparent fixed header over hero)
+- src/layouts/Base.astro (fonts, global.css, Header, Footer; prop heroOverlay = transparent fixed header over hero; inline reveal-on-scroll script, skipped for prefers-reduced-motion)
+- src/styles/global.css: full design system (tokens at top: palette, type scale, spacing). Accent Tufts Blue only on dark bg (eyebrows, footer headings, focus ring)
+- public/brand/: tcrg-logo.png (master 3973x1581, same as Logos/), tcrg-logo-navy.png + tcrg-logo-ivory.png (640px, trimmed) built by scripts/brand-logos.mjs (sharp)
 - src/pages: index, work, about, join, 404. Redirects /blank* in astro.config.mjs `redirects`
 - src/components: Header (sticky, .is-scrolled bg, mobile toggle), Footer (links + e-list), PersonCard (headshot via import.meta.glob of src/assets/headshots, else monogram; TBD -> "Name TBD"), StatsBand (hides TBD), ClientRoster, ContactCta (placeholder text while email empty)
 - .claude/launch.json: astro-preview on :4321 (run npm run build first)
@@ -60,10 +62,10 @@ Live URL: not live yet (custom domain pending Step 7)   Repo: https://github.com
 - README.md (e-board guide; mentions src/assets/headshots/ and /blank redirects, which Steps 2-3 must create)
 
 ## Notes for the next session
-- Step 4: all pages are wired to data. global.css has a functional structural layer (marked "Step 3"); restyle freely, keep class names or update components. Hero is a plain ink block (.hero-media), photo comes in Step 5. Home h1 copy is mine: "Bespoke market research for institutional investors, from Tufts." (Cooper may revise). Group photos and testimonials hidden while empty.
-- Headshots live in src/assets/headshots/ per README (brief said public/images/team/; README convention kept so Astro can optimize/crop uniformly).
+- Step 5: hero photo goes in index.astro `.hero-media` (currently empty ink block; CSS already handles `.hero-media img` cover + flat 50% ink scrim, no gradient). Use astro:assets <Image>/<Picture>, keep hero < ~300 KB. Header over hero uses ivory logo.
+- Design done in Step 4: hairline rules, numbered eyebrows/lists, 5/7 split grid, square buttons, header logo swaps navy/ivory via CSS. Stat label changed to "Combined AUM of clients served". Home h1 copy is mine (Cooper may revise). Group photos/testimonials hidden while empty.
+- Logo is high-res, so no text wordmark needed. Logos/ folder at repo root is the original upload; public/brand/ is what the site uses.
 - Pages source = GitHub Actions. Custom domain NOT set in repo settings yet (Step 7). Until then the github.io URL is a project path (/tcrg-website/), so root-relative assets look broken there; expected.
-- Logo (high-res PNG 3973x1581): https://static.wixstatic.com/media/9d2749_d6d43482ce2f4ccca8900e85c36fe1af~mv2.png (download in Step 4)
 - Old site's sample deck: /_files/ugd/9d2749_8fb3b9e74d164b37bc27f29706a4521a.pdf (unredacted? Cooper supplies redacted version)
 - Old site team/analyst names are Spring 2026 only; don't reuse
 - Image candidates: docs/IMAGE-CANDIDATES.md

@@ -24,5 +24,22 @@ const { title, description = 'Tufts Capital Research Group: student-run, pro bon
       <slot />
     </main>
     <Footer />
+    <script>
+      // Gentle fade-in of section content on scroll. Skipped entirely for
+      // prefers-reduced-motion and without IntersectionObserver; content is
+      // visible by default, so nothing depends on this script.
+      const calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!calm && 'IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+          for (const e of entries) if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+        }, { rootMargin: '0px 0px -8% 0px' });
+        const vh = window.innerHeight;
+        document.querySelectorAll('main .section > .container, main .stats-band > .container').forEach((el) => {
+          if (el.getBoundingClientRect().top < vh) return; // already on screen: leave as is
+          el.classList.add('reveal');
+          io.observe(el);
+        });
+      }
+    </script>
   </body>
 </html>

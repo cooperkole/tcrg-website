@@ -6,19 +6,30 @@ const elist = recruiting.recruiting.links.elist;
 <footer class="site-footer">
   <div class="container footer-inner">
     <div class="footer-brand">
-      <p class="footer-name">{site.name}</p>
+      <img class="footer-logo" src="/brand/tcrg-logo-ivory.png" alt={site.name} width="640" height="279" loading="lazy" />
       <p class="footer-tagline">{site.tagline}</p>
     </div>
-    <nav aria-label="Footer">
+    <nav class="footer-nav" aria-label="Footer">
+      <p class="footer-heading">Site</p>
       <ul class="footer-links">
         <li><a href="/work">Our Work</a></li>
         <li><a href="/about">About</a></li>
         <li><a href="/join">Join</a></li>
+      </ul>
+    </nav>
+    <div class="footer-nav">
+      <p class="footer-heading">Follow</p>
+      <ul class="footer-links">
         <li><a href={site.contact.linkedin} rel="noopener">LinkedIn</a></li>
         <li><a href={site.contact.instagram} rel="noopener">Instagram</a></li>
       </ul>
-    </nav>
-    {elist && <a class="button button-light" href={elist} rel="noopener">Join the e-list</a>}
+    </div>
+    {elist && (
+      <div class="footer-elist">
+        <p class="footer-heading">Students</p>
+        <a class="button button-light" href={elist} rel="noopener">Join the e-list</a>
+      </div>
+    )}
   </div>
   <div class="container footer-legal"><p>{site.footer}</p></div>
 </footer>
