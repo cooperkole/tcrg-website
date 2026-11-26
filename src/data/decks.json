@@ -1,0 +1,29 @@
+{
+  "_note": "Sample decks for the deck viewer on Our Work. To add one: save the redacted PDF in source/decks/ (git-ignored, never public/), add an entry here, run `node scripts/build-deck.mjs <id>`, commit the images in public/<folder>/, then set \"deck\": \"<id>\" on the matching case study in case-studies.json. Only entries with \"live\": true are shown. Never name or describe the client in any field here (confidentiality rule).",
+  "decks": [
+    {
+      "id": "climate-ar",
+      "live": true,
+      "title": "Climate Adaptation & Resilience",
+      "subtitle": "Investment opportunities",
+      "term": "Spring 2026",
+      "date": "April 2026",
+      "pages": 61,
+      "width": 1600,
+      "height": 900,
+      "source": "source/decks/REDEACTED_26S_Climate_AR.pdf",
+      "folder": "decks/climate-ar",
+      "summary": "A 61-slide read-deck on the global and U.S. climate adaptation and resilience (A&R) investment landscape and where private capital can enter. It sizes the market, separates A&R from broader sustainability spending, and finds that A&R remains underfunded, with private participation still limited and the most scalable opportunities concentrated in developed economies, chiefly the U.S.",
+      "sections": [
+        { "title": "Introduction", "slide": 4, "text": "Climate exposure across infrastructure, labor and trade assets; the five A&R verticals; the A&R financing gap; U.S. geographic fragmentation; and recent entry by large private equity funds." },
+        { "title": "Disaster lifecycle", "slide": 13, "text": "Pre-, during- and post-disaster spending. Pre-disaster adaptation is underinvested yet carries strong benefit-cost ratios, while most capital is deployed after losses occur." },
+        { "title": "Regulation", "slide": 19, "text": "Federal and state resilience funding, building-code fragmentation, regulatory mandates and cost-sharing, and the role of insurance in pricing and transferring risk." },
+        { "title": "Stakeholders", "slide": 25, "text": "How government, households and businesses spend on A&R, public-private partnership entry routes, and a synthesis ranking climate risk analytics, retrofitting and agricultural A&R as the most attractive areas." },
+        { "title": "Climate risk analytics", "slide": 34, "text": "The climate data value chain, the dominance of public data infrastructure, consolidation of pure-play risk analytics into integrated platforms, and regulatory moats." },
+        { "title": "Agriculture", "slide": 40, "text": "Agricultural A&R mapped by commercial maturity and private equity fit across seasonal volatility, controlled environment agriculture, seed innovation, soil and land, water, and labor." },
+        { "title": "Retrofitting products & services", "slide": 49, "text": "Retrofit products and services, a Florida building-code case study and a comparable state thesis, fragmentation across six retrofit service stages, and two platform strategies." },
+        { "title": "Conclusion & investment strategy", "slide": 59, "text": "A&R is an emerging market with limited late-stage platform maturity, which favors a growth equity posture ahead of a larger future buyout opportunity." }
+      ]
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 # TCRG website: progress
 
 ## Status
-Current step: 9 done (v2 content fixes). v2 brief: docs/BRIEF-V2.md (v2 wins on conflicts). Next: Step 10.
+Current step: 10 done (selected work + deck viewer). v2 brief: docs/BRIEF-V2.md (v2 wins on conflicts). Next: Step 11.
 Live URL: https://cooperkole.github.io/tcrg-website/ (preview; custom domain not connected, see DEPLOY.md)   Repo: https://github.com/cooperkole/tcrg-website (public)
 
 ## Steps
@@ -15,7 +15,7 @@ Live URL: https://cooperkole.github.io/tcrg-website/ (preview; custom domain not
 - [x] Step 7: Deploy and domain (2026-11-25)
 - [x] Step 8: Closed early per Cooper (2026-11-26); its quality check goes at the end of the v2 steps
 - [x] Step 9 (v2, 2026-11-26): Content fixes and de-emptying (bios hidden until present, designed monograms, recruiting status banner, wording, contact email, duplicate logos, role descriptions, group-photo slot, rebrand FAQ)
-- [ ] Step 10 (v2): Selected work (Climate A&R, Chemicals placeholder, Data Centers) + data-driven deck viewer
+- [x] Step 10 (v2, 2026-11-26): Selected work (Climate A&R, Chemicals placeholder, Data Centers) + data-driven deck viewer
 - [ ] Step 11 (v2): Motion system (ClientRouter, GSAP + ScrollTrigger, Lenis; reduced-motion fallback; Lighthouse >= 90 mobile)
 - [ ] Step 12 (v2): Timelines (analyst week, engagement process, recruiting, origin; src/data/timelines.json)
 - [ ] Step 13 (v2): QA (old Step 8 + reduced-motion, keyboard deck viewer, iOS Safari, CLS, confidentiality grep)
@@ -52,10 +52,9 @@ Live URL: https://cooperkole.github.io/tcrg-website/ (preview; custom domain not
 - [ ] Coffee-chat Google Form URL (Join block hidden until set); application URL (src/data/recruiting.json links)
 - [ ] Total projects completed (years X) (stats.json; hidden while TBD)
 - [ ] Placements: no entrepreneurship entries, so intro names banking/consulting/investing only
-- [ ] Redacted sample deck: Climate A&R PDF supplied by Cooper; goes in source/decks/ (git-ignored), rendered to images in Step 10, no raw PDF in public/
 - [ ] Chemicals scope text (placeholder until supplied)
 - [ ] Group photo for About (team.json groupPhotos[0].photo; labeled placeholder tile shows until set)
-- [ ] PDF download of sample deck? (default: no)
+- [ ] PDF download of sample deck? (default: no; none shipped. If added, strip metadata first: PDF Author field = a member's name)
 - [ ] Testimonial (hidden until supplied)
 - [ ] Official Tufts campus photos (ask Tufts Communications): only Ballou Hall (Commons, snowy phone shot) in use; Tisch roof + Boston-from-hilltop have no usable image
 
@@ -69,6 +68,7 @@ Live URL: https://cooperkole.github.io/tcrg-website/ (preview; custom domain not
 - src/pages: index, work, about, join, 404. Redirects /blank* in astro.config.mjs `redirects`
 - src/components: Header (sticky, .is-scrolled bg, mobile toggle), Footer (links + e-list), PersonCard (headshot via import.meta.glob of src/assets/headshots, else monogram; TBD -> "Name TBD"), StatsBand (hides TBD), ClientRoster, ContactCta (placeholder text while email empty)
 - .claude/launch.json: astro-preview on :4321 (run npm run build first)
+- Deck viewer (Step 10): src/data/decks.json (id, live, title, term, pages, source PDF in source/decks/, folder under public/, summary + sections for SR/SEO). scripts/build-deck.mjs <id> (needs `brew install poppler`) renders public/decks/<id>/{view 1600w, zoom 2800w, thumb 320w}/NN.webp (committed; CI cannot run it since the PDF is git-ignored). src/components/DeckViewer.astro (vanilla script; arrows/PageUp/Down/Home/End, +/-/0 zoom, ctrl-wheel/pinch zoom, plain wheel zooms only in full screen, drag pan, swipe, ?slide=N via replaceState, native fullscreen else .is-pseudo-fs overlay for iOS). case-studies.json "deck" links a card to it
 - src/data/*.json: site (copy, services, process, contact, testimonials), team (eboard, members grouped projectLeads/researchLeads/analysts, founders, groupPhotos), advisors (intro + 5), clients (alphabetical, verify/anonymous flags), case-studies (+ sampleDeck.available=false), stats (TBD = hide), placements (path: banking/consulting/investing), recruiting (status upcoming, banner per status, timeline TBD)
 - src/data/aum.ts: sourced AUM per client, aumLabel = "$700B+" (total 741.8 rounded down to $50B): Bain ~225 (Aug 2026), HarbourVest 167.9 (6/30/26), Cambridge Associates 326.7 regulatory AUM (Form ADV, 12/31/25), CF Private Equity 17.53 regulatory AUM (Form ADV, Oct 2026), CORE Industrial Partners 1.58 committed capital (site), Tufts 3.1 (5/2026)
 - src/data/photos.ts (photo metadata: alt, author, license, focus) + src/assets/photos/ (2400px sources). PhotoBand (full-bleed figure + credit), PhotoCredit. Placement: home hero bostonDusk + customHouse band; work rowesWharf + lowerManhattan; about ballouHall; join beaconHill. CREDITS.md at root
@@ -79,6 +79,7 @@ Live URL: https://cooperkole.github.io/tcrg-website/ (preview; custom domain not
 - README.md (e-board guide; mentions src/assets/headshots/ and /blank redirects, which Steps 2-3 must create)
 
 ## Notes for the next session
+- Step 10 done: Climate A&R deck live on /work/#sample (all 61 slides; source copied from ~/Downloads/"[REDEACTED] 26S Climate A&R.pdf" to source/decks/REDEACTED_26S_Climate_AR.pdf). Images 30 MB total in repo (view ~165 KB/slide; only current +/-1 slides fetched). Home "Selected work" is now 3 linked cards (work-cards); Our Work cards + scope list, Chemicals shows placeholder text from case-studies.json. Old sampleDeck block/CSS removed (case-studies.json no longer has sampleDeck). Climate scope bullets taken from the deck's own sections. Tested in browser: keyboard, zoom, deep link, thumbnails, section links, mobile 375px, pseudo-fullscreen overlay; real iOS Safari + keyboard-only pass still due in Step 13. Hero blur-up placeholder still not done: do it in Step 11.
 - Step 9 done: contact email live (ContactCta = mailto button + visible address; JSON-LD picks it up). Hero h1 now "market due diligence"; hero subline rewritten (was a word-for-word repeat). Hero photo credit moved into flow (was absolute). Monogram = ink tile, hairline inset frame, Tufts Blue rule; hover on all person cards. Client marquee: one <ul> in HTML, script clones it (aria-hidden, alt="") and adds .is-scrolling; no JS/reduced motion = static wrapped row. About: rebrand FAQ (site.json faq, <details>), role line per member group (team.json roles), one group-photo slot. Join: TBD dates print nothing, GIM defined in step 1. Origin copy now says Fall 2023 start. Hero blur-up placeholder (v2 decisions) not done yet: do it in Step 10 or 11.
 - Step 7 done: github.io preview works (base /tcrg-website). Cooper does the DNS steps in DEPLOY.md; Wix untouched. Final quality check (old Step 8, now last v2 step): run checks against the preview build (npm run build = custom-domain build; for preview: SITE_URL=https://cooperkole.github.io BASE_PATH=/tcrg-website npx astro build). Link checker must cover /tcrg-website/ prefix.
 - Step 6 note: redirects now target /work/ /about/ /join/.

@@ -86,10 +86,16 @@ const r = recruiting.recruiting;
   <section class="section section-alt">
     <div class="container">
       <p class="eyebrow">Selected work</p>
-      <h2>Recent sectors</h2>
-      <ul class="sector-list">
+      <h2>Recent projects</h2>
+      <ul class="work-cards">
         {caseData.caseStudies.map((c) => (
-          <li><a href={withBase('/work#projects')}>{c.sector}</a></li>
+          <li>
+            <a href={withBase(c.deck ? '/work/#sample' : '/work/#projects')}>
+              <h3>{c.sector}</h3>
+              {c.summary ? <p>{c.summary}</p> : <p class="case-placeholder">{c.placeholder}</p>}
+              <span class="work-card-more">{c.deck ? 'Read the redacted deck' : 'More on Our Work'}</span>
+            </a>
+          </li>
         ))}
       </ul>
     </div>

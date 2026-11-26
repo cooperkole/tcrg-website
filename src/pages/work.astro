@@ -5,10 +5,13 @@ import ContactCta from '../components/ContactCta.astro';
 import PhotoBand from '../components/PhotoBand.astro';
 import { photos } from '../data/photos';
 import site from '../data/site.json';
+import DeckViewer from '../components/DeckViewer.astro';
 import caseData from '../data/case-studies.json';
+import deckData from '../data/decks.json';
 import stats from '../data/stats.json';
 
-const deck = caseData.sampleDeck;
+const decks = deckData.decks.filter((d) => d.live);
+const liveDeck = (id?: string) => decks.find((d) => d.id === id);
 const team = stats.projectTeam;
 ---
 <Base title="Our Work | Tufts Capital Research Group" description="Services, engagement process and selected sectors from Tufts Capital Research Group.">
@@ -64,14 +67,18 @@ const team = stats.projectTeam;
   <section class="section" id="projects">
     <div class="container">
       <h2>Selected projects</h2>
+      <p class="section-sub">Our three most recent completed projects. We never show work in progress.</p>
       <div class="case-studies">
         {caseData.caseStudies.map((c) => (
           <article class="case-study">
             <h3>{c.sector}</h3>
-            <p>{c.summary}</p>
-            <ul class="scope">
-              {c.scope.map((s) => <li>{s}</li>)}
-            </ul>
+            {c.summary ? <p>{c.summary}</p> : <p class="case-placeholder">{c.placeholder}</p>}
+            {c.scope.length > 0 && (
+              <ul class="scope">
+                {c.scope.map((s) => <li>{s}</li>)}
+              </ul>
+            )}
+            {liveDeck(c.deck) && <a class="case-link" href="#sample">Read the redacted deck</a>}
           </article>
         ))}
       </div>
@@ -80,15 +87,16 @@ const team = stats.projectTeam;
 
   <PhotoBand photo={photos.lowerManhattan} />
 
-  <section class="section section-alt" id="sample">
-    <div class="container sample-deck">
-      <div>
-        <h2>{deck.title}</h2>
-        <p>{deck.available ? deck.description : deck.placeholder}</p>
+  {decks.length > 0 && (
+    <section class="section section-alt" id="sample">
+      <div class="container">
+        <p class="eyebrow">Sample work</p>
+        <h2>Read a full deck</h2>
+        <p class="lede">A complete, redacted read-deck from a recent engagement, slide by slide, in the same format every client receives.</p>
+        {decks.map((d) => <DeckViewer deck={d} />)}
       </div>
-      {deck.available && <a class="button" href={withBase(deck.href)}>View the sample deck (PDF)</a>}
-    </div>
-  </section>
+    </section>
+  )}
 
   <section class="section section-dark">
     <div class="container cta">
