@@ -1,7 +1,7 @@
 # TCRG website: progress
 
 ## Status
-Current step: 7 done. Next: Step 8 (Quality check and final report).
+Current step: 8 done (closed early; checks moved to Step 9). Next: further changes as Cooper requests; Step 9 (Quality check and final report) runs last.
 Live URL: https://cooperkole.github.io/tcrg-website/ (preview; custom domain not connected, see DEPLOY.md)   Repo: https://github.com/cooperkole/tcrg-website (public)
 
 ## Steps
@@ -13,7 +13,8 @@ Live URL: https://cooperkole.github.io/tcrg-website/ (preview; custom domain not
 - [x] Step 5: Photography (2026-11-25)
 - [x] Step 6: SEO and basics (2026-11-25)
 - [x] Step 7: Deploy and domain (2026-11-25)
-- [ ] Step 8: Quality check and final report
+- [x] Step 8: Closed early per Cooper (2026-11-26); its checks moved to Step 9
+- [ ] Step 9 (run last): Quality check and final report, i.e. what Step 8 would have done (docs/BRIEF.md "Step 8: Quality check before you report back")
 
 ## Decisions (approved by Cooper)
 - Palette: Ink #0E1A2B, Jumbo Blue #002E6D (links), Tufts Blue #3E8EDE (accent, large text/dark bg only; source brand.tufts.edu/guidelines/color), Ivory #F7F4EE, Candle White #F2EDE7, text-2 #5E5C57, hairline #D9D3C7
@@ -72,7 +73,7 @@ Live URL: https://cooperkole.github.io/tcrg-website/ (preview; custom domain not
 - README.md (e-board guide; mentions src/assets/headshots/ and /blank redirects, which Steps 2-3 must create)
 
 ## Notes for the next session
-- Step 7 done: github.io preview works (base /tcrg-website). Cooper does the DNS steps in DEPLOY.md; Wix untouched. Step 8: run checks against the preview build (npm run build = custom-domain build; for preview: SITE_URL=https://cooperkole.github.io BASE_PATH=/tcrg-website npx astro build). Link checker must cover /tcrg-website/ prefix.
+- Step 7 done: github.io preview works (base /tcrg-website). Cooper does the DNS steps in DEPLOY.md; Wix untouched. Step 9 (formerly Step 8): run checks against the preview build (npm run build = custom-domain build; for preview: SITE_URL=https://cooperkole.github.io BASE_PATH=/tcrg-website npx astro build). Link checker must cover /tcrg-website/ prefix.
 - Step 6 note: redirects now target /work/ /about/ /join/.
 - Step 6: Contrast checked: all text pairs AA (Tufts Blue on ink 5.1:1). One h1, landmarks and img alts on every page. Nav links still use /work (one 301 hop on Pages; fine).
 - Step 5 done: <Picture> AVIF/WebP, widths 640-1920, quality 55. Hero 1920w AVIF = 122 KB. Band images up to ~570 KB at 1920w (lazy); lower quality if Lighthouse flags it in Step 8. Hero eyebrow is now ivory (blue rule) for contrast over the photo.
