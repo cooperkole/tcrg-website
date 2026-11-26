@@ -1,31 +1,233 @@
 {
-  "_note": "Leadership, members and founders. Set \"photo\" to a file name in src/assets/headshots/ (e.g. \"jane-doe.jpg\"); leave it \"\" to show a monogram. Leave \"bio\" as \"\" until there is one.",
+  "_note": "Leadership, members and founders. Set \"photo\" to a file name in src/assets/headshots/ (e.g. \"jane-doe.jpg\"); leave it \"\" to show a monogram. Leave \"bio\" as \"\" until there is one. \"project\" is the internal Fall 2026 staffing code; it is NOT shown on the site (clients must never be mapped to people or projects).",
   "semester": "Fall 2026",
   "eboard": [
-    { "name": "Fares Danial", "role": "President", "bio": "", "photo": "", "linkedin": "" },
-    { "name": "Cooper Kolehmainen", "role": "Head of Operations", "bio": "", "photo": "", "linkedin": "" },
-    { "name": "TBD", "role": "Head of Research", "bio": "", "photo": "", "linkedin": "" },
-    { "name": "TBD", "role": "Treasurer", "bio": "", "photo": "", "linkedin": "" },
-    { "name": "TBD", "role": "Marketing", "bio": "", "photo": "", "linkedin": "" }
+    {
+      "name": "Fares Danial",
+      "role": "President",
+      "bio": "",
+      "photo": "",
+      "linkedin": "https://www.linkedin.com/in/faresdanial/"
+    },
+    {
+      "name": "Luka Souza",
+      "role": "Head of Research",
+      "bio": "",
+      "photo": "",
+      "linkedin": "https://www.linkedin.com/in/luka-souza01/"
+    },
+    {
+      "name": "Cooper Kolehmainen",
+      "role": "Head of Operations",
+      "bio": "",
+      "photo": "",
+      "linkedin": "https://www.linkedin.com/in/cooper-kolehmainen/"
+    }
   ],
   "members": {
     "projectLeads": [
-      { "name": "TBD", "photo": "" }
+      {
+        "name": "Ella Bao",
+        "project": "P3TR",
+        "photo": "",
+        "linkedin": "https://www.linkedin.com/in/ella-bao-652110272/"
+      },
+      {
+        "name": "Tyler Freeman",
+        "project": "P3TR",
+        "photo": "",
+        "linkedin": "https://www.linkedin.com/in/tyler-evan-freeman/"
+      },
+      {
+        "name": "Emre Sivri",
+        "project": "Bain Cap",
+        "photo": "",
+        "linkedin": "https://www.linkedin.com/in/emre-sivri/"
+      },
+      {
+        "name": "Felipe Lucon",
+        "project": "Bain Cap",
+        "photo": "",
+        "linkedin": "https://www.linkedin.com/in/felipe-lucon-bb3160347/"
+      }
     ],
     "researchLeads": [
-      { "name": "TBD", "photo": "" }
+      {
+        "name": "Arjun Moogimane",
+        "project": "P3TR",
+        "photo": "",
+        "linkedin": "https://www.linkedin.com/in/arjunmoogimane/"
+      },
+      {
+        "name": "Anvitha Paruchuri",
+        "project": "P3TR",
+        "photo": "",
+        "linkedin": "https://www.linkedin.com/in/anvitha-paruchuri/"
+      },
+      {
+        "name": "Cyrus Ansari",
+        "project": "Bain Cap",
+        "photo": "",
+        "linkedin": "https://www.linkedin.com/in/cyrus-b-ansari/"
+      },
+      {
+        "name": "Anshul Khakhar",
+        "project": "Bain Cap",
+        "photo": "",
+        "linkedin": "https://www.linkedin.com/in/anshul-khakhar/"
+      }
     ],
     "analysts": [
-      { "name": "TBD", "photo": "" }
+      {
+        "name": "Jake Zimmerman",
+        "project": "P3TR",
+        "photo": "",
+        "linkedin": "https://www.linkedin.com/in/jake-zimmerman-720084374/"
+      },
+      {
+        "name": "Rachel Nadelmann",
+        "project": "Bain Cap",
+        "photo": "",
+        "linkedin": "https://www.linkedin.com/in/rachel-nadelmann-0851573b3/"
+      },
+      {
+        "name": "Natali Apridonidze",
+        "project": "Bain Cap",
+        "photo": "",
+        "linkedin": "https://www.linkedin.com/in/natali-apridonidze-9b384030a/"
+      },
+      {
+        "name": "Vivaan Misra",
+        "project": "Bain Cap",
+        "photo": "",
+        "linkedin": "https://www.linkedin.com/in/vivaan-misra-6b9849343/"
+      },
+      {
+        "name": "Evan Waters",
+        "project": "P3TR",
+        "photo": "",
+        "linkedin": "https://www.linkedin.com/in/evan-waters-31081a382/"
+      },
+      {
+        "name": "Pedro Da Costa",
+        "project": "Bain Cap",
+        "photo": "",
+        "linkedin": "https://www.linkedin.com/in/pedro-martinsdacosta/"
+      }
+    ],
+    "newAnalysts": [
+      {
+        "name": "Yasmine Danial",
+        "project": "P3TR",
+        "photo": "",
+        "linkedin": "https://www.linkedin.com/in/yasmine-danial-3a9050384/"
+      },
+      {
+        "name": "Kaayna Jain",
+        "project": "P3TR",
+        "photo": "",
+        "linkedin": "https://www.linkedin.com/in/kaayna-jain/"
+      },
+      {
+        "name": "Catalina Brandariz",
+        "project": "P3TR",
+        "photo": "",
+        "linkedin": "https://www.linkedin.com/in/catalina-garcia-brandariz-7055203a8/"
+      },
+      {
+        "name": "Zoey Qin",
+        "project": "P3TR",
+        "photo": "",
+        "linkedin": "https://www.linkedin.com/in/zoey-qin-054127310/"
+      },
+      {
+        "name": "Anthony Mariani",
+        "project": "P3TR",
+        "photo": "",
+        "linkedin": "https://www.linkedin.com/in/anthony-mariani-813ab1285/"
+      },
+      {
+        "name": "Harry Ellis",
+        "project": "P3TR",
+        "photo": "",
+        "linkedin": "https://www.linkedin.com/in/harrykellis/"
+      },
+      {
+        "name": "Connor Falahee",
+        "project": "P3TR",
+        "photo": "",
+        "linkedin": ""
+      },
+      {
+        "name": "Jaiden Zhu",
+        "project": "P3TR",
+        "photo": "",
+        "linkedin": "https://www.linkedin.com/in/jaidenzhu/"
+      },
+      {
+        "name": "Kareena Parasnis",
+        "project": "Bain Cap",
+        "photo": "",
+        "linkedin": "https://www.linkedin.com/in/kareena-parasnis/"
+      },
+      {
+        "name": "Alek Ramamurthy",
+        "project": "Bain Cap",
+        "photo": "",
+        "linkedin": "https://www.linkedin.com/in/alekramamurthy/"
+      },
+      {
+        "name": "Jacob Bukhman",
+        "project": "Bain Cap",
+        "photo": "",
+        "linkedin": "https://www.linkedin.com/in/jacob-bukhman-2a2132272/"
+      },
+      {
+        "name": "Will Moldenhauer",
+        "project": "Bain Cap",
+        "photo": "",
+        "linkedin": "https://www.linkedin.com/in/willmoldenhauer/"
+      },
+      {
+        "name": "Kristy Yau",
+        "project": "Bain Cap",
+        "photo": "",
+        "linkedin": "https://www.linkedin.com/in/kristyyau/"
+      },
+      {
+        "name": "Patrick Ji",
+        "project": "Bain Cap",
+        "photo": "",
+        "linkedin": ""
+      }
     ]
   },
   "founders": [
-    { "name": "Mathis Weber", "role": "Co-Founder", "bio": "", "photo": "" },
-    { "name": "Otto Laakso", "role": "Co-Founder", "bio": "", "photo": "" }
+    {
+      "name": "Mathis Weber",
+      "role": "Co-Founder",
+      "bio": "",
+      "photo": ""
+    },
+    {
+      "name": "Otto Laakso",
+      "role": "Co-Founder",
+      "bio": "",
+      "photo": ""
+    }
   ],
   "groupPhotos": [
-    { "caption": "Fall 2026 new member class", "photo": "" },
-    { "caption": "Leadership team", "photo": "" },
-    { "caption": "Final client presentation", "photo": "" }
+    {
+      "caption": "Fall 2026 new member class",
+      "photo": ""
+    },
+    {
+      "caption": "Leadership team",
+      "photo": ""
+    },
+    {
+      "caption": "Final client presentation",
+      "photo": ""
+    }
   ]
 }

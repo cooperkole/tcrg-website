@@ -209,17 +209,27 @@ a:hover { color: var(--ink); }
   .stat:nth-child(even) { border-left: 1px solid var(--hairline); padding-left: 1.25rem; }
 }
 
-/* ---------- Clients ---------- */
-.client-roster {
-  list-style: none; padding: 0; margin: clamp(2.5rem, 5vw, 3.5rem) 0 0;
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
-  border-top: 1px solid var(--ink);
+/* ---------- Clients (logo marquee) ---------- */
+.client-marquee {
+  margin-top: clamp(2.5rem, 5vw, 3.5rem); overflow: hidden;
+  border-block: 1px solid var(--hairline);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+          mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
 }
-.client { padding: 1.5rem 1.5rem 1.5rem 0; border-bottom: 1px solid var(--hairline); display: flex; flex-direction: column; gap: .3rem; }
-.client-name { font-family: var(--font-display); font-size: var(--step-2); line-height: 1.2; }
-.client-anon .client-name { font-style: italic; color: var(--text-2); }
-.client-detail { font-size: .875rem; color: var(--text-2); }
-.client-status { align-self: flex-start; margin-top: .35rem; font-size: .6875rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--jumbo-blue); border: 1px solid currentColor; padding: .15rem .45rem; }
+.client-track { display: flex; width: max-content; animation: client-scroll 40s linear infinite; }
+.client-marquee:hover .client-track, .client-marquee:focus-within .client-track { animation-play-state: paused; }
+.client-row { display: flex; align-items: center; list-style: none; margin: 0; padding: 0; }
+.client-logo { flex: none; display: flex; align-items: center; justify-content: center; height: 7rem; padding-inline: clamp(1.75rem, 4vw, 3.5rem); }
+.client-logo img { height: 2.75rem; width: auto; max-width: 11rem; object-fit: contain; filter: grayscale(1); opacity: .8; }
+.client-wordmark { font-family: var(--font-display); font-size: var(--step-2); line-height: 1; white-space: nowrap; color: var(--ink); }
+.client-footnote { margin-top: 1rem; font-size: var(--step--1); color: var(--text-2); }
+@keyframes client-scroll { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) {
+  .client-marquee { -webkit-mask-image: none; mask-image: none; }
+  .client-track { animation: none; width: auto; }
+  .client-row { flex-wrap: wrap; justify-content: center; }
+  .client-row[aria-hidden] { display: none; }
+}
 
 /* ---------- Services (pillars) ---------- */
 .pillars { display: grid; gap: var(--gap) clamp(1.5rem, 4vw, 3.5rem); grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); counter-reset: pillar; margin-top: clamp(2rem, 5vw, 3.5rem); }
@@ -295,6 +305,9 @@ a:hover { color: var(--ink); }
 .person-bio { margin-top: .9rem; font-size: .9375rem; color: var(--text-2); }
 .person-tbd .person-name { color: var(--text-2); font-style: italic; }
 .person-link { display: inline-block; margin-top: .5rem; font-size: .875rem; }
+.academy { margin-top: clamp(3rem, 6vw, 4.5rem); padding-top: 1.5rem; border-top: 1px solid var(--ink); display: grid; gap: 1rem 3rem; }
+@media (min-width: 900px) { .academy { grid-template-columns: 5fr 7fr; } }
+.academy p { color: var(--text-2); max-width: 40rem; }
 .count { color: var(--text-2); font-family: var(--font-body); font-size: .9rem; font-weight: 400; letter-spacing: 0; }
 
 /* ---------- Join ---------- */

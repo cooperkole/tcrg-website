@@ -23,10 +23,12 @@ Live URL: https://cooperkole.github.io/tcrg-website/ (preview; custom domain not
 - Hosting: public repo on cooperkole, GitHub Pages via Actions
 - Case studies: no client descriptors at all; client roster is a separate section, never mapped to sectors
 - Clients (for investors) and member placements (for students) are two separate lists
-- E-board roles: President = Fares Danial; Head of Operations = Cooper Kolehmainen; Head of Research, Treasurer, Marketing = TBD. Every staff card has a bio field (placeholder)
-- Senior Advisors: 5 cards, all TBD (one "Bruno TBD"), each with bio placeholder
+- E-board (2026-11-26): Fares Danial (President), Luka Souza (Head of Research; staffing sheet says VP, Cooper said Head of Research), Cooper Kolehmainen (Head of Operations). Treasurer + Marketing removed from site. E-board also serves as Senior Advisors. Bios still placeholders
+- Senior Advisors (2026-11-26): upperclassmen with 3+ projects; Monish Aswani + Henry Pan = RG Academy Heads; Poorna Chakraborty, Jonathan Trinh, Max Nielsen. RG Academy block on About. Bruno dropped
 - Founders section (Mathis Weber, Otto Laakso) goes below all current staffing on About
-- Stats (Fall 2026): 4 PLs, 5 RLs, 20 Analysts; 2 current projects; 17 expert calls this semester as of 2026-11-25; total projects = 2/semester x X years (X TBD)
+- Stats (Fall 2026, updated 2026-11-26): 4 PLs, 4 RLs, 6 Analysts, 14 New Analyst Class; "Active projects" 2; "Expert calls as of <visitor's today>" 17 (date set client-side in StatsBand); "Cumulative AUM of clients served"; total projects = 2/semester x X years (X TBD)
+- Member project codes (P3TR / Bain Cap) stored in team.json "project" but NOT rendered (no client-to-people mapping)
+- Clients: home shows a right-to-left logo marquee (ClientRoster.astro; wordmark until a logo file is set; anonymous fund as footnote). Mercer added 2026-11-26, status assumed past; not in AUM total (no public figure found)
 - Guggenheim placement = Guggenheim Securities
 - Client names confirmed by Cooper 2026-11-25: CF Private Equity (cfprivateequity.com), CORE Industrial Partners (coreipfund.com); PWP = Perella Weinberg Partners; Warburg Pincus added to placements
 - Combined AUM includes Tufts endowment value; unnamed fund excluded
@@ -34,9 +36,8 @@ Live URL: https://cooperkole.github.io/tcrg-website/ (preview; custom domain not
 - Photos (Step 5): 6 Commons images in use, all checked by eye; credits in CREDITS.md + on-site captions. Rejected: Post Office Square, Back Bay night (hotel sign), Tisch roof, skyline from Tufts
 
 ## Placeholders still open
-- [ ] E-board: Head of Research, Treasurer, Marketing names; all bios (src/data/team.json)
-- [ ] 5 Senior Advisors' names and bios (src/data/advisors.json)
-- [ ] Fall 2026 member roster (src/data/team.json)
+- [ ] E-board and Senior Advisor bios; headshots
+- [ ] Client logo files (src/assets/clients/, set "logo" in clients.json); Mercer status + AUM source
 - [ ] Investor contact email (src/data/site.json contact.email)
 - [ ] Spring 2027 exact recruiting dates + status
 - [ ] Coffee-chat Google Form URL; application URL (src/data/recruiting.json links)

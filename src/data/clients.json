@@ -1,12 +1,64 @@
 {
-  "_note": "Client roster for investors. Kept separate from case-studies.json on purpose: never link a client to a project or sector. Listed alphabetically. Set \"logo\" to a file in src/assets/clients/ only after the client has been given a heads-up; until then the site shows a typographic wordmark. \"verify\": true means the exact firm name is unconfirmed.",
+  "_note": "Client roster for investors. Kept separate from case-studies.json on purpose: never link a client to a project or sector. Listed alphabetically. Set \"logo\" to a file in src/assets/clients/ only after the client has been given a heads-up; until then the site shows a typographic wordmark. \"verify\": true means the exact firm name is unconfirmed. Mercer = Mercer the financial services company (Marsh), added 2026-11-26; status assumed past.",
   "clients": [
-    { "name": "Bain Capital", "website": "https://www.baincapital.com", "status": "current", "logo": "", "verify": false },
-    { "name": "Cambridge Associates", "website": "https://www.cambridgeassociates.com", "status": "past", "logo": "", "verify": false },
-    { "name": "CF Private Equity", "website": "https://www.cfprivateequity.com", "status": "past", "logo": "", "verify": false },
-    { "name": "CORE Industrial Partners", "website": "https://coreipfund.com", "status": "past", "logo": "", "verify": false },
-    { "name": "HarbourVest Partners", "website": "https://www.harbourvest.com", "status": "past", "logo": "", "verify": false },
-    { "name": "Tufts Investment Office", "detail": "Tufts University's endowment", "website": "", "status": "past", "logo": "", "verify": false },
-    { "name": "A private investment fund", "website": "", "status": "current", "logo": "", "verify": false, "anonymous": true }
+    {
+      "name": "Bain Capital",
+      "website": "https://www.baincapital.com",
+      "status": "current",
+      "logo": "",
+      "verify": false
+    },
+    {
+      "name": "Cambridge Associates",
+      "website": "https://www.cambridgeassociates.com",
+      "status": "past",
+      "logo": "",
+      "verify": false
+    },
+    {
+      "name": "CF Private Equity",
+      "website": "https://www.cfprivateequity.com",
+      "status": "past",
+      "logo": "",
+      "verify": false
+    },
+    {
+      "name": "CORE Industrial Partners",
+      "website": "https://coreipfund.com",
+      "status": "past",
+      "logo": "",
+      "verify": false
+    },
+    {
+      "name": "HarbourVest Partners",
+      "website": "https://www.harbourvest.com",
+      "status": "past",
+      "logo": "",
+      "verify": false
+    },
+    {
+      "name": "Mercer",
+      "detail": "",
+      "website": "https://www.mercer.com",
+      "status": "past",
+      "logo": "",
+      "verify": false
+    },
+    {
+      "name": "Tufts Investment Office",
+      "detail": "Tufts University's endowment",
+      "website": "",
+      "status": "past",
+      "logo": "",
+      "verify": false
+    },
+    {
+      "name": "A private investment fund",
+      "website": "",
+      "status": "current",
+      "logo": "",
+      "verify": false,
+      "anonymous": true
+    }
   ]
 }

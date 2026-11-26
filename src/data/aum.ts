@@ -1,9 +1,11 @@
-// Combined client AUM, built only from figures each client reports publicly.
+// Cumulative client AUM, built only from figures each client reports publicly.
 // Update a figure by changing its number, source and date. The total and the
 // displayed label are computed automatically (rounded DOWN to the nearest $50B).
 //
 // Left out of the total on purpose:
 // - "A private investment fund" (current, unnamed client).
+// - Mercer: no public firm-level AUM figure found in Marsh's 2026 quarterly results
+//   (checked 2026-11-26). Add it here with a source once one is confirmed.
 
 export interface AumFigure {
   client: string;

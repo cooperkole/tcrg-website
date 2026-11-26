@@ -5,17 +5,28 @@ import { aumLabel } from '../data/aum';
 const stats = statsData.stats
   .map((s) => ({ ...s, value: s.id === 'aum' ? aumLabel : s.value }))
   .filter((s) => s.value && s.value !== 'TBD');
+const fmt = (d: Date) => d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+// Build-time fallback for "as of"; the script below swaps in the visitor's own date.
+const buildDate = fmt(new Date());
 ---
 <section class="stats-band" aria-label="TCRG in numbers">
   <div class="container">
     <dl class="stats">
       {stats.map((s) => (
         <div class="stat">
-          <dt>{s.label}</dt>
+          <dt>{s.label}{(s as { dynamicDate?: boolean }).dynamicDate && <> <time class="js-today">{buildDate}</time></>}</dt>
           <dd>{s.value}</dd>
         </div>
       ))}
     </dl>
-    <p class="stats-note">{statsData.semester}, as of {new Date(statsData.asOf + 'T12:00:00').toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}. Combined AUM uses each client's latest public figure.</p>
+    <p class="stats-note">{statsData.semester}. Cumulative AUM uses each client's latest public figure.</p>
   </div>
 </section>
+<script is:inline>
+  (function () {
+    var d = new Date();
+    var text = d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+    var iso = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+    document.querySelectorAll('.js-today').forEach(function (el) { el.textContent = text; el.setAttribute('datetime', iso); });
+  })();
+</script>

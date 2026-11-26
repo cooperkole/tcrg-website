@@ -1,11 +1,45 @@
 {
-  "_note": "Senior Advisors. One advisor is active on each client engagement. Fill in names and bios; leave \"photo\" as \"\" to show a monogram.",
-  "intro": "Senior Advisors are experienced investors who guide each engagement. One advisor works alongside every project team, from scoping through the final presentation.",
+  "_note": "Senior Advisors and RG Academy. The e-board (team.json) also serves as Senior Advisors; the page says so in academyNote/intro. Leave \"photo\" as \"\" to show a monogram.",
+  "intro": "Senior Advisors are upperclassmen who have worked on at least three projects. Each brings a specialty in part of the diligence process. They hold office hours for analysts, help Project Leads scope engagements and keep them on track, and mentor new Research Leads one-on-one. The executive board also serves as Senior Advisors.",
+  "academy": {
+    "title": "RG Academy",
+    "body": "Two Senior Advisors lead RG Academy, a month-long intensive for each new analyst class. It covers the research resources available to members, how to source and run expert calls, our slide-making standards, and how to turn research into insight."
+  },
   "advisors": [
-    { "name": "Bruno TBD", "role": "Senior Advisor", "bio": "", "photo": "", "linkedin": "" },
-    { "name": "TBD", "role": "Senior Advisor", "bio": "", "photo": "", "linkedin": "" },
-    { "name": "TBD", "role": "Senior Advisor", "bio": "", "photo": "", "linkedin": "" },
-    { "name": "TBD", "role": "Senior Advisor", "bio": "", "photo": "", "linkedin": "" },
-    { "name": "TBD", "role": "Senior Advisor", "bio": "", "photo": "", "linkedin": "" }
+    {
+      "name": "Monish Aswani",
+      "role": "RG Academy Head",
+      "bio": "",
+      "photo": "",
+      "linkedin": "https://www.linkedin.com/in/monish-aswani/"
+    },
+    {
+      "name": "Henry Pan",
+      "role": "RG Academy Head",
+      "bio": "",
+      "photo": "",
+      "linkedin": "https://www.linkedin.com/in/henrypan2/"
+    },
+    {
+      "name": "Poorna Chakraborty",
+      "role": "Senior Advisor",
+      "bio": "",
+      "photo": "",
+      "linkedin": "https://www.linkedin.com/in/poornachak27/"
+    },
+    {
+      "name": "Jonathan Trinh",
+      "role": "Senior Advisor",
+      "bio": "",
+      "photo": "",
+      "linkedin": "https://www.linkedin.com/in/jonathan-trinh1/"
+    },
+    {
+      "name": "Max Nielsen",
+      "role": "Senior Advisor",
+      "bio": "",
+      "photo": "",
+      "linkedin": "https://www.linkedin.com/in/max-l-nielsen/"
+    }
   ]
 }

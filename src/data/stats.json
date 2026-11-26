@@ -1,17 +1,48 @@
 {
-  "_note": "Headline numbers. Combined client AUM is computed in src/data/aum.ts (with sources); don't type it here. Entries with \"value\": \"TBD\" are hidden on the site until filled in.",
+  "_note": "Headline numbers. Cumulative client AUM is computed in src/data/aum.ts (with sources); don't type it here. Entries with \"value\": \"TBD\" are hidden on the site until filled in. Expert calls show \"as of\" the visitor's current date (set in the browser).",
   "asOf": "2026-11-25",
   "semester": "Fall 2026",
   "stats": [
-    { "id": "aum", "value": "from aum.ts", "label": "Combined AUM of clients served" },
-    { "id": "currentProjects", "value": "2", "label": "Current engagements" },
-    { "id": "expertCalls", "value": "17", "label": "Expert calls this semester" },
-    { "id": "projectsCompleted", "value": "TBD", "label": "Projects completed", "_formula": "2 per semester x number of years (years TBD)" }
+    {
+      "id": "aum",
+      "value": "from aum.ts",
+      "label": "Cumulative AUM of clients served"
+    },
+    {
+      "id": "currentProjects",
+      "value": "2",
+      "label": "Active projects"
+    },
+    {
+      "id": "expertCalls",
+      "value": "17",
+      "label": "Expert calls as of",
+      "dynamicDate": true
+    },
+    {
+      "id": "projectsCompleted",
+      "value": "TBD",
+      "label": "Projects completed",
+      "_formula": "2 per semester x number of years (years TBD)"
+    }
   ],
   "teamSize": [
-    { "role": "Project Leads", "count": 4 },
-    { "role": "Research Leads", "count": 5 },
-    { "role": "Analysts", "count": 20 }
+    {
+      "role": "Project Leads",
+      "count": 4
+    },
+    {
+      "role": "Research Leads",
+      "count": 4
+    },
+    {
+      "role": "Analysts",
+      "count": 6
+    },
+    {
+      "role": "New Analyst Class",
+      "count": 14
+    }
   ],
   "projectTeam": {
     "_note": "Typical team on one engagement.",
