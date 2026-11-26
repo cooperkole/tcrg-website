@@ -23,6 +23,27 @@ import Lenis from 'lenis';
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
 const done = new WeakSet<HTMLElement>();
+
+// Number of rendered lines in el, from the y positions of its text boxes.
+function lineCount(el: HTMLElement): number {
+  const r = document.createRange();
+  r.selectNodeContents(el);
+  return new Set([...r.getClientRects()].filter((b) => b.width > 0).map((b) => Math.round(b.top))).size;
+}
+
+// True if wrapping each word in its own element (as SplitText does) would change
+// how many lines el wraps to. Measured on an offscreen clone, so nothing shifts.
+function splitChangesLines(el: HTMLElement): boolean {
+  const words = (el.textContent ?? '').trim().split(/\s+/);
+  const clone = el.cloneNode(false) as HTMLElement;
+  clone.removeAttribute('data-astro-transition-scope');
+  clone.style.cssText = `position:absolute;left:0;top:0;width:${el.clientWidth}px;visibility:hidden;pointer-events:none`;
+  clone.innerHTML = words.map((w) => `<div style="display:inline-block">${w.replace(/</g, '&lt;')}</div>`).join(' ');
+  el.parentElement!.appendChild(clone);
+  const split = new Set([...clone.children].map((d) => (d as HTMLElement).offsetTop)).size;
+  clone.remove();
+  return split !== lineCount(el);
+}
 let teardown: (() => void) | null = null;
 
 function init() {
@@ -68,7 +89,13 @@ function init() {
       if (intro) {
         const h1 = hero.querySelector<HTMLElement>('h1');
         const rest = hero.querySelectorAll('.eyebrow, .hero-sub');
-        if (h1) {
+        // Wrapping words in elements (needed for the line split) changes text shaping
+        // slightly; at some widths a line that just fits stops fitting, the split h1
+        // gains a line and the hero shifts (CLS). Then use a plain fade instead.
+        if (h1 && splitChangesLines(h1)) {
+          gsap.set(h1, { visibility: 'visible' });
+          gsap.from(h1, { opacity: 0, y: 16, duration: 0.9, ease: 'power3.out', delay: 0.1, clearProps: 'opacity,transform' });
+        } else if (h1) {
           SplitText.create(h1, {
             type: 'lines', mask: 'lines', autoSplit: true, linesClass: 'split-line',
             onSplit: (self) => {
@@ -107,9 +134,11 @@ function init() {
 
     // ---- Statement band: words fill in as it passes ----
     document.querySelectorAll<HTMLElement>('[data-statement]').forEach((el) => {
+      // aria 'none': the words stay real text (aria-label is not allowed on <p>).
+      // Start at 0.47 so even unfilled words keep 3:1 contrast (large text).
       SplitText.create(el, {
-        type: 'words', autoSplit: true,
-        onSplit: (self) => gsap.fromTo(self.words, { opacity: 0.16 }, {
+        type: 'words', autoSplit: true, aria: 'none',
+        onSplit: (self) => gsap.fromTo(self.words, { opacity: 0.47 }, {
           opacity: 1, stagger: 0.08, ease: 'none',
           scrollTrigger: { trigger: el, start: 'top 82%', end: 'bottom 50%', scrub: 0.6 },
         }),
@@ -250,10 +279,12 @@ function init() {
     });
     function reveal(items: ArrayLike<Element>, trigger: Element) {
       if (!items.length || !belowFold(trigger)) return;
+      // opacity, not autoAlpha: visibility:hidden would drop not-yet-revealed
+      // content from the accessibility tree (screen readers, heading navigation).
       gsap.from(items, {
-        autoAlpha: 0, y: 18, duration: 0.5, ease: 'power2.out',
+        opacity: 0, y: 18, duration: 0.5, ease: 'power2.out',
         stagger: { each: 0.06, amount: Math.min(0.5, items.length * 0.06) },
-        clearProps: 'transform,opacity,visibility',
+        clearProps: 'transform,opacity',
         scrollTrigger: { trigger, start: 'top 92%', once: true },
       });
     }
