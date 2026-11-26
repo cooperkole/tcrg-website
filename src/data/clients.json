@@ -3,8 +3,8 @@
   "clients": [
     { "name": "Bain Capital", "website": "https://www.baincapital.com", "status": "current", "logo": "", "verify": false },
     { "name": "Cambridge Associates", "website": "https://www.cambridgeassociates.com", "status": "past", "logo": "", "verify": false },
-    { "name": "CF Private Equity", "website": "", "status": "past", "logo": "", "verify": true },
-    { "name": "Core Industrial Partners", "website": "", "status": "past", "logo": "", "verify": true },
+    { "name": "CF Private Equity", "website": "https://www.cfprivateequity.com", "status": "past", "logo": "", "verify": false },
+    { "name": "CORE Industrial Partners", "website": "https://coreipfund.com", "status": "past", "logo": "", "verify": false },
     { "name": "HarbourVest Partners", "website": "https://www.harbourvest.com", "status": "past", "logo": "", "verify": false },
     { "name": "Tufts Investment Office", "detail": "Tufts University's endowment", "website": "", "status": "past", "logo": "", "verify": false },
     { "name": "A private investment fund", "website": "", "status": "current", "logo": "", "verify": false, "anonymous": true }

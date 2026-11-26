@@ -28,6 +28,7 @@ Live URL: not live yet (custom domain pending Step 7)   Repo: https://github.com
 - Founders section (Mathis Weber, Otto Laakso) goes below all current staffing on About
 - Stats (Fall 2026): 4 PLs, 5 RLs, 20 Analysts; 2 current projects; 17 expert calls this semester as of 2026-11-25; total projects = 2/semester x X years (X TBD)
 - Guggenheim placement = Guggenheim Securities
+- Client names confirmed by Cooper 2026-11-25: CF Private Equity (cfprivateequity.com), CORE Industrial Partners (coreipfund.com)
 - Combined AUM includes Tufts endowment value; unnamed fund excluded
 - Recruiting: Spring 2027 starts mid-January 2027; add coffee-chat Google Form CTA on Join
 - Image list: Wikimedia Commons candidates in Step 0 proposal (see BRIEF Decisions #12); verify each visually in Step 5
@@ -40,9 +41,8 @@ Live URL: not live yet (custom domain pending Step 7)   Repo: https://github.com
 - [ ] Spring 2027 exact recruiting dates + status
 - [ ] Coffee-chat Google Form URL; application URL (src/data/recruiting.json links)
 - [ ] Total projects completed (years X) (stats.json; hidden while TBD)
-- [ ] AUM: CF Private Equity and Core Industrial Partners left out of total until names confirmed (src/data/aum.ts)
 - [ ] Placements: no entrepreneurship entries, so intro names banking/consulting/investing only
-- [ ] [VERIFY] CF Private Equity, Core Industrial Partners exact names/sites; PJT/PWP (PJT Partners, Perella Weinberg, or both)
+- [ ] [VERIFY] PJT/PWP (PJT Partners, Perella Weinberg, or both)
 - [ ] Redacted sample deck PDF (public/docs/tcrg-sample-deck.pdf)
 - [ ] Testimonial (hidden until supplied)
 - [ ] Official Tufts campus photos (ask Tufts Communications)
@@ -52,7 +52,7 @@ Live URL: not live yet (custom domain pending Step 7)   Repo: https://github.com
 - astro.config.mjs (site = custom domain), public/CNAME
 - src/layouts/Base.astro (fonts + global.css), src/pages/index.astro (placeholder)
 - src/data/*.json: site (copy, services, process, contact, testimonials), team (eboard, members grouped projectLeads/researchLeads/analysts, founders, groupPhotos), advisors (intro + 5), clients (alphabetical, verify/anonymous flags), case-studies (+ sampleDeck.available=false), stats (TBD = hide), placements (path: banking/consulting/investing), recruiting (status upcoming, banner per status, timeline TBD)
-- src/data/aum.ts: sourced AUM per client, aumLabel = "$700B+" (total 722.7 rounded down to $50B): Bain ~225 (Aug 2026), HarbourVest 167.9 (6/30/26), Cambridge Associates 326.7 regulatory AUM (Form ADV, 12/31/25), Tufts 3.1 (5/2026)
+- src/data/aum.ts: sourced AUM per client, aumLabel = "$700B+" (total 741.8 rounded down to $50B): Bain ~225 (Aug 2026), HarbourVest 167.9 (6/30/26), Cambridge Associates 326.7 regulatory AUM (Form ADV, 12/31/25), CF Private Equity 17.53 regulatory AUM (Form ADV, Oct 2026), CORE Industrial Partners 1.58 committed capital (site), Tufts 3.1 (5/2026)
 - src/assets/headshots/, src/assets/clients/ (empty; README convention: photo field = file name there)
 - .github/workflows/deploy.yml (withastro/action@v6 + deploy-pages@v5, on push to main)
 - README.md (e-board guide; mentions src/assets/headshots/ and /blank redirects, which Steps 2-3 must create)

@@ -4,8 +4,6 @@
 //
 // Left out of the total on purpose:
 // - "A private investment fund" (current, unnamed client).
-// - CF Private Equity and Core Industrial Partners: exact firm names still
-//   [VERIFY], so no AUM figure can be sourced yet. Add them here once confirmed.
 
 export interface AumFigure {
   client: string;
@@ -40,6 +38,25 @@ export const aumFigures: AumFigure[] = [
     asOf: '2025-12-31',
   },
   {
+    client: 'CF Private Equity',
+    // $17.53B Regulatory AUM (discretionary $17.38B + non-discretionary $142.6M),
+    // Form ADV for CF Private Equity, Inc. (CRD 110657, SEC# 801-31713), latest
+    // monthly filing data Oct 2026, as compiled by privatefunddata.com.
+    // Primary record: https://adviserinfo.sec.gov/firm/summary/110657
+    billions: 17.53,
+    source: 'https://www.privatefunddata.com/fund-companies/cf-private-equity-inc/',
+    asOf: '2026-10',
+  },
+  {
+    client: 'CORE Industrial Partners',
+    // "over $1.58 billion of capital commitments" (committed investor capital, not
+    // AUM; the firm publishes no AUM figure), coreipfund.com homepage and /firm/,
+    // undated, checked 2026-11-25.
+    billions: 1.58,
+    source: 'https://coreipfund.com/firm/',
+    asOf: '2026-11-25',
+  },
+  {
     client: 'Tufts Investment Office',
     // ~$3.1B endowment, Tufts Now, "Rishad Sadikot Named Chief Investment Officer" (2026-05-05).
     billions: 3.1,
@@ -48,7 +65,7 @@ export const aumFigures: AumFigure[] = [
   },
 ];
 
-export const aumTotalBillions = aumFigures.reduce((sum, f) => sum + f.billions, 0); // 722.7
+export const aumTotalBillions = aumFigures.reduce((sum, f) => sum + f.billions, 0); // 741.81
 
 const roundStep = 50;
 const roundedDown = Math.floor(aumTotalBillions / roundStep) * roundStep;
