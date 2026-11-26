@@ -1,7 +1,7 @@
 # TCRG website: progress
 
 ## Status
-Current step: 8 done (closed early). v2 brief added (docs/BRIEF-V2.md, 2026-11-26; v2 wins on conflicts). Next: Step 9.
+Current step: 9 done (v2 content fixes). v2 brief: docs/BRIEF-V2.md (v2 wins on conflicts). Next: Step 10.
 Live URL: https://cooperkole.github.io/tcrg-website/ (preview; custom domain not connected, see DEPLOY.md)   Repo: https://github.com/cooperkole/tcrg-website (public)
 
 ## Steps
@@ -14,7 +14,7 @@ Live URL: https://cooperkole.github.io/tcrg-website/ (preview; custom domain not
 - [x] Step 6: SEO and basics (2026-11-25)
 - [x] Step 7: Deploy and domain (2026-11-25)
 - [x] Step 8: Closed early per Cooper (2026-11-26); its quality check goes at the end of the v2 steps
-- [ ] Step 9 (v2): Content fixes and de-emptying (bios hidden until present, designed monograms, recruiting status banner, wording, contact email, duplicate logos, role descriptions, group-photo slot, rebrand FAQ)
+- [x] Step 9 (v2, 2026-11-26): Content fixes and de-emptying (bios hidden until present, designed monograms, recruiting status banner, wording, contact email, duplicate logos, role descriptions, group-photo slot, rebrand FAQ)
 - [ ] Step 10 (v2): Selected work (Climate A&R, Chemicals placeholder, Data Centers) + data-driven deck viewer
 - [ ] Step 11 (v2): Motion system (ClientRouter, GSAP + ScrollTrigger, Lenis; reduced-motion fallback; Lighthouse >= 90 mobile)
 - [ ] Step 12 (v2): Timelines (analyst week, engagement process, recruiting, origin; src/data/timelines.json)
@@ -44,18 +44,17 @@ Live URL: https://cooperkole.github.io/tcrg-website/ (preview; custom domain not
 - Photos (Step 5): 6 Commons images in use, all checked by eye; credits in CREDITS.md + on-site captions. Rejected: Post Office Square, Back Bay night (hotel sign), Tisch roof, skyline from Tufts
 
 ## Placeholders still open
-- [ ] E-board and Senior Advisor bios
+- [ ] E-board and Senior Advisor bios (optional "bio" in team.json/advisors.json; no bio line renders while empty)
 - [ ] Headshots missing (monogram shown): Anvitha Paruchuri, Vivaan Misra, Evan Waters, Will Moldenhauer, Henry Pan, Poorna Chakraborty, Jonathan Trinh.
 - [ ] Mercer status + AUM source
 - [ ] Clients given a heads-up that their logos are on the site
-- [ ] Investor contact email (src/data/site.json contact.email): decided = tuftscapitalresearchgroup@gmail.com, wire in Step 9
 - [ ] Spring 2027 exact recruiting dates + status
-- [ ] Coffee-chat Google Form URL; application URL (src/data/recruiting.json links)
+- [ ] Coffee-chat Google Form URL (Join block hidden until set); application URL (src/data/recruiting.json links)
 - [ ] Total projects completed (years X) (stats.json; hidden while TBD)
 - [ ] Placements: no entrepreneurship entries, so intro names banking/consulting/investing only
 - [ ] Redacted sample deck: Climate A&R PDF supplied by Cooper; goes in source/decks/ (git-ignored), rendered to images in Step 10, no raw PDF in public/
 - [ ] Chemicals scope text (placeholder until supplied)
-- [ ] Group photo for About
+- [ ] Group photo for About (team.json groupPhotos[0].photo; labeled placeholder tile shows until set)
 - [ ] PDF download of sample deck? (default: no)
 - [ ] Testimonial (hidden until supplied)
 - [ ] Official Tufts campus photos (ask Tufts Communications): only Ballou Hall (Commons, snowy phone shot) in use; Tisch roof + Boston-from-hilltop have no usable image
@@ -80,6 +79,7 @@ Live URL: https://cooperkole.github.io/tcrg-website/ (preview; custom domain not
 - README.md (e-board guide; mentions src/assets/headshots/ and /blank redirects, which Steps 2-3 must create)
 
 ## Notes for the next session
+- Step 9 done: contact email live (ContactCta = mailto button + visible address; JSON-LD picks it up). Hero h1 now "market due diligence"; hero subline rewritten (was a word-for-word repeat). Hero photo credit moved into flow (was absolute). Monogram = ink tile, hairline inset frame, Tufts Blue rule; hover on all person cards. Client marquee: one <ul> in HTML, script clones it (aria-hidden, alt="") and adds .is-scrolling; no JS/reduced motion = static wrapped row. About: rebrand FAQ (site.json faq, <details>), role line per member group (team.json roles), one group-photo slot. Join: TBD dates print nothing, GIM defined in step 1. Origin copy now says Fall 2023 start. Hero blur-up placeholder (v2 decisions) not done yet: do it in Step 10 or 11.
 - Step 7 done: github.io preview works (base /tcrg-website). Cooper does the DNS steps in DEPLOY.md; Wix untouched. Final quality check (old Step 8, now last v2 step): run checks against the preview build (npm run build = custom-domain build; for preview: SITE_URL=https://cooperkole.github.io BASE_PATH=/tcrg-website npx astro build). Link checker must cover /tcrg-website/ prefix.
 - Step 6 note: redirects now target /work/ /about/ /join/.
 - Step 6: Contrast checked: all text pairs AA (Tufts Blue on ink 5.1:1). One h1, landmarks and img alts on every page. Nav links still use /work (one 301 hop on Pages; fine).

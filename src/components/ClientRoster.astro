@@ -1,5 +1,6 @@
 ---
-// Client logo bar: scrolls right to left, pauses on hover, static for reduced motion.
+// Client logo bar: one list in the HTML. A small script clones it (aria-hidden) to scroll
+// right to left and pause on hover; without JS or with reduced motion it stays a static row.
 // Never mapped to projects or sectors (see clients.json _note).
 // Logo: set "logo" in clients.json to a file in src/assets/clients/; otherwise a wordmark shows.
 import { Image } from 'astro:assets';
@@ -21,17 +22,29 @@ const items = named.map((c) => {
 ---
 <div class="client-marquee" role="region" aria-label="Clients we have worked with">
   <div class="client-track">
-    {[0, 1].map((copy) => (
-      <ul class="client-row" aria-hidden={copy === 1 ? 'true' : undefined}>
-        {items.map((c) => (
-          <li class="client-logo">
-            {c.src
-              ? <Image src={c.src} alt={copy === 0 ? c.name : ''} height={96} style={`height:${c.h}`} />
-              : <span class="client-wordmark">{c.name}</span>}
-          </li>
-        ))}
-      </ul>
-    ))}
+    <ul class="client-row">
+      {items.map((c) => (
+        <li class="client-logo">
+          {c.src
+            ? <Image src={c.src} alt={c.name} height={96} style={`height:${c.h}`} />
+            : <span class="client-wordmark">{c.name}</span>}
+        </li>
+      ))}
+    </ul>
   </div>
 </div>
 {anon.length > 0 && <p class="client-footnote">Also: {anon.map((c) => c.name.replace(/^A /, 'a ')).join(', ')}{anon.some((c) => c.status === 'current') ? ' (current)' : ''}.</p>}
+<script>
+  // Duplicate the row only when it will actually scroll, so the static HTML holds one list.
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll<HTMLElement>('.client-marquee').forEach((m) => {
+      const row = m.querySelector('.client-row');
+      if (!row) return;
+      const copy = row.cloneNode(true) as HTMLElement;
+      copy.setAttribute('aria-hidden', 'true');
+      copy.querySelectorAll('img').forEach((img) => img.setAttribute('alt', ''));
+      row.after(copy);
+      m.classList.add('is-scrolling');
+    });
+  }
+</script>

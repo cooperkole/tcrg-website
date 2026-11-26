@@ -6,7 +6,8 @@ import { photos } from '../data/photos';
 
 const r = recruiting.recruiting;
 const banner = r.banner[r.status as keyof typeof r.banner];
-const fmt = (d: string) => d === 'TBD' ? 'Date TBD' : new Date(d + 'T12:00:00').toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+// TBD dates render no date text at all.
+const fmt = (d: string) => d === 'TBD' ? '' : new Date(d + 'T12:00:00').toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
 const details = [
   { label: 'Who can apply', body: r.eligibility },
   { label: 'Application', body: r.application },
@@ -44,19 +45,19 @@ const details = [
       <h2>Timeline</h2>
       <ol class="timeline">
         {r.timeline.map((t) => (
-          <li><span class="timeline-step">{t.step}</span><span class="timeline-date">{fmt(t.date)}</span></li>
+          <li><span class="timeline-step">{t.step}</span>{fmt(t.date) && <span class="timeline-date">{fmt(t.date)}</span>}</li>
         ))}
       </ol>
     </div>
   </section>
 
-  <section class="section" id="coffee-chat">
-    <div class="container narrow">
-      <h2>Talk to us first</h2>
-      <p>{r.coffeeChat}</p>
-      {r.links.coffeeChat
-        ? <a class="button" href={r.links.coffeeChat} rel="noopener">Sign up for a coffee chat</a>
-        : <p class="muted">The sign-up form will be posted here soon.</p>}
-    </div>
-  </section>
+  {r.links.coffeeChat && (
+    <section class="section" id="coffee-chat">
+      <div class="container narrow">
+        <h2>Talk to us first</h2>
+        <p>{r.coffeeChat}</p>
+        <a class="button" href={r.links.coffeeChat} rel="noopener">Sign up for a coffee chat</a>
+      </div>
+    </section>
+  )}
 </Base>

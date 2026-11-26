@@ -1,5 +1,5 @@
 {
-  "_note": "Leadership, members and founders. Set \"photo\" to a file name in src/assets/headshots/ (e.g. \"jane-doe.jpg\"); leave it \"\" to show a monogram. Leave \"bio\" as \"\" until there is one. \"project\" is the internal Fall 2026 staffing code; it is NOT shown on the site (clients must never be mapped to people or projects). \"joined\" = semester the member joined TCRG, shown under their name.",
+  "_note": "Leadership, members and founders. Set \"photo\" to a file name in src/assets/headshots/ (e.g. \"jane-doe.jpg\"); leave it \"\" to show a monogram. \"bio\" is optional: leave it \"\" and no bio line is shown. \"project\" is the internal Fall 2026 staffing code; it is NOT shown on the site (clients must never be mapped to people or projects). \"joined\" = semester the member joined TCRG, shown under their name.",
   "semester": "Fall 2026",
   "eboard": [
     {
@@ -244,16 +244,15 @@
   ],
   "groupPhotos": [
     {
-      "caption": "Fall 2026 new member class",
-      "photo": ""
-    },
-    {
-      "caption": "Leadership team",
-      "photo": ""
-    },
-    {
-      "caption": "Final client presentation",
+      "caption": "Fall 2026 members",
       "photo": ""
     }
-  ]
+  ],
+  "roles": {
+    "_note": "One line per member role, shown on About under each group.",
+    "projectLeads": "Set the overall direction of the project and keep the client aligned throughout the semester.",
+    "researchLeads": "Guide analysts' work each week and shape their findings into slides.",
+    "analysts": "Research the week's questions and build slides with their Research Leads."
+  },
+  "_groupPhotosNote": "One slot on About. While photo is \"\", a labeled placeholder shows. Put the file in public/images/ and set photo to e.g. \"/images/group-fall-2026.jpg\"."
 }

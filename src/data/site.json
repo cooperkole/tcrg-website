@@ -5,25 +5,48 @@
   "footer": "© 2026 Tufts Capital Research Group, Inc.",
   "tagline": "Pro bono market due diligence for institutional investors.",
   "summary": "TCRG is a student-run group at Tufts University. Each semester, our teams produce bespoke market due diligence for private equity firms, endowments and investment advisors, on a vertical the client chooses.",
-  "origin": "TCRG began as the Tufts Investment Club's PE/VC Research Group and became an independently run branch in Spring 2026, founded by Mathis Weber and Otto Laakso.",
+  "origin": "TCRG began in Fall 2023 as the Tufts Investment Club's PE/VC Research Group and became the independently run Tufts Capital Research Group in Spring 2026, founded by Mathis Weber and Otto Laakso.",
   "whatWeDo": "Clients choose the vertical. Often it is a space they are weighing for an upcoming fund, or a thesis no one on their team has had time to pursue.",
   "deliverable": "A 60+ page read-deck built on secondary research and expert interviews, delivered over a roughly 11-week, semester-long engagement and closing with a final presentation to the client.",
   "services": [
-    { "title": "Comprehensive diligence", "body": "The full picture of a market: its value chain, technology, regulation and competitive landscape." },
-    { "title": "Expert insights", "body": "Calls with industry experts that test what secondary research alone can't settle." },
-    { "title": "Investment recommendations", "body": "High-potential strategies, potential acquisition targets and the risks to weigh." }
+    {
+      "title": "Comprehensive diligence",
+      "body": "The full picture of a market: its value chain, technology, regulation and competitive landscape."
+    },
+    {
+      "title": "Expert insights",
+      "body": "Calls with industry experts that test what secondary research alone can't settle."
+    },
+    {
+      "title": "Investment recommendations",
+      "body": "High-potential strategies, potential acquisition targets and the risks to weigh."
+    }
   ],
   "process": [
-    { "title": "Scoping", "body": "The client chooses the vertical, and together we set the questions the work must answer." },
-    { "title": "Research", "body": "Analysts build the secondary base: market structure, value chain, technology, regulation and key players." },
-    { "title": "Expert calls", "body": "Conversations with industry experts test our assumptions and fill gaps published sources leave open." },
-    { "title": "Synthesis", "body": "Findings are distilled into a 60+ page read-deck with a clear point of view." },
-    { "title": "Final presentation", "body": "The team presents its conclusions and recommendations to the client at the end of the engagement." }
+    {
+      "title": "Scoping",
+      "body": "The client chooses the vertical, and together we set the questions the work must answer."
+    },
+    {
+      "title": "Research",
+      "body": "Analysts build the secondary base: market structure, value chain, technology, regulation and key players."
+    },
+    {
+      "title": "Expert calls",
+      "body": "Conversations with industry experts test our assumptions and fill gaps published sources leave open."
+    },
+    {
+      "title": "Synthesis",
+      "body": "Findings are distilled into a 60+ page read-deck with a clear point of view."
+    },
+    {
+      "title": "Final presentation",
+      "body": "The team presents its conclusions and recommendations to the client at the end of the engagement."
+    }
   ],
   "contact": {
-    "_note": "Set \"email\" to the investor contact address. While it is \"\", the CTA shows the placeholder text and no mailto link.",
-    "email": "",
-    "emailPlaceholder": "[CONTACT EMAIL TBD]",
+    "_note": "Investor contact address, used as a mailto: link by ContactCta and in the home page's structured data.",
+    "email": "tuftscapitalresearchgroup@gmail.com",
     "investorCta": "Scope a project with us",
     "instagram": "https://www.instagram.com/tuftscapitalresearchgroup/",
     "linkedin": "https://www.linkedin.com/company/tufts-capital-research-group/"
@@ -31,5 +54,18 @@
   "testimonials": {
     "_note": "Hidden while empty. Add only quotes a client has approved, word for word: { \"quote\": \"...\", \"attribution\": \"...\" }.",
     "items": []
+  },
+  "faq": {
+    "_note": "Short rebrand FAQ on the About page.",
+    "items": [
+      {
+        "q": "Is TCRG the same group as the Tufts Investment Club's PE/VC Research Group?",
+        "a": "Yes. The PE/VC Research Group started within the Tufts Investment Club in Fall 2023. In Spring 2026 it became the Tufts Capital Research Group."
+      },
+      {
+        "q": "Is TCRG still part of the Tufts Investment Club?",
+        "a": "No. Since Spring 2026, TCRG has been run independently, with its own executive board."
+      }
+    ]
   }
 }

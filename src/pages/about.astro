@@ -21,7 +21,8 @@ const paths = [
   { key: 'consulting', label: 'Consulting' },
   { key: 'investing', label: 'Investing' },
 ];
-const groupPhotos = team.groupPhotos.filter((g) => g.photo);
+// One group-photo slot: the photo once supplied, otherwise a labeled placeholder.
+const groupPhoto = team.groupPhotos[0];
 ---
 <Base title="About | Tufts Capital Research Group" description="The people behind Tufts Capital Research Group: leadership, senior advisors, members and where they go.">
   <section class="page-head">
@@ -36,6 +37,14 @@ const groupPhotos = team.groupPhotos.filter((g) => g.photo);
     <div class="container narrow">
       <h2>Our story</h2>
       <p>{site.origin}</p>
+      <div class="faq">
+        {site.faq.items.map((f) => (
+          <details>
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
     </div>
   </section>
 
@@ -72,6 +81,7 @@ const groupPhotos = team.groupPhotos.filter((g) => g.photo);
       {groups.map((g) => (
         <div class="member-group">
           <h3>{g.label}{countFor(g.label) ? <span class="count"> ({countFor(g.label)})</span> : null}</h3>
+          <p class="role-desc">{team.roles[g.key]}</p>
           <div class="people people-compact">
             {team.members[g.key].map((m) => <PersonCard name={m.name} photo={m.photo} linkedin={m.linkedin} joined={m.joined} compact />)}
           </div>
@@ -80,12 +90,15 @@ const groupPhotos = team.groupPhotos.filter((g) => g.photo);
     </div>
   </section>
 
-  {groupPhotos.length > 0 && (
+  {groupPhoto && (
     <section class="section" id="photos">
-      <div class="container group-photos">
-        {groupPhotos.map((g) => (
-          <figure><img src={g.photo} alt={g.caption} /><figcaption>{g.caption}</figcaption></figure>
-        ))}
+      <div class="container">
+        <figure class="group-photo">
+          {groupPhoto.photo
+            ? <img src={groupPhoto.photo} alt={groupPhoto.caption} loading="lazy" />
+            : <div class="group-photo-slot" role="img" aria-label={`Placeholder for a group photo: ${groupPhoto.caption}`}><span>Group photo to come</span></div>}
+          <figcaption>{groupPhoto.caption}</figcaption>
+        </figure>
       </div>
     </section>
   )}

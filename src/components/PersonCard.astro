@@ -14,7 +14,7 @@ const initials = name.split(/\s+/).filter((w) => w && w !== 'TBD').map((w) => w[
 const displayName = name === 'TBD' ? 'Name TBD' : name;
 ---
 <article class:list={['person', { 'person-compact': compact, 'person-tbd': isTbd }]}>
-  <div class="person-photo">
+  <div class:list={['person-photo', { 'person-photo-empty': !src }]}>
     {src
       ? <Image src={src} alt={name} width={480} height={600} fit="cover" />
       : <span class="monogram" aria-hidden="true">{initials}</span>}
@@ -22,6 +22,6 @@ const displayName = name === 'TBD' ? 'Name TBD' : name;
   <h3 class="person-name">{displayName}</h3>
   {role && <p class="person-role">{role}</p>}
   {joined && <p class="person-joined">Joined {joined}</p>}
-  {!compact && <p class="person-bio">{bio || 'Bio coming soon.'}</p>}
+  {!compact && bio && <p class="person-bio">{bio}</p>}
   {linkedin && <a class="person-link" href={linkedin} rel="noopener">LinkedIn</a>}
 </article>
