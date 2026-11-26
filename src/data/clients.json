@@ -1,11 +1,12 @@
 {
-  "_note": "Client roster for investors. Kept separate from case-studies.json on purpose: never link a client to a project or sector. Listed alphabetically. \"logo\" = file in src/assets/clients/ (official logos from each client's own site, fetched 2026-11-26; Tufts logo recolored from white to ink). Empty = typographic wordmark. \"verify\": true means the exact firm name is unconfirmed. Mercer = Mercer the financial services company (Marsh), added 2026-11-26; status assumed past.",
+  "_note": "Client roster for investors. Kept separate from case-studies.json on purpose: never link a client to a project or sector. Array order = order in the home page logo bar (Mercer first and Bain Capital in Mercer's old slot, per Cooper 2026-11-26). \"logo\" = file in src/assets/clients/ (official logos from each client's own site, fetched 2026-11-26; Tufts logo recolored from white to ink). Empty = typographic wordmark. \"verify\": true means the exact firm name is unconfirmed. Mercer = Mercer the financial services company (Marsh), added 2026-11-26; status assumed past.",
   "clients": [
     {
-      "name": "Bain Capital",
-      "website": "https://www.baincapital.com",
-      "status": "current",
-      "logo": "bain-capital.svg",
+      "name": "Mercer",
+      "detail": "",
+      "website": "https://www.mercer.com",
+      "status": "past",
+      "logo": "mercer.svg",
       "verify": false
     },
     {
@@ -37,11 +38,10 @@
       "verify": false
     },
     {
-      "name": "Mercer",
-      "detail": "",
-      "website": "https://www.mercer.com",
-      "status": "past",
-      "logo": "mercer.svg",
+      "name": "Bain Capital",
+      "website": "https://www.baincapital.com",
+      "status": "current",
+      "logo": "bain-capital.svg",
       "verify": false
     },
     {

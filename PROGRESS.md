@@ -26,10 +26,12 @@ Live URL: https://cooperkole.github.io/tcrg-website/ (preview; custom domain not
 - E-board (2026-11-26): Fares Danial (President), Luka Souza (Head of Research; staffing sheet says VP, Cooper said Head of Research), Cooper Kolehmainen (Head of Operations). Treasurer + Marketing removed from site. E-board also serves as Senior Advisors. Bios still placeholders
 - Senior Advisors (2026-11-26): upperclassmen with 3+ projects; Monish Aswani + Henry Pan = RG Academy Heads; Poorna Chakraborty, Jonathan Trinh, Max Nielsen. RG Academy block on About. Bruno dropped
 - Founders section (Mathis Weber, Otto Laakso) goes below all current staffing on About
-- Stats (Fall 2026, updated 2026-11-26): 4 PLs, 4 RLs, 6 Analysts, 14 New Analyst Class; "Active projects" 2; "Expert calls as of <visitor's today>" 17 (date set client-side in StatsBand); "Cumulative AUM of clients served"; total projects = 2/semester x X years (X TBD)
+- Stats (Fall 2026, updated 2026-11-26): 4 PLs, 4 RLs, 20 Analysts (one group, no separate new class; each member card shows "Joined <semester>" from team.json joined); "Active projects" 2; "Expert calls as of <visitor's today>" 17 (date set client-side in StatsBand); "Cumulative AUM of clients served"; total projects = 2/semester x X years (X TBD)
 - Member project codes (P3TR / Bain Cap) stored in team.json "project" but NOT rendered (no client-to-people mapping)
 - Clients: home shows a right-to-left logo marquee (ClientRoster.astro; official SVG logos from each client's site in src/assets/clients/, fetched 2026-11-26, grayscale, sized by aspect ratio; anonymous fund as footnote). Mercer added 2026-11-26, status assumed past; not in AUM total (no public figure found)
 - Guggenheim placement = Guggenheim Securities
+- Placements: Citibank, Deutsche Bank, Jefferies added 2026-11-26. Home page shows placements.json "featured" (9, Cooper's order): Bain Capital, Warburg Pincus, Bridgewater, Bain & Company, Morgan Stanley, McKinsey, Jefferies, Citibank, Putnam
+- Logo bar order: Mercer first, Bain Capital in Mercer's old slot (clients.json array order)
 - Client names confirmed by Cooper 2026-11-25: CF Private Equity (cfprivateequity.com), CORE Industrial Partners (coreipfund.com); PWP = Perella Weinberg Partners; Warburg Pincus added to placements
 - Combined AUM includes Tufts endowment value; unnamed fund excluded
 - Recruiting: Spring 2027 starts mid-January 2027; add coffee-chat Google Form CTA on Join

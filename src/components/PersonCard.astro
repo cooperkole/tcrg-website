@@ -3,8 +3,8 @@
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 
-interface Props { name: string; role?: string; bio?: string; photo?: string; linkedin?: string; compact?: boolean }
-const { name, role, bio, photo, linkedin, compact = false } = Astro.props;
+interface Props { name: string; role?: string; bio?: string; photo?: string; linkedin?: string; joined?: string; compact?: boolean }
+const { name, role, bio, photo, linkedin, joined, compact = false } = Astro.props;
 
 const shots = import.meta.glob<{ default: ImageMetadata }>('../assets/headshots/*.{jpg,jpeg,png,webp,avif}', { eager: true });
 const src = photo ? shots[`../assets/headshots/${photo}`]?.default : undefined;
@@ -21,6 +21,7 @@ const displayName = name === 'TBD' ? 'Name TBD' : name;
   </div>
   <h3 class="person-name">{displayName}</h3>
   {role && <p class="person-role">{role}</p>}
+  {joined && <p class="person-joined">Joined {joined}</p>}
   {!compact && <p class="person-bio">{bio || 'Bio coming soon.'}</p>}
   {linkedin && <a class="person-link" href={linkedin} rel="noopener">LinkedIn</a>}
 </article>

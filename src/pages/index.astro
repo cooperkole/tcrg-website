@@ -13,8 +13,8 @@ import caseData from '../data/case-studies.json';
 import placementData from '../data/placements.json';
 import recruiting from '../data/recruiting.json';
 
-const paths = ['banking', 'consulting', 'investing'] as const;
-const teaserPlacements = paths.flatMap((p) => placementData.placements.filter((x) => x.path === p).slice(0, 3));
+// Home shows the featured list from placements.json, in its order.
+const teaserPlacements = placementData.featured.map((name) => ({ name }));
 const testimonials = site.testimonials.items as { quote: string; attribution: string }[];
 const r = recruiting.recruiting;
 ---

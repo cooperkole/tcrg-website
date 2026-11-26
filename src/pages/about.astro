@@ -13,7 +13,6 @@ const groups = [
   { key: 'projectLeads', label: 'Project Leads' },
   { key: 'researchLeads', label: 'Research Leads' },
   { key: 'analysts', label: 'Analysts' },
-  { key: 'newAnalysts', label: 'New Analyst Class' },
 ] as const;
 const countFor = (label: string) => stats.teamSize.find((t) => t.role === label)?.count;
 
@@ -74,7 +73,7 @@ const groupPhotos = team.groupPhotos.filter((g) => g.photo);
         <div class="member-group">
           <h3>{g.label}{countFor(g.label) ? <span class="count"> ({countFor(g.label)})</span> : null}</h3>
           <div class="people people-compact">
-            {team.members[g.key].map((m) => <PersonCard name={m.name} photo={m.photo} linkedin={m.linkedin} compact />)}
+            {team.members[g.key].map((m) => <PersonCard name={m.name} photo={m.photo} linkedin={m.linkedin} joined={m.joined} compact />)}
           </div>
         </div>
       ))}
