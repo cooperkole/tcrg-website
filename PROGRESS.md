@@ -1,7 +1,7 @@
 # TCRG website: progress
 
 ## Status
-Current step: 5 done. Next: Step 6 (SEO and basics).
+Current step: 6 done. Next: Step 7 (Deploy and domain).
 Live URL: not live yet (custom domain pending Step 7)   Repo: https://github.com/cooperkole/tcrg-website (public)
 
 ## Steps
@@ -11,7 +11,7 @@ Live URL: not live yet (custom domain pending Step 7)   Repo: https://github.com
 - [x] Step 3: Pages (2026-11-25)
 - [x] Step 4: Design (2026-11-25)
 - [x] Step 5: Photography (2026-11-25)
-- [ ] Step 6: SEO and basics
+- [x] Step 6: SEO and basics (2026-11-25)
 - [ ] Step 7: Deploy and domain
 - [ ] Step 8: Quality check and final report
 
@@ -51,6 +51,7 @@ Live URL: not live yet (custom domain pending Step 7)   Repo: https://github.com
 - astro.config.mjs (site = custom domain), public/CNAME
 - src/layouts/Base.astro (fonts, global.css, Header, Footer; prop heroOverlay = transparent fixed header over hero; inline reveal-on-scroll script, skipped for prefers-reduced-motion)
 - src/styles/global.css: full design system (tokens at top: palette, type scale, spacing). Accent Tufts Blue only on dark bg (eyebrows, footer headings, focus ring)
+- SEO (Step 6): Base.astro props title/description/noindex; emits canonical (trailing slash), OG + Twitter summary_large_image, favicon-32 + apple-touch-icon, theme-color, Organization JSON-LD on home only (adds email once site.json contact.email is set). 404 = noindex, no canonical. src/pages/sitemap.xml.ts hand-written (add new pages to PAGES). public/robots.txt. public/og-image.jpg + icons built by scripts/brand-icons.mjs (sharp; mark cropped from logo)
 - public/brand/: tcrg-logo.png (master 3973x1581, same as Logos/), tcrg-logo-navy.png + tcrg-logo-ivory.png (640px, trimmed) built by scripts/brand-logos.mjs (sharp)
 - src/pages: index, work, about, join, 404. Redirects /blank* in astro.config.mjs `redirects`
 - src/components: Header (sticky, .is-scrolled bg, mobile toggle), Footer (links + e-list), PersonCard (headshot via import.meta.glob of src/assets/headshots, else monogram; TBD -> "Name TBD"), StatsBand (hides TBD), ClientRoster, ContactCta (placeholder text while email empty)
@@ -63,8 +64,9 @@ Live URL: not live yet (custom domain pending Step 7)   Repo: https://github.com
 - README.md (e-board guide; mentions src/assets/headshots/ and /blank redirects, which Steps 2-3 must create)
 
 ## Notes for the next session
+- Step 6 done: redirects now target /work/ /about/ /join/ (GH Pages folder URLs). Contrast checked: all text pairs AA (Tufts Blue on ink 5.1:1). One h1, landmarks and img alts on every page. Nav links still use /work (one 301 hop on Pages; fine).
+- Step 7: set custom domain in repo Settings > Pages, DNS at registrar; verify og-image/favicon/sitemap URLs resolve on the live domain.
 - Step 5 done: <Picture> AVIF/WebP, widths 640-1920, quality 55. Hero 1920w AVIF = 122 KB. Band images up to ~570 KB at 1920w (lazy); lower quality if Lighthouse flags it in Step 8. Hero eyebrow is now ivory (blue rule) for contrast over the photo.
-- Step 6: favicon/OG image from public/brand logos; OG image could reuse bostonDusk.
 - Design done in Step 4: hairline rules, numbered eyebrows/lists, 5/7 split grid, square buttons, header logo swaps navy/ivory via CSS. Stat label changed to "Combined AUM of clients served". Home h1 copy is mine (Cooper may revise). Group photos/testimonials hidden while empty.
 - Logo is high-res, so no text wordmark needed. Logos/ folder at repo root is the original upload; public/brand/ is what the site uses.
 - Pages source = GitHub Actions. Custom domain NOT set in repo settings yet (Step 7). Until then the github.io URL is a project path (/tcrg-website/), so root-relative assets look broken there; expected.

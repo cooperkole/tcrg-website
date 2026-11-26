@@ -8,8 +8,8 @@ export default defineConfig({
   trailingSlash: 'ignore',
   // Old Wix addresses. Static build emits a small redirect page at each.
   redirects: {
-    '/blank': '/work',
-    '/blank-1': '/about',
-    '/blank-2': '/join',
+    '/blank': '/work/',
+    '/blank-1': '/about/',
+    '/blank-2': '/join/',
   },
 });
