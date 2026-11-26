@@ -19,7 +19,7 @@ const details = [
   <section class="page-head">
     <div class="container">
       <p class="eyebrow">Join</p>
-      <h1>{r.cycle} recruiting</h1>
+      <h1 transition:name="page-title">{r.cycle} recruiting</h1>
       <p class={`status-banner status-${r.status}`} role="status">{banner}</p>
       <div class="button-row">
         {r.status === 'open' && r.links.application && <a class="button" href={r.links.application} rel="noopener">Apply</a>}

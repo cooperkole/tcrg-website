@@ -6,6 +6,7 @@ import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import site from '../data/site.json';
+import { ClientRouter } from 'astro:transitions';
 
 interface Props { title: string; description?: string; heroOverlay?: boolean; noindex?: boolean }
 const { title, description = 'Tufts Capital Research Group: student-run, pro bono market due diligence for institutional investors.', heroOverlay = false, noindex = false } = Astro.props;
@@ -57,6 +58,11 @@ const orgLd = {
     <meta name="twitter:image" content={ogImage} />
     <meta name="twitter:image:alt" content="Tufts Capital Research Group logo over the Boston skyline at dusk" />
     {isHome && <script type="application/ld+json" set:html={JSON.stringify(orgLd)} />}
+    <ClientRouter />
+    <!-- First load only (ClientRouter keeps this head script and resets <html> attributes on
+         navigation): lets CSS hold the hero text for its line reveal. A CSS failsafe shows it
+         after 2.5s if the motion script never runs. -->
+    <script is:inline>if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('motion-intro');</script>
   </head>
   <body class:list={{ 'has-hero': heroOverlay }}>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -66,21 +72,9 @@ const orgLd = {
     </main>
     <Footer />
     <script>
-      // Gentle fade-in of section content on scroll. Skipped entirely for
-      // prefers-reduced-motion and without IntersectionObserver; content is
-      // visible by default, so nothing depends on this script.
-      const calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (!calm && 'IntersectionObserver' in window) {
-        const io = new IntersectionObserver((entries) => {
-          for (const e of entries) if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
-        }, { rootMargin: '0px 0px -8% 0px' });
-        const vh = window.innerHeight;
-        document.querySelectorAll('main .section > .container, main .stats-band > .container').forEach((el) => {
-          if (el.getBoundingClientRect().top < vh) return; // already on screen: leave as is
-          el.classList.add('reveal');
-          io.observe(el);
-        });
-      }
+      // Motion system (src/scripts/motion.ts): a separate chunk, never downloaded with
+      // prefers-reduced-motion. The page is complete without it.
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches) import('../scripts/motion');
     </script>
   </body>
 </html>

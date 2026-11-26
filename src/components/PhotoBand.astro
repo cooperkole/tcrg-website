@@ -1,22 +1,32 @@
 ---
 // Full-bleed architectural photograph between sections, with license credit.
+// Optional overlay (eyebrow + text) turns it into a full-bleed statement over the image.
 import { Picture } from 'astro:assets';
 import type { Photo } from '../data/photos';
 import PhotoCredit from './PhotoCredit.astro';
-interface Props { photo: Photo }
-const { photo } = Astro.props;
+interface Props { photo: Photo; eyebrow?: string; text?: string }
+const { photo, eyebrow, text } = Astro.props;
+const overlay = Boolean(text);
 ---
-<figure class="photo-band">
-  <Picture
-    src={photo.src}
-    alt={photo.alt}
-    formats={['avif', 'webp']}
-    widths={[640, 960, 1280, 1600, 1920]}
-    quality={55}
-    sizes="100vw"
-    loading="lazy"
-    decoding="async"
-    style={photo.focus ? `object-position: ${photo.focus}` : undefined}
-  />
+<figure class:list={['photo-band', { 'photo-band-overlay': overlay }]}>
+  <div class="photo-band-frame">
+    <Picture
+      src={photo.src}
+      alt={photo.alt}
+      formats={['avif', 'webp']}
+      widths={[640, 960, 1280, 1600, 1920]}
+      quality={55}
+      sizes="100vw"
+      loading="lazy"
+      decoding="async"
+      style={photo.focus ? `object-position: ${photo.focus}` : undefined}
+    />
+    {overlay && (
+      <div class="photo-band-text container">
+        {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+        <p class="photo-band-statement">{text}</p>
+      </div>
+    )}
+  </div>
   <figcaption class="container"><PhotoCredit photo={photo} /></figcaption>
 </figure>

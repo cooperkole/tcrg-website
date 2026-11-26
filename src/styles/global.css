@@ -85,10 +85,13 @@ a:hover { color: var(--ink); }
 
 /* Text links with a quiet arrow drawn in CSS (no icon set). */
 .text-link {
-  display: inline-flex; align-items: center; gap: .6rem; margin-top: 1.75rem;
+  position: relative; display: inline-flex; align-items: center; gap: .6rem; margin-top: 1.75rem;
   font-size: .9375rem; font-weight: 550; letter-spacing: .01em; text-decoration: none;
-  border-bottom: 1px solid currentColor; padding-bottom: .2rem;
+  border-bottom: 1px solid color-mix(in srgb, currentColor 35%, transparent); padding-bottom: .2rem;
 }
+/* Underline draws in from the left on hover, over the quiet base rule. */
+.text-link::before { content: ''; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform .35s var(--ease); }
+.text-link:hover::before, .text-link:focus-visible::before { transform: scaleX(1); }
 .text-link::after { content: '→'; transition: transform .2s var(--ease); }
 .text-link:hover::after { transform: translateX(3px); }
 
@@ -164,9 +167,21 @@ a:hover { color: var(--ink); }
 .split { display: grid; gap: var(--gap) clamp(2rem, 6vw, 6rem); grid-template-columns: 1fr; align-items: start; }
 @media (min-width: 900px) { .split { grid-template-columns: 5fr 7fr; } }
 
-/* Reveal on scroll (added by Base.astro script only when motion is OK). */
-.reveal { opacity: 0; transform: translateY(14px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
-.reveal.is-in { opacity: 1; transform: none; }
+/* ---------- Motion (Step 11; src/scripts/motion.ts) ----------
+   The script sets all start states inline, so without it (or with reduced motion)
+   every element simply shows. The only CSS-held state is the hero text on first
+   load, with a failsafe that shows it after 2.5s if the script never runs. */
+.motion-intro .hero h1, .motion-intro .hero .eyebrow, .motion-intro .hero-sub { visibility: hidden; animation: motion-failsafe 0s 2.5s forwards; }
+@keyframes motion-failsafe { to { visibility: visible; } }
+.split-line { padding-bottom: .06em; margin-bottom: -.06em; } /* room for descenders inside the line mask */
+/* Lenis smooth scroll (recommended base rules) */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: clip; }
+.lenis [data-lenis-prevent] { overscroll-behavior: contain; }
+/* Page transitions (ClientRouter): a quick crossfade; logo and page heading morph. */
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: .38s; }
+::view-transition-group(page-title), ::view-transition-group(site-logo) { animation-duration: .45s; animation-timing-function: cubic-bezier(.2, .7, .2, 1); }
 
 /* ---------- Hero ---------- */
 .hero {
@@ -175,7 +190,10 @@ a:hover { color: var(--ink); }
   color: var(--ivory); background: var(--ink);
 }
 .hero-media { position: absolute; inset: 0; z-index: -1; background: var(--ink); }
-.hero-media picture { display: block; height: 100%; }
+.hero-media picture { position: relative; display: block; height: 100%; }
+/* Blur-up placeholder (inline data URI from src/lib/lqip.ts) under the photo. Pre-blurred at
+   build time: a CSS blur filter on a full-screen layer costs seconds of raster time on phones. */
+.hero-lqip { position: absolute; inset: 0; background-size: cover; }
 .hero-media img { width: 100%; height: 100%; object-fit: cover; }
 /* Flat ink scrim for text legibility over the Step 5 photograph (no gradient). */
 .hero-media::after { content: ''; position: absolute; inset: 0; background: rgba(14, 26, 43, .5); }
@@ -188,9 +206,22 @@ a:hover { color: var(--ink); }
 
 /* ---------- Photo band (Step 5) ---------- */
 .photo-band { margin: 0; background: var(--ink); }
+.photo-band-frame { position: relative; overflow: hidden; }
 .photo-band picture { display: block; }
-.photo-band img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.photo-band img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
 @media (min-width: 700px) { .photo-band img { aspect-ratio: 16 / 7; max-height: 44rem; } }
+/* Full-bleed image with overlaid text: flat ink scrim (no gradient), text bottom-left. */
+.photo-band-overlay .photo-band-frame::after { content: ''; position: absolute; inset: 0; background: rgba(14, 26, 43, .55); }
+.photo-band-text { position: absolute; z-index: 1; left: 0; right: 0; bottom: clamp(2rem, 6vw, 4.5rem); color: var(--ivory); }
+.photo-band-overlay .eyebrow { color: var(--ivory); }
+.photo-band-overlay .eyebrow::before { background: var(--tufts-blue); }
+.photo-band-statement { margin: 0; max-width: 20ch; font-family: var(--font-display); font-size: var(--step-3); font-weight: 300; line-height: 1.12; letter-spacing: -.015em; }
+@media (max-width: 699px) { .photo-band-overlay img { aspect-ratio: 4 / 5; } }
+
+/* ---------- Statement band (home) ---------- */
+.statement-band { padding-block: clamp(4.5rem, 12vw, 9.5rem); border-bottom: 1px solid var(--hairline); }
+.statement { margin: 0; max-width: 24ch; font-family: var(--font-display); font-size: clamp(2.1rem, 1.2rem + 3.8vw, 4.6rem); font-weight: 300; line-height: 1.1; letter-spacing: -.02em; }
+.statement-band + .section { border-top: 0; }
 .photo-band figcaption { padding-block: .7rem; text-align: right; }
 .photo-credit { font-size: .6875rem; letter-spacing: .01em; color: var(--on-dark-2); }
 .photo-credit a { color: inherit; text-underline-offset: 2px; }
@@ -356,8 +387,15 @@ a:hover { color: var(--ink); }
 html.deck-lock { overflow: hidden; }
 
 /* ---------- Placements ---------- */
-.placement-teaser { list-style: none; padding: 0; margin: 2.5rem 0 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr)); border-top: 1px solid var(--ink); }
-.placement-teaser li { padding: 1rem 1rem 1rem 0; border-bottom: 1px solid var(--hairline); font-family: var(--font-display); font-size: var(--step-2); line-height: 1.2; }
+/* Home strip: grouped by path, scrolls sideways (native; pinned + scrubbed on wide screens with motion). */
+.placements-band { overflow: hidden; }
+.hstrip { overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x proximity; margin-block: clamp(2.25rem, 5vw, 3.5rem) 0; padding-bottom: 1.25rem; scrollbar-width: thin; }
+.hstrip.is-pinned { overflow: hidden; }
+.hstrip-track { display: flex; gap: clamp(3rem, 7vw, 7rem); width: max-content; padding-inline: max(var(--gutter), (100% - var(--max)) / 2); }
+.hstrip-group { scroll-snap-align: start; }
+.hstrip-group h3 { font-family: var(--font-body); font-size: var(--step--1); font-weight: 550; letter-spacing: .14em; text-transform: uppercase; color: var(--text-2); padding-bottom: 1rem; margin-bottom: 0; border-bottom: 1px solid var(--ink); }
+.hstrip-group ul { list-style: none; padding: 0; margin: 0; display: grid; grid-template-rows: repeat(2, auto); grid-auto-flow: column; column-gap: clamp(2rem, 4vw, 3.5rem); }
+.hstrip-group li { padding: 1.1rem 0; border-bottom: 1px solid var(--hairline); font-family: var(--font-display); font-size: clamp(1.5rem, 1.1rem + 1.5vw, 2.4rem); font-weight: 300; line-height: 1.15; white-space: nowrap; }
 .placements { display: grid; gap: 2.5rem clamp(2rem, 4vw, 3.5rem); grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); margin-top: clamp(2rem, 5vw, 3rem); }
 .placement-col h3 { font-family: var(--font-body); font-size: var(--step--1); font-weight: 550; letter-spacing: .14em; text-transform: uppercase; color: var(--text-2); padding-bottom: 1rem; border-bottom: 1px solid var(--ink); }
 .placement-col ul { list-style: none; padding: 0; margin: 0; }
@@ -478,11 +516,11 @@ html.deck-lock { overflow: hidden; }
 @media print {
   .site-header, .nav-toggle, .skip-link { display: none; }
   .section-dark, .hero, .site-footer { background: none; color: var(--ink); }
-  .reveal { opacity: 1; transform: none; }
+  .motion-intro .hero h1, .motion-intro .hero .eyebrow, .motion-intro .hero-sub { visibility: visible; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .person-photo img, .person-photo-empty, .person-photo-empty::before, .person-photo-empty::after { transition: none; }
   .person:hover .person-photo img { transform: none; }
-  .deck-nav, .deck-tool, .deck-thumbs img, .work-card-more::after, .work-cards h3 { transition: none; }
+  .deck-nav, .deck-tool, .deck-thumbs img, .work-card-more::after, .work-cards h3, .text-link::before { transition: none; }
 }

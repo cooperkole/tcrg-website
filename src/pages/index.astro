@@ -12,15 +12,29 @@ import site from '../data/site.json';
 import caseData from '../data/case-studies.json';
 import placementData from '../data/placements.json';
 import recruiting from '../data/recruiting.json';
+import { lqip } from '../lib/lqip';
 
-// Home shows the featured list from placements.json, in its order.
-const teaserPlacements = placementData.featured.map((name) => ({ name }));
+// Placements strip: every placement, grouped by path; within a group the "featured"
+// names come first, in their featured order, then the rest alphabetically.
+const pathLabels = { banking: 'Banking', consulting: 'Consulting', investing: 'Investing' } as const;
+const rank = (n: string) => { const i = placementData.featured.indexOf(n); return i < 0 ? 999 : i; };
+const placementGroups = (Object.keys(pathLabels) as (keyof typeof pathLabels)[]).map((key) => ({
+  key,
+  label: pathLabels[key],
+  names: placementData.placements
+    .filter((p) => p.path === key)
+    .map((p) => p.name)
+    .sort((a, b) => rank(a) - rank(b) || a.localeCompare(b)),
+}));
+// Blur-up placeholder painted under the hero photo (never a flat navy first paint).
+const heroLqip = await lqip('boston-skyline-harbor-dusk.jpg');
 const testimonials = site.testimonials.items as { quote: string; attribution: string }[];
 const r = recruiting.recruiting;
 ---
 <Base title="Tufts Capital Research Group | Pro bono market due diligence" description="A student-run group at Tufts University producing bespoke, pro bono market due diligence for private equity firms, endowments and investment advisors." heroOverlay>
   <section class="hero">
     <div class="hero-media">
+      <div class="hero-lqip" aria-hidden="true" style={`background-image:url(${heroLqip});background-position:${photos.bostonDusk.focus ?? 'center'}`}></div>
       <Picture
         src={photos.bostonDusk.src}
         alt={photos.bostonDusk.alt}
@@ -35,13 +49,19 @@ const r = recruiting.recruiting;
     </div>
     <div class="container hero-content">
       <p class="eyebrow">Student-run at Tufts University</p>
-      <h1>Bespoke market due diligence for institutional investors, from Tufts.</h1>
+      <h1 transition:name="page-title">Bespoke market due diligence for institutional investors, from Tufts.</h1>
       <p class="hero-sub">Pro bono, semester-long engagements for private equity firms, endowments and investment advisors.</p>
       <p class="hero-credit"><PhotoCredit photo={photos.bostonDusk} /></p>
     </div>
   </section>
 
   <StatsBand />
+
+  <section class="statement-band" aria-label="What a TCRG engagement is">
+    <div class="container">
+      <p class="statement" data-statement>{site.statement}</p>
+    </div>
+  </section>
 
   <section class="section">
     <div class="container">
@@ -81,7 +101,7 @@ const r = recruiting.recruiting;
     </div>
   </section>
 
-  <PhotoBand photo={photos.customHouse} />
+  <PhotoBand photo={photos.customHouse} eyebrow={site.photoStatement.eyebrow} text={site.photoStatement.text} />
 
   <section class="section section-alt">
     <div class="container">
@@ -114,14 +134,23 @@ const r = recruiting.recruiting;
     </section>
   )}
 
-  <section class="section">
+  <section class="section placements-band">
     <div class="container">
       <p class="eyebrow">Members</p>
       <h2>Where members go</h2>
-      <p>{placementData.intro}</p>
-      <ul class="placement-teaser">
-        {teaserPlacements.map((p) => <li>{p.name}</li>)}
-      </ul>
+      <p class="section-sub">{placementData.intro}</p>
+    </div>
+    <div class="hstrip" data-hstrip tabindex="0" role="region" aria-label="Member placements by path (scrolls sideways)">
+      <div class="hstrip-track">
+        {placementGroups.map((g) => (
+          <div class="hstrip-group">
+            <h3>{g.label}</h3>
+            <ul>{g.names.map((n) => <li>{n}</li>)}</ul>
+          </div>
+        ))}
+      </div>
+    </div>
+    <div class="container">
       <a class="text-link" href={withBase('/about#placements')}>All placements</a>
     </div>
   </section>

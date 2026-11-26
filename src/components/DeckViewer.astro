@@ -76,7 +76,15 @@ const slides = Array.from({ length: deck.pages }, (_, i) => i + 1);
 </div>
 
 <script>
+  // Set up on every astro:page-load (ClientRouter); global listeners are dropped on the
+  // next navigation through the AbortController.
   const MAX = 4;
+  let pageCtl: AbortController | null = null;
+  document.addEventListener('astro:before-swap', () => pageCtl?.abort());
+  document.addEventListener('astro:page-load', () => {
+  pageCtl?.abort();
+  pageCtl = new AbortController();
+  const signal = pageCtl.signal;
   for (const root of document.querySelectorAll<HTMLElement>('[data-deck]')) {
     const base = root.dataset.base!;
     const pages = Number(root.dataset.pages);
@@ -249,12 +257,13 @@ const slides = Array.from({ length: deck.pages }, (_, i) => i + 1);
       stage.focus({ preventScroll: true });
     };
     fsBtn.addEventListener('click', toggleFs);
-    document.addEventListener('fullscreenchange', syncFs);
-    window.addEventListener('resize', () => apply());
+    document.addEventListener('fullscreenchange', syncFs, { signal });
+    window.addEventListener('resize', () => apply(), { signal });
 
     root.classList.add('is-ready');
     const start0 = Number(new URL(location.href).searchParams.get('slide'));
     go(start0 >= 1 && start0 <= pages ? start0 : 1, { push: false });
     if (start0 > 1 && !location.hash) root.scrollIntoView({ block: 'start' });
   }
+  });
 </script>

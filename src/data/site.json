@@ -8,6 +8,12 @@
   "origin": "TCRG began in Fall 2023 as the Tufts Investment Club's PE/VC Research Group and became the independently run Tufts Capital Research Group in Spring 2026, founded by Mathis Weber and Otto Laakso.",
   "whatWeDo": "Clients choose the vertical. Often it is a space they are weighing for an upcoming fund, or a thesis no one on their team has had time to pursue.",
   "deliverable": "A 60+ page read-deck built on secondary research and expert interviews, delivered over a roughly 11-week, semester-long engagement and closing with a final presentation to the client.",
+  "statement": "Our teams spend a semester inside a market a client is weighing, and come back with a point of view.",
+  "photoStatement": {
+    "_note": "Text laid over the full-bleed Custom House photo on the home page.",
+    "eyebrow": "Expert insights",
+    "text": "Calls with industry experts test what secondary research alone can't settle."
+  },
   "services": [
     {
       "title": "Comprehensive diligence",

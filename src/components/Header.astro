@@ -10,7 +10,7 @@ const path = stripBase(Astro.url.pathname).replace(/\/$/, '') || '/';
 ---
 <header class="site-header" data-header>
   <div class="container header-inner">
-    <a class="brand" href={withBase('/')}>
+    <a class="brand" href={withBase('/')} transition:name="site-logo">
       <span class="visually-hidden">{site.name}, home</span>
       <img class="brand-logo brand-logo-navy" src={withBase('/brand/tcrg-logo-navy.png')} alt="" width="640" height="279" />
       <img class="brand-logo brand-logo-ivory" src={withBase('/brand/tcrg-logo-ivory.png')} alt="" width="640" height="279" />
@@ -29,16 +29,21 @@ const path = stripBase(Astro.url.pathname).replace(/\/$/, '') || '/';
   </div>
 </header>
 <script>
-  const header = document.querySelector<HTMLElement>('[data-header]');
-  const toggle = document.querySelector<HTMLButtonElement>('[data-nav-toggle]');
-  const onScroll = () => header?.classList.toggle('is-scrolled', window.scrollY > 8);
-  onScroll();
-  window.addEventListener('scroll', onScroll, { passive: true });
+  // Runs once per visit (ClientRouter swaps the header on each navigation), so the
+  // window/document listeners look the header up each time; the toggle is rebound per page.
+  const header = () => document.querySelector<HTMLElement>('[data-header]');
+  const toggle = () => document.querySelector<HTMLButtonElement>('[data-nav-toggle]');
+  const onScroll = () => header()?.classList.toggle('is-scrolled', window.scrollY > 8);
   const setOpen = (open: boolean) => {
-    toggle?.setAttribute('aria-expanded', String(open));
-    header?.classList.toggle('nav-open', open);
+    toggle()?.setAttribute('aria-expanded', String(open));
+    header()?.classList.toggle('nav-open', open);
   };
-  toggle?.addEventListener('click', () => setOpen(toggle.getAttribute('aria-expanded') !== 'true'));
+  window.addEventListener('scroll', onScroll, { passive: true });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
   window.matchMedia('(min-width: 761px)').addEventListener('change', (e) => { if (e.matches) setOpen(false); });
+  document.addEventListener('astro:page-load', () => {
+    onScroll();
+    const t = toggle();
+    t?.addEventListener('click', () => setOpen(t.getAttribute('aria-expanded') !== 'true'));
+  });
 </script>

@@ -36,8 +36,10 @@ const items = named.map((c) => {
 {anon.length > 0 && <p class="client-footnote">Also: {anon.map((c) => c.name.replace(/^A /, 'a ')).join(', ')}{anon.some((c) => c.status === 'current') ? ' (current)' : ''}.</p>}
 <script>
   // Duplicate the row only when it will actually scroll, so the static HTML holds one list.
-  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    document.querySelectorAll<HTMLElement>('.client-marquee').forEach((m) => {
+  // astro:page-load fires on first load and after every ClientRouter navigation.
+  document.addEventListener('astro:page-load', () => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    document.querySelectorAll<HTMLElement>('.client-marquee:not(.is-scrolling)').forEach((m) => {
       const row = m.querySelector('.client-row');
       if (!row) return;
       const copy = row.cloneNode(true) as HTMLElement;
@@ -46,5 +48,5 @@ const items = named.map((c) => {
       row.after(copy);
       m.classList.add('is-scrolling');
     });
-  }
+  });
 </script>
