@@ -9,7 +9,15 @@ import data from '../data/clients.json';
 const logos = import.meta.glob<{ default: ImageMetadata }>('../assets/clients/*.{png,jpg,jpeg,webp,avif,svg}', { eager: true });
 const named = data.clients.filter((c) => !c.anonymous);
 const anon = data.clients.filter((c) => c.anonymous);
-const items = named.map((c) => ({ ...c, src: c.logo ? logos[`../assets/clients/${c.logo}`]?.default : undefined }));
+// Optical sizing: wide wordmarks get shorter, stacked marks taller, so all read at a similar visual weight.
+const logoHeight = (m: ImageMetadata) => {
+  const ratio = m.width / m.height;
+  return Math.min(4, Math.max(1.6, 2.6 * Math.sqrt(4 / ratio))).toFixed(2) + 'rem';
+};
+const items = named.map((c) => {
+  const src = c.logo ? logos[`../assets/clients/${c.logo}`]?.default : undefined;
+  return { ...c, src, h: src ? logoHeight(src) : undefined };
+});
 ---
 <div class="client-marquee" role="region" aria-label="Clients we have worked with">
   <div class="client-track">
@@ -18,7 +26,7 @@ const items = named.map((c) => ({ ...c, src: c.logo ? logos[`../assets/clients/$
         {items.map((c) => (
           <li class="client-logo">
             {c.src
-              ? <Image src={c.src} alt={copy === 0 ? c.name : ''} height={96} />
+              ? <Image src={c.src} alt={copy === 0 ? c.name : ''} height={96} style={`height:${c.h}`} />
               : <span class="client-wordmark">{c.name}</span>}
           </li>
         ))}

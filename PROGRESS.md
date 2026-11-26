@@ -28,7 +28,7 @@ Live URL: https://cooperkole.github.io/tcrg-website/ (preview; custom domain not
 - Founders section (Mathis Weber, Otto Laakso) goes below all current staffing on About
 - Stats (Fall 2026, updated 2026-11-26): 4 PLs, 4 RLs, 6 Analysts, 14 New Analyst Class; "Active projects" 2; "Expert calls as of <visitor's today>" 17 (date set client-side in StatsBand); "Cumulative AUM of clients served"; total projects = 2/semester x X years (X TBD)
 - Member project codes (P3TR / Bain Cap) stored in team.json "project" but NOT rendered (no client-to-people mapping)
-- Clients: home shows a right-to-left logo marquee (ClientRoster.astro; wordmark until a logo file is set; anonymous fund as footnote). Mercer added 2026-11-26, status assumed past; not in AUM total (no public figure found)
+- Clients: home shows a right-to-left logo marquee (ClientRoster.astro; official SVG logos from each client's site in src/assets/clients/, fetched 2026-11-26, grayscale, sized by aspect ratio; anonymous fund as footnote). Mercer added 2026-11-26, status assumed past; not in AUM total (no public figure found)
 - Guggenheim placement = Guggenheim Securities
 - Client names confirmed by Cooper 2026-11-25: CF Private Equity (cfprivateequity.com), CORE Industrial Partners (coreipfund.com); PWP = Perella Weinberg Partners; Warburg Pincus added to placements
 - Combined AUM includes Tufts endowment value; unnamed fund excluded
@@ -37,7 +37,8 @@ Live URL: https://cooperkole.github.io/tcrg-website/ (preview; custom domain not
 
 ## Placeholders still open
 - [ ] E-board and Senior Advisor bios; headshots
-- [ ] Client logo files (src/assets/clients/, set "logo" in clients.json); Mercer status + AUM source
+- [ ] Mercer status + AUM source
+- [ ] Clients given a heads-up that their logos are on the site
 - [ ] Investor contact email (src/data/site.json contact.email)
 - [ ] Spring 2027 exact recruiting dates + status
 - [ ] Coffee-chat Google Form URL; application URL (src/data/recruiting.json links)
