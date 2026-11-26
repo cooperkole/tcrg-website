@@ -1,7 +1,7 @@
 # TCRG website: progress
 
 ## Status
-Current step: 8 done (closed early). Next: v2 steps; the quality check and final report (old Step 8) goes last in v2.
+Current step: 8 done (closed early). v2 brief added (docs/BRIEF-V2.md, 2026-11-26; v2 wins on conflicts). Next: Step 9.
 Live URL: https://cooperkole.github.io/tcrg-website/ (preview; custom domain not connected, see DEPLOY.md)   Repo: https://github.com/cooperkole/tcrg-website (public)
 
 ## Steps
@@ -14,6 +14,11 @@ Live URL: https://cooperkole.github.io/tcrg-website/ (preview; custom domain not
 - [x] Step 6: SEO and basics (2026-11-25)
 - [x] Step 7: Deploy and domain (2026-11-25)
 - [x] Step 8: Closed early per Cooper (2026-11-26); its quality check goes at the end of the v2 steps
+- [ ] Step 9 (v2): Content fixes and de-emptying (bios hidden until present, designed monograms, recruiting status banner, wording, contact email, duplicate logos, role descriptions, group-photo slot, rebrand FAQ)
+- [ ] Step 10 (v2): Selected work (Climate A&R, Chemicals placeholder, Data Centers) + data-driven deck viewer
+- [ ] Step 11 (v2): Motion system (ClientRouter, GSAP + ScrollTrigger, Lenis; reduced-motion fallback; Lighthouse >= 90 mobile)
+- [ ] Step 12 (v2): Timelines (analyst week, engagement process, recruiting, origin; src/data/timelines.json)
+- [ ] Step 13 (v2): QA (old Step 8 + reduced-motion, keyboard deck viewer, iOS Safari, CLS, confidentiality grep)
 
 ## Decisions (approved by Cooper)
 - Palette: Ink #0E1A2B, Jumbo Blue #002E6D (links), Tufts Blue #3E8EDE (accent, large text/dark bg only; source brand.tufts.edu/guidelines/color), Ivory #F7F4EE, Candle White #F2EDE7, text-2 #5E5C57, hairline #D9D3C7
@@ -43,12 +48,15 @@ Live URL: https://cooperkole.github.io/tcrg-website/ (preview; custom domain not
 - [ ] Headshots missing (monogram shown): Anvitha Paruchuri, Vivaan Misra, Evan Waters, Will Moldenhauer, Henry Pan, Poorna Chakraborty, Jonathan Trinh.
 - [ ] Mercer status + AUM source
 - [ ] Clients given a heads-up that their logos are on the site
-- [ ] Investor contact email (src/data/site.json contact.email)
+- [ ] Investor contact email (src/data/site.json contact.email): decided = tuftscapitalresearchgroup@gmail.com, wire in Step 9
 - [ ] Spring 2027 exact recruiting dates + status
 - [ ] Coffee-chat Google Form URL; application URL (src/data/recruiting.json links)
 - [ ] Total projects completed (years X) (stats.json; hidden while TBD)
 - [ ] Placements: no entrepreneurship entries, so intro names banking/consulting/investing only
-- [ ] Redacted sample deck PDF (public/docs/tcrg-sample-deck.pdf)
+- [ ] Redacted sample deck: Climate A&R PDF supplied by Cooper; goes in source/decks/ (git-ignored), rendered to images in Step 10, no raw PDF in public/
+- [ ] Chemicals scope text (placeholder until supplied)
+- [ ] Group photo for About
+- [ ] PDF download of sample deck? (default: no)
 - [ ] Testimonial (hidden until supplied)
 - [ ] Official Tufts campus photos (ask Tufts Communications): only Ballou Hall (Commons, snowy phone shot) in use; Tisch roof + Boston-from-hilltop have no usable image
 
