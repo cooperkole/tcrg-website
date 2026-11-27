@@ -1,6 +1,6 @@
 {
   "_note": "Where members have interned or work (for students). Separate from clients.json on purpose. \"path\" groups each name: banking, consulting or investing. \"featured\" = the 9 shown on the home page, in this order (each must match a name in placements).",
-  "intro": "Members go on to a range of paths: banking, consulting and investing.",
+  "intro": "Members of TCRG go on to intern and accept full time positions at some of the most prestigious consulting, banking, and investment firms.",
   "placements": [
     {
       "name": "Bank of America",
@@ -96,6 +96,6 @@
     "McKinsey & Company",
     "Jefferies",
     "Citibank",
-    "Putnam"
+    "BCG"
   ]
 }

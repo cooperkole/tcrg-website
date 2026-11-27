@@ -5,6 +5,9 @@ import { aumLabel } from '../data/aum';
 const stats = statsData.stats
   .map((s) => ({ ...s, value: s.id === 'aum' ? aumLabel : s.value }))
   .filter((s) => s.value && s.value !== 'TBD');
+// Team headcount sits right after AUM: analysts, research leads, project leads.
+const team = [...statsData.teamSize].reverse().map((t) => ({ id: t.role, value: String(t.count), label: t.role }));
+stats.splice(stats.findIndex((s) => s.id === 'aum') + 1, 0, ...team);
 const fmt = (d: Date) => d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
 // Build-time fallback for "as of"; the script below swaps in the visitor's own date.
 const buildDate = fmt(new Date());
